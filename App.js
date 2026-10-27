@@ -9,7 +9,6 @@ import {
   TouchableOpacity,
   StyleSheet,
   Linking,
-  Alert,
 } from 'react-native';
 import { Ionicons, FontAwesome5 } from '@expo/vector-icons';
 
@@ -22,37 +21,37 @@ const profile = {
   nip: '19930601 2019032019',
 };
 
-const primaryMenu = [
-  { id: 'rdm', label: 'RDM', icon: 'laptop', bg: '#eef3ff', color: '#ef5350' },
-  { id: 'absen', label: 'Absen', icon: 'clipboard-check', bg: '#f8f3ff', color: '#7d5cf5' },
-  { id: 'izin', label: 'Izin Pegawai', icon: 'user-check', bg: '#fff5eb', color: '#f3a63d' },
-  { id: 'scan', label: 'Scan Siswa', icon: 'qrcode', bg: '#ebf9ff', color: '#ff5d5d' },
-  { id: 'kelas', label: 'Absensi Kelas', icon: 'desktop', bg: '#edf7ff', color: '#2c9cdc' },
-  { id: 'jurnal', label: 'Jurnal', icon: 'book', bg: '#eef6ff', color: '#4b7bed' },
-  { id: 'nilai', label: 'Penilaian', icon: 'chart-bar', bg: '#edfbff', color: '#1eaedb' },
-  { id: 'siswa', label: 'Siswa', icon: 'users', bg: '#effef7', color: '#13b77e' },
-  { id: 'kelas2', label: 'Kelas', icon: 'school', bg: '#fff9ed', color: '#f4b344' },
-  { id: 'materi', label: 'Materi', icon: 'folder', bg: '#f8f4ff', color: '#8f6ce9' },
-  { id: 'pelanggaran', label: 'Pelanggaran Siswa', icon: 'exclamation-circle', bg: '#fff1f2', color: '#ea4b62' },
-  { id: 'report', label: 'Report', icon: 'clipboard-list', bg: '#edfbf9', color: '#27b6a5' },
-];
-
-const extraMenu = [
-  { id: 'kurikulum', label: 'Kurikulum 2026', icon: 'book-open', bg: '#f4f2ff', color: '#6f5ef8' },
-  { id: 'tka', label: 'Persam TKA', icon: 'graduation-cap', bg: '#edf8ff', color: '#4f86ff' },
-  { id: 'garuda', label: 'Aplikasi Garuda', icon: 'rocket', bg: '#fff9f0', color: '#f59e0b' },
-  { id: 'jadwal', label: 'Jadwal Piket', icon: 'calendar-alt', bg: '#fff7e7', color: '#f59e0b' },
-  { id: 'struktur', label: 'Struktur Kelas', icon: 'sitemap', bg: '#f2fbf5', color: '#2bb673' },
-  { id: 'website', label: 'Website Sekolah', icon: 'globe', bg: '#eaf1ff', color: '#4a66d8' },
-  { id: 'english', label: 'English Translator', icon: 'language', bg: '#edf3ff', color: '#4d79f1' },
-  { id: 'ujian', label: 'Ujian Online', icon: 'file-signature', bg: '#fff7db', color: '#d69c1a' },
-  { id: 'izinPegawai', label: 'Izin Pegawai', icon: 'user-check', bg: '#ebfdf8', color: '#1aa88d' },
-  { id: 'scanKamera', label: 'Scan Pakai Kamera', icon: 'camera', bg: '#edf1f9', color: '#4457d5' },
-];
-
 const summaryData = [
   { label: 'Jumlah Siswa', value: '7' },
   { label: 'Jumlah Kelas', value: '2' },
+];
+
+const primaryMenu = [
+  { id: 'rdm', label: 'RDM', icon: 'laptop', color: '#f35d4f', bg: '#eef3ff' },
+  { id: 'absen', label: 'Absen', icon: 'clipboard-check', color: '#7d5ef5', bg: '#f8f3ff' },
+  { id: 'izin', label: 'Izin Pegawai', icon: 'user-check', color: '#f3a63d', bg: '#fff8eb' },
+  { id: 'scan', label: 'Scan Siswa', icon: 'qrcode', color: '#f15a5d', bg: '#ebf9ff' },
+  { id: 'kelas', label: 'Absensi Kelas', icon: 'desktop', color: '#2c9cdc', bg: '#edf7ff' },
+  { id: 'jurnal', label: 'Jurnal', icon: 'book', color: '#4b7bed', bg: '#eef5ff' },
+  { id: 'nilai', label: 'Penilaian', icon: 'chart-bar', color: '#1eaedb', bg: '#edfbff' },
+  { id: 'siswa', label: 'Siswa', icon: 'users', color: '#15b883', bg: '#effef7' },
+  { id: 'kelas2', label: 'Kelas', icon: 'school', color: '#f4b344', bg: '#fff9ed' },
+  { id: 'materi', label: 'Materi', icon: 'folder', color: '#8f6ce9', bg: '#f8f4ff' },
+  { id: 'pelanggaran', label: 'Pelanggaran Siswa', icon: 'exclamation-circle', color: '#eb5368', bg: '#fff1f3' },
+  { id: 'report', label: 'Report', icon: 'clipboard-list', color: '#29bca8', bg: '#edfdf9' },
+];
+
+const extraMenu = [
+  { id: 'kurikulum', label: 'Kurikulum 2026', icon: 'book-open', color: '#6f5ef8', bg: '#f4f1ff' },
+  { id: 'tka', label: 'Persam TKA', icon: 'graduation-cap', color: '#4f86ff', bg: '#edf8ff' },
+  { id: 'garuda', label: 'Aplikasi Garuda', icon: 'rocket', color: '#f59e0b', bg: '#fffaf0' },
+  { id: 'jadwal', label: 'Jadwal Piket', icon: 'calendar-alt', color: '#f59e0b', bg: '#fff7e6' },
+  { id: 'struktur', label: 'Struktur Kelas', icon: 'sitemap', color: '#2db06d', bg: '#f1fbf5' },
+  { id: 'website', label: 'Website Sekolah', icon: 'globe', color: '#4165d8', bg: '#edf2ff' },
+  { id: 'english', label: 'English Translator', icon: 'language', color: '#5a74ef', bg: '#edf3ff' },
+  { id: 'ujian', label: 'Ujian Online', icon: 'file-signature', color: '#d9a217', bg: '#fff7d9' },
+  { id: 'izinPegawai', label: 'Izin Pegawai', icon: 'user-check', color: '#18a78d', bg: '#f0fdf9' },
+  { id: 'scanKamera', label: 'Scan Pakai Kamera', icon: 'camera', color: '#4657d7', bg: '#edf1f9' },
 ];
 
 const scanStudents = [
@@ -67,25 +66,19 @@ const curriculumItems = [
   'Kurikulum Merdeka 2026',
   'Implementasi profil pelajar Pancasila',
   'Pembelajaran berbasis proyek',
-  'Literasi numerasi dan digital',
+  'Literasi, numerasi, dan digital',
   'Penilaian autentik dan portofolio',
-  'Integrasi TKA / bakat minat dan PPPK',
+  'Integrasi TKA, bakat minat, dan PPPK',
 ];
 
-function openWebsite() {
-  Linking.openURL(SCHOOL_WEBSITE);
-}
+const renderMenuIcon = (icon, color, size) => <FontAwesome5 name={icon} size={size} color={color} />;
 
-function IconRenderer({ icon, color, size = 32 }) {
-  return <FontAwesome5 name={icon} size={size} color={color} />;
-}
-
-function HomeScreen({ onNavigate }) {
+function HomeScreen({ onScreenChange }) {
   return (
     <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>
-      <View style={styles.topBar}>
-        <Text style={styles.clock}>21:38</Text>
-        <View style={styles.signalRow}>
+      <View style={styles.statusRow}>
+        <Text style={styles.clockText}>21:38</Text>
+        <View style={styles.statusIcons}>
           <Ionicons name="cellular" size={14} color="#111" />
           <Ionicons name="wifi" size={15} color="#111" />
           <Ionicons name="battery-full" size={18} color="#111" />
@@ -93,7 +86,7 @@ function HomeScreen({ onNavigate }) {
       </View>
 
       <View style={styles.greetingCard}>
-        <View style={styles.avatarBox}>
+        <View style={styles.avatarWrap}>
           <View style={styles.avatarCircle}>
             <Text style={styles.avatarFace}>😮</Text>
           </View>
@@ -133,16 +126,10 @@ function HomeScreen({ onNavigate }) {
             key={item.id}
             style={styles.menuItem}
             activeOpacity={0.9}
-            onPress={() => {
-              if (item.id === 'scan') setScreenFor('scan');
-              else if (item.id === 'website') openWebsite();
-              else if (item.id === 'kurikulum') setScreenFor('curriculum');
-              else if (item.id === 'tka') setScreenFor('tka');
-              else if (item.id === 'garuda') setScreenFor('garuda');
-            }}
+            onPress={() => onScreenChange(item.id)}
           >
             <View style={[styles.iconBox, { backgroundColor: item.bg }]}>
-              <IconRenderer icon={item.icon} color={item.color} size={32} />
+              {renderMenuIcon(item.icon, item.color, 32)}
             </View>
             <Text style={styles.menuLabel}>{item.label}</Text>
           </TouchableOpacity>
@@ -157,16 +144,10 @@ function HomeScreen({ onNavigate }) {
             key={item.id}
             style={styles.menuItem}
             activeOpacity={0.9}
-            onPress={() => {
-              if (item.id === 'website') openWebsite();
-              else if (item.id === 'tka') setScreenFor('tka');
-              else if (item.id === 'garuda') setScreenFor('garuda');
-              else if (item.id === 'kurikulum') setScreenFor('curriculum');
-              else if (item.id === 'scanKamera') setScreenFor('scan');
-            }}
+            onPress={() => onScreenChange(item.id)}
           >
             <View style={[styles.iconBox, { backgroundColor: item.bg }]}>
-              <IconRenderer icon={item.icon} color={item.color} size={30} />
+              {renderMenuIcon(item.icon, item.color, 30)}
             </View>
             <Text style={styles.menuLabel}>{item.label}</Text>
           </TouchableOpacity>
@@ -176,7 +157,7 @@ function HomeScreen({ onNavigate }) {
   );
 }
 
-function ScanScreen({ onNavigate }) {
+function ScanScreen({ onScreenChange }) {
   return (
     <View style={styles.scanPage}>
       <View style={styles.scanHeader}>
@@ -195,7 +176,7 @@ function ScanScreen({ onNavigate }) {
         </View>
       </View>
 
-      <TouchableOpacity style={styles.darkButton} onPress={() => onNavigate('home')}>
+      <TouchableOpacity style={styles.darkButton} onPress={() => onScreenChange('home')}>
         <Text style={styles.darkButtonText}>Kembali ke Beranda</Text>
       </TouchableOpacity>
 
@@ -221,84 +202,94 @@ function ScanScreen({ onNavigate }) {
   );
 }
 
-function CurriculumScreen({ onNavigate }) {
+function InfoScreen({ title, content, onScreenChange, footerText = 'Kembali' }) {
   return (
     <View style={styles.infoPage}>
       <View style={styles.infoHeader}>
-        <Text style={styles.infoTitle}>Kurikulum 2026</Text>
+        <Text style={styles.infoTitle}>{title}</Text>
       </View>
+
       <View style={styles.infoCard}>
-        {curriculumItems.map((item) => (
-          <View key={item} style={styles.infoListItem}>
-            <Text style={styles.bullet}>•</Text>
-            <Text style={styles.infoText}>{item}</Text>
-          </View>
-        ))}
+        {content}
       </View>
-      <TouchableOpacity style={styles.primaryButton} onPress={() => onNavigate('home')}>
-        <Text style={styles.primaryButtonText}>Kembali</Text>
+
+      <TouchableOpacity style={styles.primaryButton} onPress={() => onScreenChange('home')}>
+        <Text style={styles.primaryButtonText}>{footerText}</Text>
       </TouchableOpacity>
     </View>
   );
 }
 
-function TkaScreen({ onNavigate }) {
+function CurriculumScreen({ onScreenChange }) {
   return (
-    <View style={styles.infoPage}>
-      <View style={styles.infoHeader}>
-        <Text style={styles.infoTitle}>Persam TKA</Text>
-      </View>
-      <View style={styles.infoCard}>
-        <Text style={styles.infoText}>Program persiapan TKA (Tes Kemampuan Akademik) berbasis literasi, numerasi, dan kemampuan berpikir kritis.</Text>
-        <Text style={styles.infoText}>• Fokus: logika, penalaran, analisis, dan literasi digital</Text>
-        <Text style={styles.infoText}>• Target: siswa kelas akhir siap menghadapi tes dan seleksi</Text>
-        <Text style={styles.infoText}>• Pendampingan: guru mata pelajaran dan wali kelas</Text>
-      </View>
-      <TouchableOpacity style={styles.primaryButton} onPress={() => onNavigate('home')}>
-        <Text style={styles.primaryButtonText}>Kembali</Text>
-      </TouchableOpacity>
-    </View>
+    <InfoScreen
+      title="Kurikulum 2026"
+      onScreenChange={onScreenChange}
+      content={
+        <>
+          {curriculumItems.map((item) => (
+            <View key={item} style={styles.infoListItem}>
+              <Text style={styles.bullet}>•</Text>
+              <Text style={styles.infoText}>{item}</Text>
+            </View>
+          ))}
+        </>
+      }
+    />
   );
 }
 
-function GarudaScreen({ onNavigate }) {
+function TkaScreen({ onScreenChange }) {
   return (
-    <View style={styles.infoPage}>
-      <View style={styles.infoHeader}>
-        <Text style={styles.infoTitle}>Aplikasi Garuda</Text>
-      </View>
-      <View style={styles.infoCard}>
-        <Text style={styles.infoText}>Aplikasi Garuda merupakan portal pendukung siswa dan guru untuk administrasi, evaluasi, dan kebutuhan pembelajaran digital sekolah.</Text>
-        <Text style={styles.infoText}>• Integrasi aset digital sekolah</Text>
-        <Text style={styles.infoText}>• Sinkronisasi data peserta didik dan guru</Text>
-        <Text style={styles.infoText}>• Dokumentasi pembelajaran dan pelaporan</Text>
-      </View>
-      <TouchableOpacity style={styles.primaryButton} onPress={() => onNavigate('home')}>
-        <Text style={styles.primaryButtonText}>Kembali</Text>
-      </TouchableOpacity>
-    </View>
+    <InfoScreen
+      title="Persam TKA"
+      onScreenChange={onScreenChange}
+      content={
+        <>
+          <Text style={styles.infoText}>Program persiapan TKA (Tes Kemampuan Akademik) berbasis literasi, numerasi, dan kemampuan berpikir kritis.</Text>
+          <Text style={styles.infoText}>• Fokus: logika, penalaran, analisis, dan literasi digital</Text>
+          <Text style={styles.infoText}>• Target: siswa kelas akhir siap menghadapi tes dan seleksi</Text>
+          <Text style={styles.infoText}>• Pendampingan: guru mata pelajaran dan wali kelas</Text>
+        </>
+      }
+    />
   );
 }
 
-function WebsiteScreen({ onNavigate }) {
+function GarudaScreen({ onScreenChange }) {
   return (
-    <View style={styles.infoPage}>
-      <View style={styles.infoHeader}>
-        <Text style={styles.infoTitle}>Website Sekolah</Text>
-      </View>
-      <View style={styles.infoCard}>
-        <Text style={styles.infoText}>Sumber informasi sekolah:</Text>
-        <Text style={styles.websiteLink} onPress={() => Linking.openURL(SCHOOL_WEBSITE)}>{SCHOOL_WEBSITE}</Text>
-        <Text style={styles.infoText}>Koneksi aktif melalui tautan resmi sekolah untuk berita, pengumuman, dan informasi akademik.</Text>
-      </View>
-      <TouchableOpacity style={styles.primaryButton} onPress={() => onNavigate('home')}>
-        <Text style={styles.primaryButtonText}>Kembali</Text>
-      </TouchableOpacity>
-    </View>
+    <InfoScreen
+      title="Aplikasi Garuda"
+      onScreenChange={onScreenChange}
+      content={
+        <>
+          <Text style={styles.infoText}>Aplikasi Garuda merupakan portal pendukung siswa dan guru untuk administrasi, evaluasi, dan kebutuhan pembelajaran digital sekolah.</Text>
+          <Text style={styles.infoText}>• Integrasi aset digital sekolah</Text>
+          <Text style={styles.infoText}>• Sinkronisasi data peserta didik dan guru</Text>
+          <Text style={styles.infoText}>• Dokumentasi pembelajaran dan pelaporan</Text>
+        </>
+      }
+    />
   );
 }
 
-function ProfileScreen({ onNavigate }) {
+function WebsiteScreen({ onScreenChange }) {
+  return (
+    <InfoScreen
+      title="Website Sekolah"
+      onScreenChange={onScreenChange}
+      content={
+        <>
+          <Text style={styles.infoText}>Sumber informasi sekolah:</Text>
+          <Text style={styles.websiteLink} onPress={() => Linking.openURL(SCHOOL_WEBSITE)}>{SCHOOL_WEBSITE}</Text>
+          <Text style={styles.infoText}>Koneksi aktif melalui tautan resmi sekolah untuk berita, pengumuman, dan informasi akademik.</Text>
+        </>
+      }
+    />
+  );
+}
+
+function ProfileScreen({ onScreenChange }) {
   return (
     <View style={styles.profilePage}>
       <Text style={styles.profilePageTitle}>Profil</Text>
@@ -308,35 +299,40 @@ function ProfileScreen({ onNavigate }) {
         <Text style={styles.profileMetaLarge}>{profile.jabatan}</Text>
         <Text style={styles.profileMetaLarge}>{profile.guru}</Text>
       </View>
-      <TouchableOpacity style={styles.primaryButton} onPress={() => onNavigate('home')}>
+      <TouchableOpacity style={styles.primaryButton} onPress={() => onScreenChange('home')}>
         <Text style={styles.primaryButtonText}>Kembali ke Home</Text>
       </TouchableOpacity>
     </View>
   );
 }
 
-let setScreenFor = null;
-
 export default function App() {
   const [screen, setScreen] = useState('home');
-  setScreenFor = setScreen;
+
+  const handleScreenChange = (nextScreen) => {
+    if (nextScreen === 'website') {
+      Linking.openURL(SCHOOL_WEBSITE);
+      return;
+    }
+    setScreen(nextScreen);
+  };
 
   const renderScreen = () => {
     switch (screen) {
       case 'scan':
-        return <ScanScreen onNavigate={setScreen} />;
-      case 'curriculum':
-        return <CurriculumScreen onNavigate={setScreen} />;
+        return <ScanScreen onScreenChange={handleScreenChange} />;
+      case 'kurikulum':
+        return <CurriculumScreen onScreenChange={handleScreenChange} />;
       case 'tka':
-        return <TkaScreen onNavigate={setScreen} />;
+        return <TkaScreen onScreenChange={handleScreenChange} />;
       case 'garuda':
-        return <GarudaScreen onNavigate={setScreen} />;
+        return <GarudaScreen onScreenChange={handleScreenChange} />;
       case 'website':
-        return <WebsiteScreen onNavigate={setScreen} />;
+        return <WebsiteScreen onScreenChange={handleScreenChange} />;
       case 'profile':
-        return <ProfileScreen onNavigate={setScreen} />;
+        return <ProfileScreen onScreenChange={handleScreenChange} />;
       default:
-        return <HomeScreen onNavigate={setScreen} />;
+        return <HomeScreen onScreenChange={handleScreenChange} />;
     }
   };
 
@@ -354,8 +350,8 @@ export default function App() {
           <Ionicons name="person" size={30} color={screen === 'profile' ? '#2d59ff' : '#7a7a7a'} />
           <Text style={[styles.navLabel, screen === 'profile' && styles.navActive]}>Profile</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.navItem} onPress={() => openWebsite()}>
-          <Ionicons name="log-out" size={30} color="#7a7a7a" />
+        <TouchableOpacity style={styles.navItem} onPress={() => Linking.openURL(SCHOOL_WEBSITE)}>
+          <Ionicons name="globe" size={30} color="#7a7a7a" />
           <Text style={styles.navLabel}>Website</Text>
         </TouchableOpacity>
       </View>
@@ -378,45 +374,45 @@ const styles = StyleSheet.create({
     paddingTop: 10,
     paddingBottom: 20,
   },
-  topBar: {
+  statusRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingHorizontal: 6,
     marginBottom: 8,
   },
-  clock: {
+  clockText: {
     fontSize: 18,
     fontWeight: '700',
     color: '#111',
   },
-  signalRow: {
+  statusIcons: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: 6,
   },
   greetingCard: {
-    backgroundColor: '#5f76ef',
-    borderRadius: 22,
+    backgroundColor: '#5d6ef0',
+    borderRadius: 24,
     paddingVertical: 18,
     paddingHorizontal: 16,
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: 18,
   },
-  avatarBox: {
+  avatarWrap: {
     width: 110,
     height: 110,
     justifyContent: 'center',
     alignItems: 'center',
   },
   avatarCircle: {
-    width: 100,
-    height: 100,
+    width: 98,
+    height: 98,
     borderRadius: 50,
-    backgroundColor: '#f7d149',
+    backgroundColor: '#f6d259',
     borderWidth: 4,
-    borderColor: '#1b1f3a',
+    borderColor: '#1c2143',
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -441,11 +437,11 @@ const styles = StyleSheet.create({
   },
   searchBox: {
     backgroundColor: '#fff',
-    borderRadius: 28,
+    borderRadius: 30,
     borderWidth: 1,
     borderColor: '#dfe4ec',
     paddingHorizontal: 18,
-    marginBottom: 16,
+    marginBottom: 18,
   },
   searchInput: {
     height: 58,
@@ -456,7 +452,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     gap: 12,
-    marginBottom: 18,
+    marginBottom: 14,
   },
   summaryCard: {
     flex: 1,
@@ -767,5 +763,152 @@ const styles = StyleSheet.create({
     color: '#2d59ff',
   },
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
