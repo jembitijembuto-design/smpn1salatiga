@@ -8,35 +8,46 @@ import {
   ScrollView,
   TouchableOpacity,
   StyleSheet,
+  Linking,
+  Alert,
 } from 'react-native';
 import { Ionicons, FontAwesome5 } from '@expo/vector-icons';
 
-const topMenu = [
-  { id: 'rdm', label: 'RDM', icon: 'laptop', bg: '#f3f6ff', color: '#e04b45', iconSet: 'FontAwesome5' },
-  { id: 'absen', label: 'Absen', icon: 'clipboard-check', bg: '#f7f6ff', color: '#7a5ef5', iconSet: 'FontAwesome5' },
-  { id: 'izin', label: 'Izin Pegawai', icon: 'user-check', bg: '#f2f2ff', color: '#f39c12', iconSet: 'FontAwesome5' },
-  { id: 'scan', label: 'Scan Siswa', icon: 'qrcode', bg: '#ecfbff', color: '#ec5d5b', iconSet: 'FontAwesome5' },
-  { id: 'absenKelas', label: 'Absensi Kelas', icon: 'desktop', bg: '#ebf6ff', color: '#2d9cdb', iconSet: 'FontAwesome5' },
-  { id: 'jurnal', label: 'Jurnal', icon: 'book', bg: '#eef7ff', color: '#3f6ef5', iconSet: 'FontAwesome5' },
-  { id: 'penilaian', label: 'Penilaian', icon: 'chart-bar', bg: '#edf9ff', color: '#1b9ad8', iconSet: 'FontAwesome5' },
-  { id: 'siswa', label: 'Siswa', icon: 'users', bg: '#eefff8', color: '#1ab386', iconSet: 'FontAwesome5' },
-  { id: 'kelas', label: 'Kelas', icon: 'school', bg: '#fff7eb', color: '#f5a623', iconSet: 'FontAwesome5' },
-  { id: 'materi', label: 'Materi', icon: 'folder', bg: '#f8f3ff', color: '#8d5ef4', iconSet: 'FontAwesome5' },
-  { id: 'pelanggaran', label: 'Pelanggaran Siswa', icon: 'exclamation-circle', bg: '#fff1f2', color: '#e94b5d', iconSet: 'FontAwesome5' },
-  { id: 'report', label: 'Report', icon: 'clipboard-list', bg: '#f0fbff', color: '#2bb8a7', iconSet: 'FontAwesome5' },
+const SCHOOL_WEBSITE = 'https://smpn1salatiga.sch.id';
+
+const profile = {
+  name: 'Bopo Priyanto, S.Si',
+  jabatan: 'Guru / Wali Kelas 1',
+  guru: 'Informatika',
+  nip: '19930601 2019032019',
+};
+
+const primaryMenu = [
+  { id: 'rdm', label: 'RDM', icon: 'laptop', bg: '#eef3ff', color: '#ef5350' },
+  { id: 'absen', label: 'Absen', icon: 'clipboard-check', bg: '#f8f3ff', color: '#7d5cf5' },
+  { id: 'izin', label: 'Izin Pegawai', icon: 'user-check', bg: '#fff5eb', color: '#f3a63d' },
+  { id: 'scan', label: 'Scan Siswa', icon: 'qrcode', bg: '#ebf9ff', color: '#ff5d5d' },
+  { id: 'kelas', label: 'Absensi Kelas', icon: 'desktop', bg: '#edf7ff', color: '#2c9cdc' },
+  { id: 'jurnal', label: 'Jurnal', icon: 'book', bg: '#eef6ff', color: '#4b7bed' },
+  { id: 'nilai', label: 'Penilaian', icon: 'chart-bar', bg: '#edfbff', color: '#1eaedb' },
+  { id: 'siswa', label: 'Siswa', icon: 'users', bg: '#effef7', color: '#13b77e' },
+  { id: 'kelas2', label: 'Kelas', icon: 'school', bg: '#fff9ed', color: '#f4b344' },
+  { id: 'materi', label: 'Materi', icon: 'folder', bg: '#f8f4ff', color: '#8f6ce9' },
+  { id: 'pelanggaran', label: 'Pelanggaran Siswa', icon: 'exclamation-circle', bg: '#fff1f2', color: '#ea4b62' },
+  { id: 'report', label: 'Report', icon: 'clipboard-list', bg: '#edfbf9', color: '#27b6a5' },
 ];
 
 const extraMenu = [
-  { id: 'jurnalGuru', label: 'Jurnal Guru Wali', icon: 'book-reader', bg: '#f9f4ff', color: '#a66de4', iconSet: 'FontAwesome5' },
-  { id: 'modul', label: 'Modul Pembelajaran', icon: 'file-alt', bg: '#f8f0ff', color: '#8d6ae6', iconSet: 'FontAwesome5' },
-  { id: 'kaih', label: 'Jurnal 7 KAIH', icon: 'journal-whills', bg: '#eef6ff', color: '#4b7ded', iconSet: 'FontAwesome5' },
-  { id: 'struktur', label: 'Struktur Kelas', icon: 'sitemap', bg: '#f0faf5', color: '#26b26f', iconSet: 'FontAwesome5' },
-  { id: 'jadwal', label: 'Jadwal Piket', icon: 'calendar-alt', bg: '#fff7e6', color: '#f49d20', iconSet: 'FontAwesome5' },
-  { id: 'translate', label: 'English Translator', icon: 'language', bg: '#ecf2ff', color: '#5d79f6', iconSet: 'FontAwesome5' },
-  { id: 'ujian', label: 'Ujian Online', icon: 'file-signature', bg: '#fff6d9', color: '#f0b41d', iconSet: 'FontAwesome5' },
-  { id: 'izinPegawai', label: 'Izin Pegawai', icon: 'user-check', bg: '#effefb', color: '#1aa78d', iconSet: 'FontAwesome5' },
-  { id: 'scanKamera', label: 'Scan Pakai Kamera', icon: 'camera', bg: '#eceff8', color: '#4d5de7', iconSet: 'FontAwesome5' },
-  { id: 'kartu', label: 'Kartu Siswa', icon: 'id-card', bg: '#f3f5f8', color: '#4d667a', iconSet: 'FontAwesome5' },
+  { id: 'kurikulum', label: 'Kurikulum 2026', icon: 'book-open', bg: '#f4f2ff', color: '#6f5ef8' },
+  { id: 'tka', label: 'Persam TKA', icon: 'graduation-cap', bg: '#edf8ff', color: '#4f86ff' },
+  { id: 'garuda', label: 'Aplikasi Garuda', icon: 'rocket', bg: '#fff9f0', color: '#f59e0b' },
+  { id: 'jadwal', label: 'Jadwal Piket', icon: 'calendar-alt', bg: '#fff7e7', color: '#f59e0b' },
+  { id: 'struktur', label: 'Struktur Kelas', icon: 'sitemap', bg: '#f2fbf5', color: '#2bb673' },
+  { id: 'website', label: 'Website Sekolah', icon: 'globe', bg: '#eaf1ff', color: '#4a66d8' },
+  { id: 'english', label: 'English Translator', icon: 'language', bg: '#edf3ff', color: '#4d79f1' },
+  { id: 'ujian', label: 'Ujian Online', icon: 'file-signature', bg: '#fff7db', color: '#d69c1a' },
+  { id: 'izinPegawai', label: 'Izin Pegawai', icon: 'user-check', bg: '#ebfdf8', color: '#1aa88d' },
+  { id: 'scanKamera', label: 'Scan Pakai Kamera', icon: 'camera', bg: '#edf1f9', color: '#4457d5' },
 ];
 
 const summaryData = [
@@ -52,45 +63,54 @@ const scanStudents = [
   { name: 'ANDI MUSFIRAWATI F', status: 'Siswa', time: '08:48:44', score: 9 },
 ];
 
-function IconRenderer({ iconSet, icon, color, size = 28 }) {
-  return iconSet === 'FontAwesome5' ? (
-    <FontAwesome5 name={icon} size={size} color={color} />
-  ) : (
-    <Ionicons name={icon} size={size} color={color} />
-  );
+const curriculumItems = [
+  'Kurikulum Merdeka 2026',
+  'Implementasi profil pelajar Pancasila',
+  'Pembelajaran berbasis proyek',
+  'Literasi numerasi dan digital',
+  'Penilaian autentik dan portofolio',
+  'Integrasi TKA / bakat minat dan PPPK',
+];
+
+function openWebsite() {
+  Linking.openURL(SCHOOL_WEBSITE);
+}
+
+function IconRenderer({ icon, color, size = 32 }) {
+  return <FontAwesome5 name={icon} size={size} color={color} />;
 }
 
 function HomeScreen({ onNavigate }) {
   return (
     <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>
       <View style={styles.topBar}>
-        <Text style={styles.clock}>3:10</Text>
-        <View style={styles.trayIcons}>
+        <Text style={styles.clock}>21:38</Text>
+        <View style={styles.signalRow}>
           <Ionicons name="cellular" size={14} color="#111" />
           <Ionicons name="wifi" size={15} color="#111" />
           <Ionicons name="battery-full" size={18} color="#111" />
         </View>
       </View>
 
-      <View style={styles.profileCard}>
-        <View style={styles.avatarWrap}>
-          <View style={styles.avatarFace}>
-            <Text style={styles.avatarEmoji}>😮</Text>
+      <View style={styles.greetingCard}>
+        <View style={styles.avatarBox}>
+          <View style={styles.avatarCircle}>
+            <Text style={styles.avatarFace}>😮</Text>
           </View>
         </View>
 
-        <View style={styles.profileText}>
-          <Text style={styles.name}>Bopo Priyanto, S.Si</Text>
-          <Text style={styles.meta}>Jabatan : Guru / Wali Kelas 1</Text>
-          <Text style={styles.meta}>Guru : Informatika</Text>
-          <Text style={styles.meta}>NIP : 19930601 2019032019</Text>
+        <View style={styles.greetingTextWrap}>
+          <Text style={styles.greetingName}>{profile.name}</Text>
+          <Text style={styles.greetingMeta}>Jabatan : {profile.jabatan}</Text>
+          <Text style={styles.greetingMeta}>Guru : {profile.guru}</Text>
+          <Text style={styles.greetingMeta}>NIP : {profile.nip}</Text>
         </View>
       </View>
 
       <View style={styles.searchBox}>
         <TextInput
           placeholder="Cari menu..."
-          placeholderTextColor="#717171"
+          placeholderTextColor="#5f5f5f"
           editable={false}
           style={styles.searchInput}
         />
@@ -108,22 +128,28 @@ function HomeScreen({ onNavigate }) {
       <Text style={styles.sectionTitle}>MENU UTAMA</Text>
 
       <View style={styles.gridWrap}>
-        {topMenu.map((item) => (
+        {primaryMenu.map((item) => (
           <TouchableOpacity
             key={item.id}
             style={styles.menuItem}
             activeOpacity={0.9}
-            onPress={() => onNavigate(item.id === 'scan' ? 'scan' : 'home')}
+            onPress={() => {
+              if (item.id === 'scan') setScreenFor('scan');
+              else if (item.id === 'website') openWebsite();
+              else if (item.id === 'kurikulum') setScreenFor('curriculum');
+              else if (item.id === 'tka') setScreenFor('tka');
+              else if (item.id === 'garuda') setScreenFor('garuda');
+            }}
           >
             <View style={[styles.iconBox, { backgroundColor: item.bg }]}>
-              <IconRenderer iconSet={item.iconSet} icon={item.icon} color={item.color} size={34} />
+              <IconRenderer icon={item.icon} color={item.color} size={32} />
             </View>
             <Text style={styles.menuLabel}>{item.label}</Text>
           </TouchableOpacity>
         ))}
       </View>
 
-      <Text style={[styles.sectionTitle, styles.sectionTitleExtra]}>FITUR LAINNYA</Text>
+      <Text style={[styles.sectionTitle, styles.extraTitle]}>FITUR LAINNYA</Text>
 
       <View style={styles.gridWrapExtra}>
         {extraMenu.map((item) => (
@@ -131,10 +157,16 @@ function HomeScreen({ onNavigate }) {
             key={item.id}
             style={styles.menuItem}
             activeOpacity={0.9}
-            onPress={() => onNavigate(item.id === 'scanKamera' ? 'scan' : 'home')}
+            onPress={() => {
+              if (item.id === 'website') openWebsite();
+              else if (item.id === 'tka') setScreenFor('tka');
+              else if (item.id === 'garuda') setScreenFor('garuda');
+              else if (item.id === 'kurikulum') setScreenFor('curriculum');
+              else if (item.id === 'scanKamera') setScreenFor('scan');
+            }}
           >
             <View style={[styles.iconBox, { backgroundColor: item.bg }]}>
-              <IconRenderer iconSet={item.iconSet} icon={item.icon} color={item.color} size={32} />
+              <IconRenderer icon={item.icon} color={item.color} size={30} />
             </View>
             <Text style={styles.menuLabel}>{item.label}</Text>
           </TouchableOpacity>
@@ -169,13 +201,9 @@ function ScanScreen({ onNavigate }) {
 
       <View style={styles.historyPanel}>
         <Text style={styles.historyTitle}>Riwayat Hari Ini</Text>
-
         {scanStudents.map((student, index) => (
           <View key={`${student.name}-${index}`} style={styles.historyRow}>
-            <View style={styles.personCircle}>
-              <Ionicons name="person-circle" size={44} color="#8ed6ff" />
-            </View>
-
+            <Ionicons name="person-circle" size={44} color="#8ad7ff" />
             <View style={styles.historyInfo}>
               <View style={styles.historyHeader}>
                 <Text style={styles.historyName}>{student.name}</Text>
@@ -183,12 +211,89 @@ function ScanScreen({ onNavigate }) {
                   <Text style={styles.roleText}>{student.status}</Text>
                 </View>
               </View>
-              <Text style={styles.score}>{student.score}</Text>
-              <Text style={styles.metaText}>Masuk: {student.time} | Pulang: --</Text>
+              <Text style={styles.historyScore}>{student.score}</Text>
+              <Text style={styles.historyMeta}>Masuk: {student.time} | Pulang: --</Text>
             </View>
           </View>
         ))}
       </View>
+    </View>
+  );
+}
+
+function CurriculumScreen({ onNavigate }) {
+  return (
+    <View style={styles.infoPage}>
+      <View style={styles.infoHeader}>
+        <Text style={styles.infoTitle}>Kurikulum 2026</Text>
+      </View>
+      <View style={styles.infoCard}>
+        {curriculumItems.map((item) => (
+          <View key={item} style={styles.infoListItem}>
+            <Text style={styles.bullet}>•</Text>
+            <Text style={styles.infoText}>{item}</Text>
+          </View>
+        ))}
+      </View>
+      <TouchableOpacity style={styles.primaryButton} onPress={() => onNavigate('home')}>
+        <Text style={styles.primaryButtonText}>Kembali</Text>
+      </TouchableOpacity>
+    </View>
+  );
+}
+
+function TkaScreen({ onNavigate }) {
+  return (
+    <View style={styles.infoPage}>
+      <View style={styles.infoHeader}>
+        <Text style={styles.infoTitle}>Persam TKA</Text>
+      </View>
+      <View style={styles.infoCard}>
+        <Text style={styles.infoText}>Program persiapan TKA (Tes Kemampuan Akademik) berbasis literasi, numerasi, dan kemampuan berpikir kritis.</Text>
+        <Text style={styles.infoText}>• Fokus: logika, penalaran, analisis, dan literasi digital</Text>
+        <Text style={styles.infoText}>• Target: siswa kelas akhir siap menghadapi tes dan seleksi</Text>
+        <Text style={styles.infoText}>• Pendampingan: guru mata pelajaran dan wali kelas</Text>
+      </View>
+      <TouchableOpacity style={styles.primaryButton} onPress={() => onNavigate('home')}>
+        <Text style={styles.primaryButtonText}>Kembali</Text>
+      </TouchableOpacity>
+    </View>
+  );
+}
+
+function GarudaScreen({ onNavigate }) {
+  return (
+    <View style={styles.infoPage}>
+      <View style={styles.infoHeader}>
+        <Text style={styles.infoTitle}>Aplikasi Garuda</Text>
+      </View>
+      <View style={styles.infoCard}>
+        <Text style={styles.infoText}>Aplikasi Garuda merupakan portal pendukung siswa dan guru untuk administrasi, evaluasi, dan kebutuhan pembelajaran digital sekolah.</Text>
+        <Text style={styles.infoText}>• Integrasi aset digital sekolah</Text>
+        <Text style={styles.infoText}>• Sinkronisasi data peserta didik dan guru</Text>
+        <Text style={styles.infoText}>• Dokumentasi pembelajaran dan pelaporan</Text>
+      </View>
+      <TouchableOpacity style={styles.primaryButton} onPress={() => onNavigate('home')}>
+        <Text style={styles.primaryButtonText}>Kembali</Text>
+      </TouchableOpacity>
+    </View>
+  );
+}
+
+function WebsiteScreen({ onNavigate }) {
+  return (
+    <View style={styles.infoPage}>
+      <View style={styles.infoHeader}>
+        <Text style={styles.infoTitle}>Website Sekolah</Text>
+      </View>
+      <View style={styles.infoCard}>
+        <Text style={styles.infoText}>Sumber informasi sekolah:</Text>
+        <Text style={styles.websiteLink} onPress={() => Linking.openURL(SCHOOL_WEBSITE)}>{SCHOOL_WEBSITE}</Text>
+        <Text style={styles.infoText}>Koneksi aktif melalui tautan resmi sekolah untuk berita, pengumuman, dan informasi akademik.</Text>
+      </View>
+      <TouchableOpacity style={styles.primaryButton} onPress={() => onNavigate('home')}>
+        <Text style={styles.primaryButtonText}>Kembali</Text>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -198,10 +303,10 @@ function ProfileScreen({ onNavigate }) {
     <View style={styles.profilePage}>
       <Text style={styles.profilePageTitle}>Profil</Text>
       <View style={styles.profilePanel}>
-        <Ionicons name="person-circle" size={85} color="#4c78ff" />
-        <Text style={styles.profileNameLarge}>Bopo Priyanto, S.Si</Text>
-        <Text style={styles.profileMetaLarge}>Guru / Wali Kelas 1</Text>
-        <Text style={styles.profileMetaLarge}>Informatika</Text>
+        <Ionicons name="person-circle" size={82} color="#4c78ff" />
+        <Text style={styles.profileNameLarge}>{profile.name}</Text>
+        <Text style={styles.profileMetaLarge}>{profile.jabatan}</Text>
+        <Text style={styles.profileMetaLarge}>{profile.guru}</Text>
       </View>
       <TouchableOpacity style={styles.primaryButton} onPress={() => onNavigate('home')}>
         <Text style={styles.primaryButtonText}>Kembali ke Home</Text>
@@ -210,13 +315,24 @@ function ProfileScreen({ onNavigate }) {
   );
 }
 
+let setScreenFor = null;
+
 export default function App() {
   const [screen, setScreen] = useState('home');
+  setScreenFor = setScreen;
 
   const renderScreen = () => {
     switch (screen) {
       case 'scan':
         return <ScanScreen onNavigate={setScreen} />;
+      case 'curriculum':
+        return <CurriculumScreen onNavigate={setScreen} />;
+      case 'tka':
+        return <TkaScreen onNavigate={setScreen} />;
+      case 'garuda':
+        return <GarudaScreen onNavigate={setScreen} />;
+      case 'website':
+        return <WebsiteScreen onNavigate={setScreen} />;
       case 'profile':
         return <ProfileScreen onNavigate={setScreen} />;
       default:
@@ -231,16 +347,16 @@ export default function App() {
 
       <View style={styles.bottomNav}>
         <TouchableOpacity style={styles.navItem} onPress={() => setScreen('home')}>
-          <Ionicons name="home" size={30} color={screen === 'home' ? '#2d59ff' : '#717171'} />
+          <Ionicons name="home" size={30} color={screen === 'home' ? '#2d59ff' : '#7a7a7a'} />
           <Text style={[styles.navLabel, screen === 'home' && styles.navActive]}>Home</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.navItem} onPress={() => setScreen('profile')}>
-          <Ionicons name="person" size={30} color={screen === 'profile' ? '#2d59ff' : '#717171'} />
+          <Ionicons name="person" size={30} color={screen === 'profile' ? '#2d59ff' : '#7a7a7a'} />
           <Text style={[styles.navLabel, screen === 'profile' && styles.navActive]}>Profile</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.navItem} onPress={() => setScreen('home')}>
-          <Ionicons name="log-out" size={30} color="#717171" />
-          <Text style={styles.navLabel}>Logout</Text>
+        <TouchableOpacity style={styles.navItem} onPress={() => openWebsite()}>
+          <Ionicons name="log-out" size={30} color="#7a7a7a" />
+          <Text style={styles.navLabel}>Website</Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>
@@ -259,7 +375,7 @@ const styles = StyleSheet.create({
   content: {
     flex: 1,
     paddingHorizontal: 18,
-    paddingTop: 8,
+    paddingTop: 10,
     paddingBottom: 20,
   },
   topBar: {
@@ -274,13 +390,13 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     color: '#111',
   },
-  trayIcons: {
+  signalRow: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: 6,
   },
-  profileCard: {
-    backgroundColor: '#4d5de7',
+  greetingCard: {
+    backgroundColor: '#5f76ef',
     borderRadius: 22,
     paddingVertical: 18,
     paddingHorizontal: 16,
@@ -288,47 +404,46 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 18,
   },
-  avatarWrap: {
+  avatarBox: {
     width: 110,
     height: 110,
     justifyContent: 'center',
     alignItems: 'center',
   },
-  avatarFace: {
+  avatarCircle: {
     width: 100,
     height: 100,
-    backgroundColor: '#f6d257',
     borderRadius: 50,
+    backgroundColor: '#f7d149',
     borderWidth: 4,
-    borderColor: '#1f2340',
+    borderColor: '#1b1f3a',
     justifyContent: 'center',
     alignItems: 'center',
   },
-  avatarEmoji: {
+  avatarFace: {
     fontSize: 52,
-    marginTop: 4,
   },
-  profileText: {
+  greetingTextWrap: {
     flex: 1,
     paddingLeft: 8,
   },
-  name: {
+  greetingName: {
     color: '#fff',
-    fontSize: 27,
+    fontSize: 28,
     fontWeight: '900',
     marginBottom: 6,
   },
-  meta: {
-    color: '#edf2ff',
+  greetingMeta: {
+    color: '#edf3ff',
     fontSize: 16,
     fontWeight: '600',
     marginBottom: 2,
   },
   searchBox: {
-    backgroundColor: '#ffffff',
-    borderRadius: 30,
+    backgroundColor: '#fff',
+    borderRadius: 28,
     borderWidth: 1,
-    borderColor: '#dfe4ea',
+    borderColor: '#dfe4ec',
     paddingHorizontal: 18,
     marginBottom: 16,
   },
@@ -345,33 +460,33 @@ const styles = StyleSheet.create({
   },
   summaryCard: {
     flex: 1,
-    backgroundColor: '#f3f3f3',
-    borderRadius: 18,
     minHeight: 110,
-    paddingVertical: 16,
+    backgroundColor: '#f2f2f2',
+    borderRadius: 18,
+    paddingVertical: 14,
     alignItems: 'center',
     justifyContent: 'center',
   },
   summaryLabel: {
     fontSize: 20,
-    color: '#111',
     fontWeight: '600',
+    color: '#111',
     marginBottom: 8,
   },
   summaryValue: {
     fontSize: 35,
-    color: '#111',
     fontWeight: '900',
+    color: '#111',
   },
   sectionTitle: {
     fontSize: 25,
     fontWeight: '900',
     color: '#111',
-    marginTop: 12,
+    marginTop: 10,
     marginBottom: 16,
   },
-  sectionTitleExtra: {
-    marginTop: 16,
+  extraTitle: {
+    marginTop: 18,
   },
   gridWrap: {
     flexDirection: 'row',
@@ -386,7 +501,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     rowGap: 18,
     columnGap: 10,
-    marginBottom: 24,
+    marginBottom: 28,
   },
   menuItem: {
     width: '31%',
@@ -400,9 +515,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: 10,
-    shadowColor: '#d5d9e7',
+    shadowColor: '#d0d8ef',
     shadowOpacity: 0.7,
-    shadowOffset: { width: 0, height: 3 },
+    shadowOffset: { width: 0, height: 4 },
     shadowRadius: 8,
     elevation: 2,
   },
@@ -420,7 +535,7 @@ const styles = StyleSheet.create({
     paddingTop: 18,
   },
   scanHeader: {
-    backgroundColor: '#4d5de7',
+    backgroundColor: '#4f5fe8',
     borderRadius: 18,
     paddingVertical: 18,
     flexDirection: 'row',
@@ -440,7 +555,7 @@ const styles = StyleSheet.create({
     marginBottom: 18,
   },
   scanStatCard: {
-    backgroundColor: '#4d5de7',
+    backgroundColor: '#4f5fe8',
     width: '48%',
     borderRadius: 18,
     paddingVertical: 18,
@@ -472,11 +587,11 @@ const styles = StyleSheet.create({
     fontWeight: '800',
   },
   historyPanel: {
-    backgroundColor: '#f1f1f1',
+    backgroundColor: '#f2f2f2',
     borderRadius: 18,
     paddingHorizontal: 14,
     paddingTop: 16,
-    paddingBottom: 6,
+    paddingBottom: 8,
   },
   historyTitle: {
     textAlign: 'center',
@@ -488,22 +603,20 @@ const styles = StyleSheet.create({
   historyRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#f9f9f9',
+    backgroundColor: '#fafafa',
     borderRadius: 16,
-    paddingVertical: 10,
     paddingHorizontal: 12,
+    paddingVertical: 10,
     marginBottom: 12,
-  },
-  personCircle: {
-    marginRight: 12,
   },
   historyInfo: {
     flex: 1,
+    marginLeft: 12,
   },
   historyHeader: {
     flexDirection: 'row',
-    alignItems: 'center',
     justifyContent: 'space-between',
+    alignItems: 'center',
   },
   historyName: {
     fontSize: 23,
@@ -512,7 +625,7 @@ const styles = StyleSheet.create({
     maxWidth: '70%',
   },
   roleChip: {
-    backgroundColor: '#4d5de7',
+    backgroundColor: '#4f5fe8',
     borderRadius: 14,
     paddingHorizontal: 10,
     paddingVertical: 4,
@@ -522,16 +635,64 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: '700',
   },
-  score: {
+  historyScore: {
     fontSize: 18,
     fontWeight: '800',
-    color: '#1e1e1e',
+    color: '#1d1d1d',
     marginTop: 4,
   },
-  metaText: {
-    color: '#2b2b2b',
+  historyMeta: {
+    color: '#2d2d2d',
     fontSize: 15,
     fontWeight: '600',
+  },
+  infoPage: {
+    flex: 1,
+    backgroundColor: '#eef2f3',
+    paddingHorizontal: 18,
+    paddingTop: 22,
+  },
+  infoHeader: {
+    backgroundColor: '#4f5fe8',
+    borderRadius: 18,
+    paddingVertical: 18,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 18,
+  },
+  infoTitle: {
+    color: '#fff',
+    fontSize: 28,
+    fontWeight: '900',
+  },
+  infoCard: {
+    backgroundColor: '#fff',
+    borderRadius: 18,
+    padding: 18,
+    marginBottom: 18,
+  },
+  infoListItem: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    marginBottom: 10,
+  },
+  bullet: {
+    fontSize: 18,
+    color: '#4f5fe8',
+    marginRight: 8,
+    fontWeight: '900',
+  },
+  infoText: {
+    color: '#2d2d2d',
+    fontSize: 16,
+    lineHeight: 24,
+    marginBottom: 8,
+  },
+  websiteLink: {
+    color: '#2d59ff',
+    fontSize: 17,
+    fontWeight: '700',
+    marginBottom: 10,
   },
   profilePage: {
     flex: 1,
@@ -551,7 +712,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     borderRadius: 24,
     paddingVertical: 28,
-    paddingHorizontal: 20,
     alignItems: 'center',
     shadowColor: '#000',
     shadowOpacity: 0.08,
@@ -588,7 +748,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     alignItems: 'center',
     backgroundColor: '#f8f8f8',
-    borderTopColor: '#d7d7d7',
+    borderTopColor: '#d8d8d8',
     borderTopWidth: 1,
     paddingTop: 10,
     paddingBottom: 18,
@@ -599,8 +759,8 @@ const styles = StyleSheet.create({
   },
   navLabel: {
     fontSize: 15,
-    color: '#717171',
     fontWeight: '700',
+    color: '#7a7a7a',
     marginTop: 4,
   },
   navActive: {
@@ -608,4 +768,4 @@ const styles = StyleSheet.create({
   },
 });
 
-"}]} ivoq to=functions.push_files  <>
+
