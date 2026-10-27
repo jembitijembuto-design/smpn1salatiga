@@ -1,0 +1,15 @@
+{
+  "expo": {
+    "name": "SMPN1SALATIGA",
+    "slug": "smpn1salatiga",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "automatic",
+    "splash": {
+      "backgroundColor": "#ffffff"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
