@@ -14,7 +14,7 @@ import { Ionicons, FontAwesome5 } from '@expo/vector-icons';
 
 const SCHOOL_WEBSITE = 'https://smpn1salatiga.sch.id';
 
-const profile = {
+const schoolProfile = {
   name: 'Bopo Priyanto, S.Si',
   jabatan: 'Guru / Wali Kelas 1',
   guru: 'Informatika',
@@ -27,12 +27,12 @@ const summaryData = [
 ];
 
 const primaryMenu = [
-  { id: 'rdm', label: 'RDM', icon: 'laptop', color: '#f35d4f', bg: '#eef3ff' },
+  { id: 'modul', label: 'Modul Ajar', icon: 'book-reader', color: '#ef5350', bg: '#eef3ff' },
   { id: 'absen', label: 'Absen', icon: 'clipboard-check', color: '#7d5ef5', bg: '#f8f3ff' },
   { id: 'izin', label: 'Izin Pegawai', icon: 'user-check', color: '#f3a63d', bg: '#fff8eb' },
   { id: 'scan', label: 'Scan Siswa', icon: 'qrcode', color: '#f15a5d', bg: '#ebf9ff' },
   { id: 'kelas', label: 'Absensi Kelas', icon: 'desktop', color: '#2c9cdc', bg: '#edf7ff' },
-  { id: 'jurnal', label: 'Jurnal', icon: 'book', color: '#4b7bed', bg: '#eef5ff' },
+  { id: 'jurnal', label: 'Jurnal', icon: 'book', bg: '#eef5ff', color: '#4b7bed' },
   { id: 'nilai', label: 'Penilaian', icon: 'chart-bar', color: '#1eaedb', bg: '#edfbff' },
   { id: 'siswa', label: 'Siswa', icon: 'users', color: '#15b883', bg: '#effef7' },
   { id: 'kelas2', label: 'Kelas', icon: 'school', color: '#f4b344', bg: '#fff9ed' },
@@ -43,10 +43,10 @@ const primaryMenu = [
 
 const extraMenu = [
   { id: 'kurikulum', label: 'Kurikulum 2026', icon: 'book-open', color: '#6f5ef8', bg: '#f4f1ff' },
-  { id: 'tka', label: 'Persam TKA', icon: 'graduation-cap', color: '#4f86ff', bg: '#edf8ff' },
+  { id: 'kompetensi', label: 'Kompetensi Siswa', icon: 'award', color: '#3d8bfd', bg: '#edf6ff' },
+  { id: 'lks', label: 'LKS / Tugas', icon: 'tasks', color: '#f59e0b', bg: '#fff7e8' },
+  { id: 'tka', label: 'Materi TKA', icon: 'graduation-cap', color: '#4f86ff', bg: '#edf8ff' },
   { id: 'garuda', label: 'Aplikasi Garuda', icon: 'rocket', color: '#f59e0b', bg: '#fffaf0' },
-  { id: 'jadwal', label: 'Jadwal Piket', icon: 'calendar-alt', color: '#f59e0b', bg: '#fff7e6' },
-  { id: 'struktur', label: 'Struktur Kelas', icon: 'sitemap', color: '#2db06d', bg: '#f1fbf5' },
   { id: 'website', label: 'Website Sekolah', icon: 'globe', color: '#4165d8', bg: '#edf2ff' },
   { id: 'english', label: 'English Translator', icon: 'language', color: '#5a74ef', bg: '#edf3ff' },
   { id: 'ujian', label: 'Ujian Online', icon: 'file-signature', color: '#d9a217', bg: '#fff7d9' },
@@ -64,11 +64,47 @@ const scanStudents = [
 
 const curriculumItems = [
   'Kurikulum Merdeka 2026',
-  'Implementasi profil pelajar Pancasila',
+  'Implementasi Profil Pelajar Pancasila',
   'Pembelajaran berbasis proyek',
   'Literasi, numerasi, dan digital',
   'Penilaian autentik dan portofolio',
   'Integrasi TKA, bakat minat, dan PPPK',
+];
+
+const curriculumModules = [
+  { subject: 'Bahasa Indonesia', topic: 'Membaca kritis dan menulis argumentatif', target: 'Keterampilan literasi', duration: '4 pertemuan' },
+  { subject: 'Matematika', topic: 'Numerasi dan pemecahan masalah kontekstual', target: 'Berpikir logis', duration: '4 pertemuan' },
+  { subject: 'IPA', topic: 'Klasifikasi makhluk hidup dan ekosistem', target: 'Scientific reasoning', duration: '3 pertemuan' },
+  { subject: 'IPAS', topic: 'Sistem tata surya dan perubahan lingkungan', target: 'Analisis fenomena alam', duration: '4 pertemuan' },
+  { subject: 'Informatika', topic: 'Algoritma, dasar pemrograman, dan literasi digital', target: 'Computational thinking', duration: '5 pertemuan' },
+  { subject: 'Pendidikan Pancasila', topic: 'Kewarganegaraan, norma, dan semangat kebangsaan', target: 'Karakter nasional', duration: '3 pertemuan' },
+];
+
+const competencyItems = [
+  { title: 'Literasi', detail: 'Mampu memahami teks, mencari informasi, dan mengekspresikan ide secara jelas.' },
+  { title: 'Numerasi', detail: 'Mampu menganalisis data sederhana, berhitung, dan memecahkan soal kontekstual.' },
+  { title: 'Digital', detail: 'Mampu menggunakan perangkat digital untuk belajar, mencari informasi, dan mengolah data.' },
+  { title: 'Karakter', detail: 'Menunjukkan sikap disiplin, jujur, tanggung jawab, dan gotong royong.' },
+  { title: 'Kreativitas', detail: 'Mampu menghasilkan karya sederhana berbasis proyek atau tugas kolaboratif.' },
+  { title: 'Komunikasi', detail: 'Mampu menyampaikan ide secara lisan maupun tulisan dengan baik.' },
+];
+
+const studentWorksheets = [
+  { title: 'LKS Bahasa Indonesia', description: 'Membaca teks dan menulis ringkasan', level: 'Kelas 7' },
+  { title: 'LKS Matematika', description: 'Operasi bilangan, persamaan dasar, dan grafik', level: 'Kelas 7' },
+  { title: 'LKS IPA', description: 'Pengamatan, laporan eksperimen, dan klasifikasi', level: 'Kelas 7' },
+  { title: 'LKS Informatika', description: 'Flowchart, logika dasar, dan algoritma', level: 'Kelas 7' },
+  { title: 'LKS Projek', description: 'Proyek lintas mata pelajaran berbasis tema', level: 'Kelas 7' },
+  { title: 'LKS Refleksi', description: 'Evaluasi diri, target belajar, dan jurnal', level: 'Kelas 7' },
+];
+
+const tkaPractice = [
+  { title: 'Literasi Bahasa', detail: 'Membaca pemahaman, ide pokok, dan inferensi.' },
+  { title: 'Numerasi', detail: 'Operasi hitung, aljabar dasar, dan pemecahan masalah.' },
+  { title: 'Logika', detail: 'Pola, hubungan, dan penalaran deduktif/s induktif.' },
+  { title: 'Analisis Data', detail: 'Membaca tabel, diagram, dan grafik sederhana.' },
+  { title: 'Pemecahan Masalah', detail: 'Situasi nyata dan solusi berbasis fakta.' },
+  { title: 'Literasi Digital', detail: 'Penggunaan perangkat dan internet untuk belajar efektif.' },
 ];
 
 const renderMenuIcon = (icon, color, size) => <FontAwesome5 name={icon} size={size} color={color} />;
@@ -93,20 +129,15 @@ function HomeScreen({ onScreenChange }) {
         </View>
 
         <View style={styles.greetingTextWrap}>
-          <Text style={styles.greetingName}>{profile.name}</Text>
-          <Text style={styles.greetingMeta}>Jabatan : {profile.jabatan}</Text>
-          <Text style={styles.greetingMeta}>Guru : {profile.guru}</Text>
-          <Text style={styles.greetingMeta}>NIP : {profile.nip}</Text>
+          <Text style={styles.greetingName}>{schoolProfile.name}</Text>
+          <Text style={styles.greetingMeta}>Jabatan : {schoolProfile.jabatan}</Text>
+          <Text style={styles.greetingMeta}>Guru : {schoolProfile.guru}</Text>
+          <Text style={styles.greetingMeta}>NIP : {schoolProfile.nip}</Text>
         </View>
       </View>
 
       <View style={styles.searchBox}>
-        <TextInput
-          placeholder="Cari menu..."
-          placeholderTextColor="#5f5f5f"
-          editable={false}
-          style={styles.searchInput}
-        />
+        <TextInput placeholder="Cari menu..." placeholderTextColor="#5f5f5f" editable={false} style={styles.searchInput} />
       </View>
 
       <View style={styles.summaryRow}>
@@ -122,12 +153,7 @@ function HomeScreen({ onScreenChange }) {
 
       <View style={styles.gridWrap}>
         {primaryMenu.map((item) => (
-          <TouchableOpacity
-            key={item.id}
-            style={styles.menuItem}
-            activeOpacity={0.9}
-            onPress={() => onScreenChange(item.id)}
-          >
+          <TouchableOpacity key={item.id} style={styles.menuItem} activeOpacity={0.9} onPress={() => onScreenChange(item.id)}>
             <View style={[styles.iconBox, { backgroundColor: item.bg }]}>
               {renderMenuIcon(item.icon, item.color, 32)}
             </View>
@@ -140,12 +166,7 @@ function HomeScreen({ onScreenChange }) {
 
       <View style={styles.gridWrapExtra}>
         {extraMenu.map((item) => (
-          <TouchableOpacity
-            key={item.id}
-            style={styles.menuItem}
-            activeOpacity={0.9}
-            onPress={() => onScreenChange(item.id)}
-          >
+          <TouchableOpacity key={item.id} style={styles.menuItem} activeOpacity={0.9} onPress={() => onScreenChange(item.id)}>
             <View style={[styles.iconBox, { backgroundColor: item.bg }]}>
               {renderMenuIcon(item.icon, item.color, 30)}
             </View>
@@ -202,19 +223,88 @@ function ScanScreen({ onScreenChange }) {
   );
 }
 
-function InfoScreen({ title, content, onScreenChange, footerText = 'Kembali' }) {
+function ModuleScreen({ onScreenChange }) {
   return (
     <View style={styles.infoPage}>
       <View style={styles.infoHeader}>
-        <Text style={styles.infoTitle}>{title}</Text>
+        <Text style={styles.infoTitle}>Modul Ajar</Text>
       </View>
-
-      <View style={styles.infoCard}>
-        {content}
-      </View>
-
+      <ScrollView style={styles.scrollCard} contentContainerStyle={{ paddingBottom: 10 }}>
+        {curriculumModules.map((item) => (
+          <View key={item.subject} style={styles.moduleCard}>
+            <Text style={styles.moduleSubject}>{item.subject}</Text>
+            <Text style={styles.moduleTopic}>{item.topic}</Text>
+            <Text style={styles.moduleMeta}>Target: {item.target}</Text>
+            <Text style={styles.moduleMeta}>Durasi: {item.duration}</Text>
+          </View>
+        ))}
+      </ScrollView>
       <TouchableOpacity style={styles.primaryButton} onPress={() => onScreenChange('home')}>
-        <Text style={styles.primaryButtonText}>{footerText}</Text>
+        <Text style={styles.primaryButtonText}>Kembali</Text>
+      </TouchableOpacity>
+    </View>
+  );
+}
+
+function CompetencyScreen({ onScreenChange }) {
+  return (
+    <View style={styles.infoPage}>
+      <View style={styles.infoHeader}>
+        <Text style={styles.infoTitle}>Kompetensi Siswa</Text>
+      </View>
+      <ScrollView style={styles.scrollCard} contentContainerStyle={{ paddingBottom: 10 }}>
+        {competencyItems.map((item) => (
+          <View key={item.title} style={styles.moduleCard}>
+            <Text style={styles.moduleSubject}>{item.title}</Text>
+            <Text style={styles.moduleTopic}>{item.detail}</Text>
+          </View>
+        ))}
+      </ScrollView>
+      <TouchableOpacity style={styles.primaryButton} onPress={() => onScreenChange('home')}>
+        <Text style={styles.primaryButtonText}>Kembali</Text>
+      </TouchableOpacity>
+    </View>
+  );
+}
+
+function WorksheetScreen({ onScreenChange }) {
+  return (
+    <View style={styles.infoPage}>
+      <View style={styles.infoHeader}>
+        <Text style={styles.infoTitle}>LKS / Tugas Siswa</Text>
+      </View>
+      <ScrollView style={styles.scrollCard} contentContainerStyle={{ paddingBottom: 10 }}>
+        {studentWorksheets.map((item) => (
+          <View key={item.title} style={styles.moduleCard}>
+            <Text style={styles.moduleSubject}>{item.title}</Text>
+            <Text style={styles.moduleTopic}>{item.description}</Text>
+            <Text style={styles.moduleMeta}>{item.level}</Text>
+          </View>
+        ))}
+      </ScrollView>
+      <TouchableOpacity style={styles.primaryButton} onPress={() => onScreenChange('home')}>
+        <Text style={styles.primaryButtonText}>Kembali</Text>
+      </TouchableOpacity>
+    </View>
+  );
+}
+
+function TkaScreen({ onScreenChange }) {
+  return (
+    <View style={styles.infoPage}>
+      <View style={styles.infoHeader}>
+        <Text style={styles.infoTitle}>Materi TKA</Text>
+      </View>
+      <ScrollView style={styles.scrollCard} contentContainerStyle={{ paddingBottom: 10 }}>
+        {tkaPractice.map((item) => (
+          <View key={item.title} style={styles.moduleCard}>
+            <Text style={styles.moduleSubject}>{item.title}</Text>
+            <Text style={styles.moduleTopic}>{item.detail}</Text>
+          </View>
+        ))}
+      </ScrollView>
+      <TouchableOpacity style={styles.primaryButton} onPress={() => onScreenChange('home')}>
+        <Text style={styles.primaryButtonText}>Kembali</Text>
       </TouchableOpacity>
     </View>
   );
@@ -222,70 +312,59 @@ function InfoScreen({ title, content, onScreenChange, footerText = 'Kembali' }) 
 
 function CurriculumScreen({ onScreenChange }) {
   return (
-    <InfoScreen
-      title="Kurikulum 2026"
-      onScreenChange={onScreenChange}
-      content={
-        <>
-          {curriculumItems.map((item) => (
-            <View key={item} style={styles.infoListItem}>
-              <Text style={styles.bullet}>•</Text>
-              <Text style={styles.infoText}>{item}</Text>
-            </View>
-          ))}
-        </>
-      }
-    />
-  );
-}
-
-function TkaScreen({ onScreenChange }) {
-  return (
-    <InfoScreen
-      title="Persam TKA"
-      onScreenChange={onScreenChange}
-      content={
-        <>
-          <Text style={styles.infoText}>Program persiapan TKA (Tes Kemampuan Akademik) berbasis literasi, numerasi, dan kemampuan berpikir kritis.</Text>
-          <Text style={styles.infoText}>• Fokus: logika, penalaran, analisis, dan literasi digital</Text>
-          <Text style={styles.infoText}>• Target: siswa kelas akhir siap menghadapi tes dan seleksi</Text>
-          <Text style={styles.infoText}>• Pendampingan: guru mata pelajaran dan wali kelas</Text>
-        </>
-      }
-    />
+    <View style={styles.infoPage}>
+      <View style={styles.infoHeader}>
+        <Text style={styles.infoTitle}>Kurikulum 2026</Text>
+      </View>
+      <ScrollView style={styles.scrollCard} contentContainerStyle={{ paddingBottom: 10 }}>
+        {curriculumItems.map((item) => (
+          <View key={item} style={styles.infoListItem}>
+            <Text style={styles.bullet}>•</Text>
+            <Text style={styles.infoText}>{item}</Text>
+          </View>
+        ))}
+      </ScrollView>
+      <TouchableOpacity style={styles.primaryButton} onPress={() => onScreenChange('home')}>
+        <Text style={styles.primaryButtonText}>Kembali</Text>
+      </TouchableOpacity>
+    </View>
   );
 }
 
 function GarudaScreen({ onScreenChange }) {
   return (
-    <InfoScreen
-      title="Aplikasi Garuda"
-      onScreenChange={onScreenChange}
-      content={
-        <>
-          <Text style={styles.infoText}>Aplikasi Garuda merupakan portal pendukung siswa dan guru untuk administrasi, evaluasi, dan kebutuhan pembelajaran digital sekolah.</Text>
-          <Text style={styles.infoText}>• Integrasi aset digital sekolah</Text>
-          <Text style={styles.infoText}>• Sinkronisasi data peserta didik dan guru</Text>
-          <Text style={styles.infoText}>• Dokumentasi pembelajaran dan pelaporan</Text>
-        </>
-      }
-    />
+    <View style={styles.infoPage}>
+      <View style={styles.infoHeader}>
+        <Text style={styles.infoTitle}>Aplikasi Garuda</Text>
+      </View>
+      <View style={styles.infoCard}>
+        <Text style={styles.infoText}>Aplikasi Garuda merupakan portal pendukung siswa dan guru untuk administrasi, evaluasi, dan kebutuhan pembelajaran digital sekolah.</Text>
+        <Text style={styles.infoText}>• Integrasi aset digital sekolah</Text>
+        <Text style={styles.infoText}>• Sinkronisasi data peserta didik dan guru</Text>
+        <Text style={styles.infoText}>• Dokumentasi pembelajaran dan pelaporan</Text>
+      </View>
+      <TouchableOpacity style={styles.primaryButton} onPress={() => onScreenChange('home')}>
+        <Text style={styles.primaryButtonText}>Kembali</Text>
+      </TouchableOpacity>
+    </View>
   );
 }
 
 function WebsiteScreen({ onScreenChange }) {
   return (
-    <InfoScreen
-      title="Website Sekolah"
-      onScreenChange={onScreenChange}
-      content={
-        <>
-          <Text style={styles.infoText}>Sumber informasi sekolah:</Text>
-          <Text style={styles.websiteLink} onPress={() => Linking.openURL(SCHOOL_WEBSITE)}>{SCHOOL_WEBSITE}</Text>
-          <Text style={styles.infoText}>Koneksi aktif melalui tautan resmi sekolah untuk berita, pengumuman, dan informasi akademik.</Text>
-        </>
-      }
-    />
+    <View style={styles.infoPage}>
+      <View style={styles.infoHeader}>
+        <Text style={styles.infoTitle}>Website Sekolah</Text>
+      </View>
+      <View style={styles.infoCard}>
+        <Text style={styles.infoText}>Sumber informasi sekolah:</Text>
+        <Text style={styles.websiteLink} onPress={() => Linking.openURL(SCHOOL_WEBSITE)}>{SCHOOL_WEBSITE}</Text>
+        <Text style={styles.infoText}>Koneksi aktif melalui tautan resmi sekolah untuk berita, pengumuman, dan informasi akademik.</Text>
+      </View>
+      <TouchableOpacity style={styles.primaryButton} onPress={() => onScreenChange('home')}>
+        <Text style={styles.primaryButtonText}>Kembali</Text>
+      </TouchableOpacity>
+    </View>
   );
 }
 
@@ -295,9 +374,9 @@ function ProfileScreen({ onScreenChange }) {
       <Text style={styles.profilePageTitle}>Profil</Text>
       <View style={styles.profilePanel}>
         <Ionicons name="person-circle" size={82} color="#4c78ff" />
-        <Text style={styles.profileNameLarge}>{profile.name}</Text>
-        <Text style={styles.profileMetaLarge}>{profile.jabatan}</Text>
-        <Text style={styles.profileMetaLarge}>{profile.guru}</Text>
+        <Text style={styles.profileNameLarge}>{schoolProfile.name}</Text>
+        <Text style={styles.profileMetaLarge}>{schoolProfile.jabatan}</Text>
+        <Text style={styles.profileMetaLarge}>{schoolProfile.guru}</Text>
       </View>
       <TouchableOpacity style={styles.primaryButton} onPress={() => onScreenChange('home')}>
         <Text style={styles.primaryButtonText}>Kembali ke Home</Text>
@@ -314,6 +393,37 @@ export default function App() {
       Linking.openURL(SCHOOL_WEBSITE);
       return;
     }
+
+    if (nextScreen === 'modul') {
+      setScreen('module');
+      return;
+    }
+
+    if (nextScreen === 'kompetensi') {
+      setScreen('kompetensi');
+      return;
+    }
+
+    if (nextScreen === 'lks') {
+      setScreen('worksheet');
+      return;
+    }
+
+    if (nextScreen === 'tka') {
+      setScreen('tka');
+      return;
+    }
+
+    if (nextScreen === 'kurikulum') {
+      setScreen('kurikulum');
+      return;
+    }
+
+    if (nextScreen === 'garuda') {
+      setScreen('garuda');
+      return;
+    }
+
     setScreen(nextScreen);
   };
 
@@ -321,10 +431,16 @@ export default function App() {
     switch (screen) {
       case 'scan':
         return <ScanScreen onScreenChange={handleScreenChange} />;
-      case 'kurikulum':
-        return <CurriculumScreen onScreenChange={handleScreenChange} />;
+      case 'module':
+        return <ModuleScreen onScreenChange={handleScreenChange} />;
+      case 'kompetensi':
+        return <CompetencyScreen onScreenChange={handleScreenChange} />;
+      case 'worksheet':
+        return <WorksheetScreen onScreenChange={handleScreenChange} />;
       case 'tka':
         return <TkaScreen onScreenChange={handleScreenChange} />;
+      case 'kurikulum':
+        return <CurriculumScreen onScreenChange={handleScreenChange} />;
       case 'garuda':
         return <GarudaScreen onScreenChange={handleScreenChange} />;
       case 'website':
@@ -346,10 +462,12 @@ export default function App() {
           <Ionicons name="home" size={30} color={screen === 'home' ? '#2d59ff' : '#7a7a7a'} />
           <Text style={[styles.navLabel, screen === 'home' && styles.navActive]}>Home</Text>
         </TouchableOpacity>
+
         <TouchableOpacity style={styles.navItem} onPress={() => setScreen('profile')}>
           <Ionicons name="person" size={30} color={screen === 'profile' ? '#2d59ff' : '#7a7a7a'} />
           <Text style={[styles.navLabel, screen === 'profile' && styles.navActive]}>Profile</Text>
         </TouchableOpacity>
+
         <TouchableOpacity style={styles.navItem} onPress={() => Linking.openURL(SCHOOL_WEBSITE)}>
           <Ionicons name="globe" size={30} color="#7a7a7a" />
           <Text style={styles.navLabel}>Website</Text>
@@ -667,17 +785,6 @@ const styles = StyleSheet.create({
     padding: 18,
     marginBottom: 18,
   },
-  infoListItem: {
-    flexDirection: 'row',
-    alignItems: 'flex-start',
-    marginBottom: 10,
-  },
-  bullet: {
-    fontSize: 18,
-    color: '#4f5fe8',
-    marginRight: 8,
-    fontWeight: '900',
-  },
   infoText: {
     color: '#2d2d2d',
     fontSize: 16,
@@ -762,22 +869,49 @@ const styles = StyleSheet.create({
   navActive: {
     color: '#2d59ff',
   },
+  scrollCard: {
+    backgroundColor: '#fff',
+    borderRadius: 18,
+    padding: 12,
+  },
+  moduleCard: {
+    backgroundColor: '#f6f8ff',
+    borderRadius: 16,
+    padding: 14,
+    marginBottom: 12,
+    borderWidth: 1,
+    borderColor: '#e4e9f7',
+  },
+  moduleSubject: {
+    fontSize: 19,
+    fontWeight: '900',
+    color: '#111',
+    marginBottom: 6,
+  },
+  moduleTopic: {
+    fontSize: 15,
+    lineHeight: 22,
+    color: '#2d2d2d',
+    marginBottom: 6,
+  },
+  moduleMeta: {
+    fontSize: 14,
+    color: '#4856d8',
+    fontWeight: '700',
+  },
+  infoListItem: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    marginBottom: 10,
+    paddingHorizontal: 2,
+  },
+  bullet: {
+    fontSize: 18,
+    color: '#4f5fe8',
+    marginRight: 8,
+    fontWeight: '900',
+  },
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
