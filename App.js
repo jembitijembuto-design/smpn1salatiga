@@ -13,108 +13,170 @@ import {
   Easing,
 } from 'react-native';
 
-const schoolData = {
-  profile: {
-    name: 'SMP Negeri 1 Salatiga',
-    city: 'Salatiga',
-    accreditation: 'Akreditasi A',
-    principal: 'Drs. Suyoto, M.Pd.',
-    tagline: 'Menciptakan generasi unggul, berkarakter, dan siap bersaing.',
-  },
-  stats: {
-    students: 360,
-    teachers: 32,
-    classes: 12,
-    competitions: 8,
-  },
+const appData = {
+  appName: 'SMP Smart School',
+  year: 2026,
   schools: [
-    { id: 'smpn1', name: 'SMP Negeri 1 Salatiga', city: 'Salatiga', accreditation: 'A', principal: 'Drs. Suyoto, M.Pd.' },
-    { id: 'smpn2', name: 'SMP Negeri 2 Salatiga', city: 'Salatiga', accreditation: 'A', principal: 'Dra. Susanti, M.Pd.' },
-    { id: 'smpn3', name: 'SMP Negeri 3 Salatiga', city: 'Salatiga', accreditation: 'A', principal: 'H. Budi Santoso, M.Pd.' },
-    { id: 'smpn4', name: 'SMP Negeri 4 Salatiga', city: 'Salatiga', accreditation: 'A', principal: 'Dr. Aprianto, M.Pd.' },
+    {
+      id: 'smpn1',
+      name: 'SMP Negeri 1 Salatiga',
+      city: 'Salatiga',
+      accreditation: 'A',
+      principal: 'Drs. Suyoto, M.Pd.',
+      tagline: 'Menciptakan generasi unggul, berkarakter, dan siap bersaing.',
+      stats: { students: 360, teachers: 32, classes: 12 },
+    },
+    {
+      id: 'smpn2',
+      name: 'SMP Negeri 2 Salatiga',
+      city: 'Salatiga',
+      accreditation: 'A',
+      principal: 'Dra. Susanti, M.Pd.',
+      tagline: 'Mengembangkan potensi siswa melalui pendidikan unggul dan berprestasi.',
+      stats: { students: 420, teachers: 36, classes: 14 },
+    },
+    {
+      id: 'smpn3',
+      name: 'SMP Negeri 3 Salatiga',
+      city: 'Salatiga',
+      accreditation: 'A',
+      principal: 'H. Budi Santoso, M.Pd.',
+      tagline: 'Mendidik siswa tangguh, kreatif, dan semangat belajar tinggi.',
+      stats: { students: 390, teachers: 34, classes: 13 },
+    },
   ],
-  teachers: [
-    { name: 'Bopo Priyanto, S.Si', role: 'Guru Informatika', kelas: 'VII-A', nip: '19930601 201903 2 019' },
-    { name: 'Dewi Kusumaningtyas, S.Pd.', role: 'Guru Bahasa Indonesia', kelas: 'VII-B', nip: '19880815 201903 2 020' },
-    { name: 'Rinawati, S.Pd.', role: 'Guru Matematika', kelas: 'VII-C', nip: '19891210 202001 2 004' },
-    { name: 'Agus Setyawan, S.Pd.', role: 'Guru IPA', kelas: 'VIII-A', nip: '19870518 201903 1 011' },
-    { name: 'Siti Aisyah, S.Pd.', role: 'Guru IPS', kelas: 'VIII-B', nip: '19900512 202001 2 015' },
-    { name: 'Andi Prihantoro, S.Pd.', role: 'Guru Pendidikan Pancasila', kelas: 'VIII-C', nip: '19890924 201903 1 018' },
-    { name: 'Rina Oktaviana, S.Pd.', role: 'Guru Bahasa Inggris', kelas: 'IX-A', nip: '19910321 202001 2 021' },
-    { name: 'Fajar Nugroho, S.Pd.', role: 'Guru PJOK', kelas: 'IX-B', nip: '19881109 201903 1 014' },
-    { name: 'Hesti Wulandari, S.Pd.', role: 'Guru Seni Budaya', kelas: 'IX-C', nip: '19920405 202001 2 026' },
-    { name: 'Eko Susilo, S.Pd.', role: 'Guru TIK', kelas: 'VII-D', nip: '19870312 201903 1 006' },
-    { name: 'Maya Lestari, S.Pd.', role: 'Guru BK', kelas: 'VIII-D', nip: '19900119 202001 2 032' },
-    { name: 'Yogi Pratama, S.Pd.', role: 'Guru Agama', kelas: 'IX-D', nip: '19851228 201903 1 009' },
-  ],
-  students: [
-    { name: 'ANASTASYA PUTRI', kelas: 'VII-A', nisn: '20260001', status: 'Aktif' },
-    { name: 'AMIRA', kelas: 'VII-A', nisn: '20260002', status: 'Aktif' },
-    { name: 'MUH. AKBAR', kelas: 'VII-A', nisn: '20260003', status: 'Aktif' },
-    { name: 'BESSE HASNIAH', kelas: 'VII-A', nisn: '20260004', status: 'Aktif' },
-    { name: 'ANDI MUSFIRAWATI F', kelas: 'VII-A', nisn: '20260005', status: 'Aktif' },
-    { name: 'ADELIA NURSEPTI', kelas: 'VII-B', nisn: '20260006', status: 'Aktif' },
-    { name: 'AZZAHRA NINDYA', kelas: 'VII-B', nisn: '20260007', status: 'Aktif' },
-    { name: 'DANIEL PRATAMA', kelas: 'VII-B', nisn: '20260008', status: 'Aktif' },
-    { name: 'FADHILA MAHARANI', kelas: 'VII-B', nisn: '20260009', status: 'Aktif' },
-    { name: 'GILANG RAMADHAN', kelas: 'VII-B', nisn: '20260010', status: 'Aktif' },
-    { name: 'HAFIZH NUR', kelas: 'VII-C', nisn: '20260011', status: 'Aktif' },
-    { name: 'INTAN PERMATA', kelas: 'VII-C', nisn: '20260012', status: 'Aktif' },
-    { name: 'JIHAN AULIA', kelas: 'VII-C', nisn: '20260013', status: 'Aktif' },
-    { name: 'KARISMA AYU', kelas: 'VII-C', nisn: '20260014', status: 'Aktif' },
-    { name: 'LUKMAN HAKIM', kelas: 'VII-C', nisn: '20260015', status: 'Aktif' },
-    { name: 'MAYA SARI', kelas: 'VII-D', nisn: '20260016', status: 'Aktif' },
-    { name: 'NADIA AMELIA', kelas: 'VII-D', nisn: '20260017', status: 'Aktif' },
-    { name: 'OKTAVIANI R', kelas: 'VII-D', nisn: '20260018', status: 'Aktif' },
-    { name: 'RAFI KURNIAWAN', kelas: 'VII-D', nisn: '20260019', status: 'Aktif' },
-    { name: 'SALSABILA', kelas: 'VII-D', nisn: '20260020', status: 'Aktif' },
-    { name: 'ALIFIA PUTRI', kelas: 'VIII-A', nisn: '20260021', status: 'Aktif' },
-    { name: 'BINTANG RAHMAN', kelas: 'VIII-A', nisn: '20260022', status: 'Aktif' },
-    { name: 'CINDY LESTARI', kelas: 'VIII-A', nisn: '20260023', status: 'Aktif' },
-    { name: 'DAVA NUR', kelas: 'VIII-A', nisn: '20260024', status: 'Aktif' },
-    { name: 'ELSA KARTIKA', kelas: 'VIII-A', nisn: '20260025', status: 'Aktif' },
-    { name: 'FARHAN AZIZ', kelas: 'VIII-B', nisn: '20260026', status: 'Aktif' },
-    { name: 'GITA AYU', kelas: 'VIII-B', nisn: '20260027', status: 'Aktif' },
-    { name: 'HANA NUR', kelas: 'VIII-B', nisn: '20260028', status: 'Aktif' },
-    { name: 'IMAM FAUZI', kelas: 'VIII-B', nisn: '20260029', status: 'Aktif' },
-    { name: 'JESSICA RIA', kelas: 'VIII-B', nisn: '20260030', status: 'Aktif' },
-    { name: 'KHALISA ANANDA', kelas: 'VIII-C', nisn: '20260031', status: 'Aktif' },
-    { name: 'LAILA SAKINAH', kelas: 'VIII-C', nisn: '20260032', status: 'Aktif' },
-    { name: 'M. FIKRI', kelas: 'VIII-C', nisn: '20260033', status: 'Aktif' },
-    { name: 'NISA RAHMA', kelas: 'VIII-C', nisn: '20260034', status: 'Aktif' },
-    { name: 'ORCHIDIA T', kelas: 'VIII-C', nisn: '20260035', status: 'Aktif' },
-    { name: 'PANDU SETIAWAN', kelas: 'VIII-D', nisn: '20260036', status: 'Aktif' },
-    { name: 'QONITA AZZAHRA', kelas: 'VIII-D', nisn: '20260037', status: 'Aktif' },
-    { name: 'RIZKY RAMADAN', kelas: 'VIII-D', nisn: '20260038', status: 'Aktif' },
-    { name: 'SHEILA NUR', kelas: 'VIII-D', nisn: '20260039', status: 'Aktif' },
-    { name: 'TARISYA M', kelas: 'VIII-D', nisn: '20260040', status: 'Aktif' },
-    { name: 'AULIA RAHMA', kelas: 'IX-A', nisn: '20260041', status: 'Aktif' },
-    { name: 'BAGAS PRATAMA', kelas: 'IX-A', nisn: '20260042', status: 'Aktif' },
-    { name: 'CANTIKA N', kelas: 'IX-A', nisn: '20260043', status: 'Aktif' },
-    { name: 'DION FAJAR', kelas: 'IX-A', nisn: '20260044', status: 'Aktif' },
-    { name: 'ELVIRA NUR', kelas: 'IX-A', nisn: '20260045', status: 'Aktif' },
-    { name: 'FIRDAUS IHSAN', kelas: 'IX-B', nisn: '20260046', status: 'Aktif' },
-    { name: 'GITA NURMALA', kelas: 'IX-B', nisn: '20260047', status: 'Aktif' },
-    { name: 'HAFIDH SYAHPUTRA', kelas: 'IX-B', nisn: '20260048', status: 'Aktif' },
-    { name: 'IKHSAN NUGROHO', kelas: 'IX-B', nisn: '20260049', status: 'Aktif' },
-    { name: 'JELITA MAHARANI', kelas: 'IX-B', nisn: '20260050', status: 'Aktif' },
-    { name: 'KUNIA RAHMA', kelas: 'IX-C', nisn: '20260051', status: 'Aktif' },
-    { name: 'LUTFI RAHMAN', kelas: 'IX-C', nisn: '20260052', status: 'Aktif' },
-    { name: 'MIRANDA PUTRI', kelas: 'IX-C', nisn: '20260053', status: 'Aktif' },
-    { name: 'NADA AYU', kelas: 'IX-C', nisn: '20260054', status: 'Aktif' },
-    { name: 'OZI FARIZ', kelas: 'IX-C', nisn: '20260055', status: 'Aktif' },
-    { name: 'PRASETYO A', kelas: 'IX-D', nisn: '20260056', status: 'Aktif' },
-    { name: 'QISWAH AULIA', kelas: 'IX-D', nisn: '20260057', status: 'Aktif' },
-    { name: 'RATNA DEWI', kelas: 'IX-D', nisn: '20260058', status: 'Aktif' },
-    { name: 'SURYANINGRUM', kelas: 'IX-D', nisn: '20260059', status: 'Aktif' },
-    { name: 'TAMARA KHAIRUNNISA', kelas: 'IX-D', nisn: '20260060', status: 'Aktif' },
-  ],
-  competitions: [
-    { id: 'olimpiade', title: 'Olimpiade Sains', type: 'Nasional', period: '2026', participants: 64, color: '#ff9f1c' },
-    { id: 'futsal', title: 'Festival Olahraga', type: 'Kabupaten', period: '2026', participants: 48, color: '#2f7af6' },
-    { id: 'seni', title: 'Lomba Seni dan Budaya', type: 'Regional', period: '2026', participants: 52, color: '#7e57c2' },
-    { id: 'debat', title: 'English Debate', type: 'Provinsi', period: '2026', participants: 30, color: '#2ec4b6' },
-  ],
+  teachers: {
+    smpn1: [
+      { name: 'Bopo Priyanto, S.Si', role: 'Guru Informatika', kelas: 'VII-A', nip: '19930601 201903 2 019' },
+      { name: 'Dewi Kusumaningtyas, S.Pd.', role: 'Guru Bahasa Indonesia', kelas: 'VII-B', nip: '19880815 201903 2 020' },
+      { name: 'Rinawati, S.Pd.', role: 'Guru Matematika', kelas: 'VII-C', nip: '19891210 202001 2 004' },
+      { name: 'Agus Setyawan, S.Pd.', role: 'Guru IPA', kelas: 'VIII-A', nip: '19870518 201903 1 011' },
+      { name: 'Siti Aisyah, S.Pd.', role: 'Guru IPS', kelas: 'VIII-B', nip: '19900512 202001 2 015' },
+      { name: 'Andi Prihantoro, S.Pd.', role: 'Guru Pendidikan Pancasila', kelas: 'VIII-C', nip: '19890924 201903 1 018' },
+      { name: 'Rina Oktaviana, S.Pd.', role: 'Guru Bahasa Inggris', kelas: 'IX-A', nip: '19910321 202001 2 021' },
+      { name: 'Fajar Nugroho, S.Pd.', role: 'Guru PJOK', kelas: 'IX-B', nip: '19881109 201903 1 014' },
+      { name: 'Hesti Wulandari, S.Pd.', role: 'Guru Seni Budaya', kelas: 'IX-C', nip: '19920405 202001 2 026' },
+      { name: 'Eko Susilo, S.Pd.', role: 'Guru TIK', kelas: 'VII-D', nip: '19870312 201903 1 006' },
+      { name: 'Maya Lestari, S.Pd.', role: 'Guru BK', kelas: 'VIII-D', nip: '19900119 202001 2 032' },
+      { name: 'Yogi Pratama, S.Pd.', role: 'Guru Agama', kelas: 'IX-D', nip: '19851228 201903 1 009' },
+    ],
+    smpn2: [
+      { name: 'Dian Puspita, S.Pd.', role: 'Guru Matematika', kelas: 'VII-A', nip: '19880101 201903 2 001' },
+      { name: 'Erlangga, S.Pd.', role: 'Guru IPA', kelas: 'VII-B', nip: '19890210 201903 1 012' },
+      { name: 'Rani Putri, S.Pd.', role: 'Guru Bahasa Inggris', kelas: 'VIII-A', nip: '19900315 201903 2 015' },
+      { name: 'Bima Aji, S.Pd.', role: 'Guru TIK', kelas: 'VIII-B', nip: '19880622 201903 1 019' },
+      { name: 'Lina Sari, S.Pd.', role: 'Guru Bahasa Indonesia', kelas: 'IX-A', nip: '19870909 201903 2 013' },
+    ],
+    smpn3: [
+      { name: 'Ayu Pertiwi, S.Pd.', role: 'Guru IPA', kelas: 'VII-A', nip: '19910408 201903 2 009' },
+      { name: 'Joko Santoso, S.Pd.', role: 'Guru IPS', kelas: 'VII-B', nip: '19891021 201903 1 014' },
+      { name: 'Nia Dewi, S.Pd.', role: 'Guru Bahasa Inggris', kelas: 'VIII-A', nip: '19920406 201903 2 013' },
+      { name: 'Agus Salim, S.Pd.', role: 'Guru PJOK', kelas: 'IX-A', nip: '19880730 201903 1 017' },
+      { name: 'Wulan Kartika, S.Pd.', role: 'Guru Seni Budaya', kelas: 'IX-B', nip: '19900519 201903 2 023' },
+    ],
+  },
+  students: {
+    smpn1: [
+      { name: 'ANASTASYA PUTRI', kelas: 'VII-A', nisn: '20260001', status: 'Aktif' },
+      { name: 'AMIRA', kelas: 'VII-A', nisn: '20260002', status: 'Aktif' },
+      { name: 'MUH. AKBAR', kelas: 'VII-A', nisn: '20260003', status: 'Aktif' },
+      { name: 'BESSE HASNIAH', kelas: 'VII-A', nisn: '20260004', status: 'Aktif' },
+      { name: 'ANDI MUSFIRAWATI F', kelas: 'VII-A', nisn: '20260005', status: 'Aktif' },
+      { name: 'ADELIA NURSEPTI', kelas: 'VII-B', nisn: '20260006', status: 'Aktif' },
+      { name: 'AZZAHRA NINDYA', kelas: 'VII-B', nisn: '20260007', status: 'Aktif' },
+      { name: 'DANIEL PRATAMA', kelas: 'VII-B', nisn: '20260008', status: 'Aktif' },
+      { name: 'FADHILA MAHARANI', kelas: 'VII-B', nisn: '20260009', status: 'Aktif' },
+      { name: 'GILANG RAMADHAN', kelas: 'VII-B', nisn: '20260010', status: 'Aktif' },
+      { name: 'HAFIZH NUR', kelas: 'VII-C', nisn: '20260011', status: 'Aktif' },
+      { name: 'INTAN PERMATA', kelas: 'VII-C', nisn: '20260012', status: 'Aktif' },
+      { name: 'JIHAN AULIA', kelas: 'VII-C', nisn: '20260013', status: 'Aktif' },
+      { name: 'KARISMA AYU', kelas: 'VII-C', nisn: '20260014', status: 'Aktif' },
+      { name: 'LUKMAN HAKIM', kelas: 'VII-C', nisn: '20260015', status: 'Aktif' },
+      { name: 'MAYA SARI', kelas: 'VII-D', nisn: '20260016', status: 'Aktif' },
+      { name: 'NADIA AMELIA', kelas: 'VII-D', nisn: '20260017', status: 'Aktif' },
+      { name: 'OKTAVIANI R', kelas: 'VII-D', nisn: '20260018', status: 'Aktif' },
+      { name: 'RAFI KURNIAWAN', kelas: 'VII-D', nisn: '20260019', status: 'Aktif' },
+      { name: 'SALSABILA', kelas: 'VII-D', nisn: '20260020', status: 'Aktif' },
+      { name: 'ALIFIA PUTRI', kelas: 'VIII-A', nisn: '20260021', status: 'Aktif' },
+      { name: 'BINTANG RAHMAN', kelas: 'VIII-A', nisn: '20260022', status: 'Aktif' },
+      { name: 'CINDY LESTARI', kelas: 'VIII-A', nisn: '20260023', status: 'Aktif' },
+      { name: 'DAVA NUR', kelas: 'VIII-A', nisn: '20260024', status: 'Aktif' },
+      { name: 'ELSA KARTIKA', kelas: 'VIII-A', nisn: '20260025', status: 'Aktif' },
+      { name: 'FARHAN AZIZ', kelas: 'VIII-B', nisn: '20260026', status: 'Aktif' },
+      { name: 'GITA AYU', kelas: 'VIII-B', nisn: '20260027', status: 'Aktif' },
+      { name: 'HANA NUR', kelas: 'VIII-B', nisn: '20260028', status: 'Aktif' },
+      { name: 'IMAM FAUZI', kelas: 'VIII-B', nisn: '20260029', status: 'Aktif' },
+      { name: 'JESSICA RIA', kelas: 'VIII-B', nisn: '20260030', status: 'Aktif' },
+      { name: 'KHALISA ANANDA', kelas: 'VIII-C', nisn: '20260031', status: 'Aktif' },
+      { name: 'LAILA SAKINAH', kelas: 'VIII-C', nisn: '20260032', status: 'Aktif' },
+      { name: 'M. FIKRI', kelas: 'VIII-C', nisn: '20260033', status: 'Aktif' },
+      { name: 'NISA RAHMA', kelas: 'VIII-C', nisn: '20260034', status: 'Aktif' },
+      { name: 'ORCHIDIA T', kelas: 'VIII-C', nisn: '20260035', status: 'Aktif' },
+      { name: 'PANDU SETIAWAN', kelas: 'VIII-D', nisn: '20260036', status: 'Aktif' },
+      { name: 'QONITA AZZAHRA', kelas: 'VIII-D', nisn: '20260037', status: 'Aktif' },
+      { name: 'RIZKY RAMADAN', kelas: 'VIII-D', nisn: '20260038', status: 'Aktif' },
+      { name: 'SHEILA NUR', kelas: 'VIII-D', nisn: '20260039', status: 'Aktif' },
+      { name: 'TARISYA M', kelas: 'VIII-D', nisn: '20260040', status: 'Aktif' },
+      { name: 'AULIA RAHMA', kelas: 'IX-A', nisn: '20260041', status: 'Aktif' },
+      { name: 'BAGAS PRATAMA', kelas: 'IX-A', nisn: '20260042', status: 'Aktif' },
+      { name: 'CANTIKA N', kelas: 'IX-A', nisn: '20260043', status: 'Aktif' },
+      { name: 'DION FAJAR', kelas: 'IX-A', nisn: '20260044', status: 'Aktif' },
+      { name: 'ELVIRA NUR', kelas: 'IX-A', nisn: '20260045', status: 'Aktif' },
+      { name: 'FIRDAUS IHSAN', kelas: 'IX-B', nisn: '20260046', status: 'Aktif' },
+      { name: 'GITA NURMALA', kelas: 'IX-B', nisn: '20260047', status: 'Aktif' },
+      { name: 'HAFIDH SYAHPUTRA', kelas: 'IX-B', nisn: '20260048', status: 'Aktif' },
+      { name: 'IKHSAN NUGROHO', kelas: 'IX-B', nisn: '20260049', status: 'Aktif' },
+      { name: 'JELITA MAHARANI', kelas: 'IX-B', nisn: '20260050', status: 'Aktif' },
+      { name: 'KUNIA RAHMA', kelas: 'IX-C', nisn: '20260051', status: 'Aktif' },
+      { name: 'LUTFI RAHMAN', kelas: 'IX-C', nisn: '20260052', status: 'Aktif' },
+      { name: 'MIRANDA PUTRI', kelas: 'IX-C', nisn: '20260053', status: 'Aktif' },
+      { name: 'NADA AYU', kelas: 'IX-C', nisn: '20260054', status: 'Aktif' },
+      { name: 'OZI FARIZ', kelas: 'IX-C', nisn: '20260055', status: 'Aktif' },
+      { name: 'PRASETYO A', kelas: 'IX-D', nisn: '20260056', status: 'Aktif' },
+      { name: 'QISWAH AULIA', kelas: 'IX-D', nisn: '20260057', status: 'Aktif' },
+      { name: 'RATNA DEWI', kelas: 'IX-D', nisn: '20260058', status: 'Aktif' },
+      { name: 'SURYANINGRUM', kelas: 'IX-D', nisn: '20260059', status: 'Aktif' },
+      { name: 'TAMARA KHAIRUNNISA', kelas: 'IX-D', nisn: '20260060', status: 'Aktif' },
+    ],
+    smpn2: [
+      { name: 'FARID NUR', kelas: 'VII-A', nisn: '20261001', status: 'Aktif' },
+      { name: 'NANDA PUTRA', kelas: 'VII-A', nisn: '20261002', status: 'Aktif' },
+      { name: 'SELA WATI', kelas: 'VII-A', nisn: '20261003', status: 'Aktif' },
+      { name: 'RIZKI HAKIM', kelas: 'VII-B', nisn: '20261004', status: 'Aktif' },
+      { name: 'MELINDA', kelas: 'VII-B', nisn: '20261005', status: 'Aktif' },
+      { name: 'ADITYA R', kelas: 'VIII-A', nisn: '20261006', status: 'Aktif' },
+      { name: 'PUTRI LESTARI', kelas: 'VIII-A', nisn: '20261007', status: 'Aktif' },
+      { name: 'HAFID RAHMAN', kelas: 'VIII-B', nisn: '20261008', status: 'Aktif' },
+      { name: 'CHAERUNNISA', kelas: 'VIII-B', nisn: '20261009', status: 'Aktif' },
+      { name: 'YASMIN', kelas: 'IX-A', nisn: '20261010', status: 'Aktif' },
+    ],
+    smpn3: [
+      { name: 'ALVINA SARI', kelas: 'VII-A', nisn: '20262001', status: 'Aktif' },
+      { name: 'BAGUS KURNIA', kelas: 'VII-A', nisn: '20262002', status: 'Aktif' },
+      { name: 'CINTA AYU', kelas: 'VII-B', nisn: '20262003', status: 'Aktif' },
+      { name: 'DANY SETIAWAN', kelas: 'VII-B', nisn: '20262004', status: 'Aktif' },
+      { name: 'EKA LESTARI', kelas: 'VIII-A', nisn: '20262005', status: 'Aktif' },
+      { name: 'FATHIR RIZKY', kelas: 'VIII-A', nisn: '20262006', status: 'Aktif' },
+      { name: 'GITA PRATIWI', kelas: 'IX-A', nisn: '20262007', status: 'Aktif' },
+      { name: 'HILMI RIZAL', kelas: 'IX-A', nisn: '20262008', status: 'Aktif' },
+    ],
+  },
+  competitions: {
+    smpn1: [
+      { id: 'olimpiade', title: 'Olimpiade Sains', type: 'Nasional', period: '2026', participants: 64, color: '#ff9f1c' },
+      { id: 'futsal', title: 'Festival Olahraga', type: 'Kabupaten', period: '2026', participants: 48, color: '#2f7af6' },
+      { id: 'seni', title: 'Lomba Seni dan Budaya', type: 'Regional', period: '2026', participants: 52, color: '#7e57c2' },
+      { id: 'debat', title: 'English Debate', type: 'Provinsi', period: '2026', participants: 30, color: '#2ec4b6' },
+    ],
+    smpn2: [
+      { id: 'robotik', title: 'Robotik', type: 'Nasional', period: '2026', participants: 40, color: '#4ea8de' },
+      { id: 'basket', title: 'Basket Sekolah', type: 'Kabupaten', period: '2026', participants: 34, color: '#f9a826' },
+    ],
+    smpn3: [
+      { id: 'musik', title: 'Lomba Musik', type: 'Kabupaten', period: '2026', participants: 36, color: '#8d6ae7' },
+      { id: 'cerdas', title: 'Cerdas Cermat', type: 'Provinsi', period: '2026', participants: 26, color: '#18a0fb' },
+    ],
+  },
 };
 
 const menuItems = [
@@ -133,24 +195,22 @@ const menuItems = [
   { id: 'materi', label: 'Materi', icon: '☁️', color: '#9b59b6' },
 ];
 
-const secondaryMenu = [
-  { id: 'jurnal-guru', label: 'Jurnal Guru', icon: '👨‍🏫', color: '#f39f1d' },
-  { id: 'modul', label: 'Modul Pembelajaran', icon: '📘', color: '#ff9f1c' },
-  { id: 'jur-nal', label: 'Jurnal 7 KAIH', icon: '📖', color: '#5d9cec' },
-  { id: 'struktur', label: 'Struktur Kelas', icon: '👥', color: '#6c63ff' },
-  { id: 'jadwal', label: 'Jadwal Piket', icon: '🗓️', color: '#e76f51' },
-  { id: 'english', label: 'English Translator', icon: 'A-Z', color: '#ff8fab' },
-  { id: 'ujian', label: 'Ujian Online', icon: '📝', color: '#5ecb8b' },
-  { id: 'izin-pgw', label: 'Izin Pegawai', icon: '✅', color: '#6a6ae8' },
-  { id: 'phone', label: 'Scan Pakai Kamera', icon: '📱', color: '#d45d79' },
-  { id: 'tugas', label: 'LKS', icon: '📄', color: '#fca311' },
-];
-
 const quickAccessItems = [
   { id: 'siswa', label: 'Siswa', icon: '👥', color: '#46c7a7' },
   { id: 'guru', label: 'Guru', icon: '👨‍🏫', color: '#5d79d8' },
   { id: 'kompetisi', label: 'Kompetisi', icon: '🏆', color: '#ff9f1c' },
   { id: 'kelas', label: 'Kelas', icon: '🏫', color: '#f39f1d' },
+];
+
+const secondaryMenu = [
+  { id: 'jurnal-guru', label: 'Jurnal Guru', icon: '👨‍🏫', color: '#f39f1d' },
+  { id: 'modul', label: 'Modul Pembelajaran', icon: '📘', color: '#ff9f1c' },
+  { id: 'struktur', label: 'Struktur Kelas', icon: '👥', color: '#6c63ff' },
+  { id: 'jadwal', label: 'Jadwal Piket', icon: '🗓️', color: '#e76f51' },
+  { id: 'ujian', label: 'Ujian Online', icon: '📝', color: '#5ecb8b' },
+  { id: 'izin-pgw', label: 'Izin Pegawai', icon: '✅', color: '#6a6ae8' },
+  { id: 'phone', label: 'Scan Pakai Kamera', icon: '📱', color: '#d45d79' },
+  { id: 'tugas', label: 'LKS', icon: '📄', color: '#fca311' },
 ];
 
 const navItems = [
@@ -159,6 +219,14 @@ const navItems = [
   { id: 'teachers', label: 'Guru', icon: '👨‍🏫' },
   { id: 'competitions', label: 'Kompetisi', icon: '🏆' },
   { id: 'profile', label: 'Profil', icon: '👤' },
+];
+
+const studentHistory = [
+  { name: 'ANASTASYA PUTRI', value: 9, type: 'Siswa', time: '09:11:28', status: 'Masuk' },
+  { name: 'AMIRA', value: 9, type: 'Siswa', time: '09:08:35', status: 'Masuk' },
+  { name: 'MUH.AKBAR', value: 8, type: 'Siswa', time: '09:03:46', status: 'Masuk' },
+  { name: 'BESSE HASNIAH', value: 9, type: 'Siswa', time: '08:55:20', status: 'Masuk' },
+  { name: 'ANDI MUSFIRAWATI F', value: 9, type: 'Siswa', time: '08:48:44', status: 'Masuk' },
 ];
 
 function App() {
@@ -172,13 +240,13 @@ function App() {
       Animated.sequence([
         Animated.timing(animatedBackground, {
           toValue: 1,
-          duration: 26000,
+          duration: 24000,
           easing: Easing.linear,
           useNativeDriver: true,
         }),
         Animated.timing(animatedBackground, {
           toValue: 0,
-          duration: 26000,
+          duration: 24000,
           easing: Easing.linear,
           useNativeDriver: true,
         }),
@@ -186,47 +254,50 @@ function App() {
     ).start();
   }, [animatedBackground]);
 
-  const backgroundShift = animatedBackground.interpolate({
+  const driftX = animatedBackground.interpolate({
     inputRange: [0, 1],
     outputRange: [-120, 120],
   });
 
-  const selectedSchool = schoolData.schools.find((school) => school.id === selectedSchoolId) || schoolData.schools[0];
+  const selectedSchool = appData.schools.find((school) => school.id === selectedSchoolId) || appData.schools[0];
+  const schoolStudents = appData.students[selectedSchoolId] || [];
+  const schoolTeachers = appData.teachers[selectedSchoolId] || [];
+  const schoolCompetitions = appData.competitions[selectedSchoolId] || [];
 
   const filteredMenu = useMemo(() => {
     const source = screen === 'home' ? menuItems : secondaryMenu;
     if (!query.trim()) return source;
     return source.filter((item) => item.label.toLowerCase().includes(query.toLowerCase()));
-  }, [query, screen]);
+  }, [screen, query]);
 
   const filteredStudents = useMemo(() => {
-    if (!query.trim()) return schoolData.students;
-    return schoolData.students.filter((student) => {
-      const search = query.toLowerCase();
+    if (!query.trim()) return schoolStudents;
+    return schoolStudents.filter((student) => {
+      const q = query.toLowerCase();
       return (
-        student.name.toLowerCase().includes(search) ||
-        student.kelas.toLowerCase().includes(search) ||
-        student.nisn.toLowerCase().includes(search)
+        student.name.toLowerCase().includes(q) ||
+        student.kelas.toLowerCase().includes(q) ||
+        student.nisn.toLowerCase().includes(q)
       );
     });
-  }, [query]);
+  }, [query, schoolStudents]);
 
   const filteredTeachers = useMemo(() => {
-    if (!query.trim()) return schoolData.teachers;
-    return schoolData.teachers.filter((teacher) => {
-      const search = query.toLowerCase();
+    if (!query.trim()) return schoolTeachers;
+    return schoolTeachers.filter((teacher) => {
+      const q = query.toLowerCase();
       return (
-        teacher.name.toLowerCase().includes(search) ||
-        teacher.role.toLowerCase().includes(search) ||
-        teacher.kelas.toLowerCase().includes(search)
+        teacher.name.toLowerCase().includes(q) ||
+        teacher.role.toLowerCase().includes(q) ||
+        teacher.kelas.toLowerCase().includes(q)
       );
     });
-  }, [query]);
+  }, [query, schoolTeachers]);
 
   const filteredCompetitions = useMemo(() => {
-    if (!query.trim()) return schoolData.competitions;
-    return schoolData.competitions.filter((item) => item.title.toLowerCase().includes(query.toLowerCase()));
-  }, [query]);
+    if (!query.trim()) return schoolCompetitions;
+    return schoolCompetitions.filter((item) => item.title.toLowerCase().includes(query.toLowerCase()));
+  }, [query, schoolCompetitions]);
 
   const renderHeader = () => (
     <View style={styles.statusBarWrap}>
@@ -243,22 +314,22 @@ function App() {
     <View style={styles.heroCard}>
       <View style={styles.heroTopRow}>
         <Text style={styles.heroTag}>School Hub</Text>
-        <Text style={styles.heroYear}>2026</Text>
+        <Text style={styles.heroYear}>{appData.year}</Text>
       </View>
       <Text style={styles.heroName}>{selectedSchool.name}</Text>
-      <Text style={styles.heroMeta}>{schoolData.profile.city} • {schoolData.profile.accreditation}</Text>
+      <Text style={styles.heroMeta}>{selectedSchool.city} • Akreditasi {selectedSchool.accreditation}</Text>
 
       <View style={styles.heroStatRow}>
         <View style={styles.heroStatBox}>
-          <Text style={styles.heroStatValue}>{schoolData.stats.students}</Text>
+          <Text style={styles.heroStatValue}>{selectedSchool.stats.students}</Text>
           <Text style={styles.heroStatLabel}>Siswa</Text>
         </View>
         <View style={styles.heroStatBox}>
-          <Text style={styles.heroStatValue}>{schoolData.stats.teachers}</Text>
+          <Text style={styles.heroStatValue}>{selectedSchool.stats.teachers}</Text>
           <Text style={styles.heroStatLabel}>Guru</Text>
         </View>
         <View style={styles.heroStatBox}>
-          <Text style={styles.heroStatValue}>{schoolData.stats.classes}</Text>
+          <Text style={styles.heroStatValue}>{selectedSchool.stats.classes}</Text>
           <Text style={styles.heroStatLabel}>Kelas</Text>
         </View>
       </View>
@@ -268,11 +339,8 @@ function App() {
   const renderProfileCard = () => (
     <View style={styles.profileCard}>
       <View style={styles.avatarWrap}>
-        <View style={styles.avatarFace}>
-          <Text style={styles.avatarText}>◉</Text>
-        </View>
+        <View style={styles.avatarFace}><Text style={styles.avatarText}>◉</Text></View>
       </View>
-
       <View style={styles.profileTextWrap}>
         <Text style={styles.nameText}>Bopo Priyanto, S.Si</Text>
         <Text style={styles.metaText}>Jabatan : Guru / Wali Kelas</Text>
@@ -286,15 +354,15 @@ function App() {
     <View style={styles.summaryRow}>
       <View style={styles.summaryCard}>
         <Text style={styles.summaryLabel}>Total Siswa</Text>
-        <Text style={styles.summaryValue}>{schoolData.students.length}</Text>
+        <Text style={styles.summaryValue}>{schoolStudents.length}</Text>
       </View>
       <View style={styles.summaryCard}>
         <Text style={styles.summaryLabel}>Total Guru</Text>
-        <Text style={styles.summaryValue}>{schoolData.teachers.length}</Text>
+        <Text style={styles.summaryValue}>{schoolTeachers.length}</Text>
       </View>
       <View style={styles.summaryCard}>
         <Text style={styles.summaryLabel}>Kompetisi</Text>
-        <Text style={styles.summaryValue}>{schoolData.competitions.length}</Text>
+        <Text style={styles.summaryValue}>{schoolCompetitions.length}</Text>
       </View>
     </View>
   );
@@ -312,7 +380,6 @@ function App() {
               if (item.id === 'siswa') setScreen('students');
               else if (item.id === 'guru') setScreen('teachers');
               else if (item.id === 'kompetisi') setScreen('competitions');
-              else setScreen('home');
             }}
           >
             <View style={[styles.quickAccessIcon, { backgroundColor: item.color }]}>
@@ -337,7 +404,6 @@ function App() {
             onPress={() => {
               if (item.id === 'siswa') setScreen('students');
               else if (item.id === 'kompetisi') setScreen('competitions');
-              else if (item.id === 'kelas') setScreen('home');
             }}
           >
             <View style={[styles.iconBox, { backgroundColor: item.color }]}>
@@ -354,7 +420,7 @@ function App() {
     <View style={styles.selectorWrap}>
       <Text style={styles.selectorTitle}>Pilih Sekolah Model</Text>
       <View style={styles.selectorList}>
-        {schoolData.schools.map((school) => (
+        {appData.schools.map((school) => (
           <TouchableOpacity
             key={school.id}
             style={[styles.selectorCard, selectedSchoolId === school.id && styles.selectorCardActive]}
@@ -424,9 +490,9 @@ function App() {
       <Text style={styles.screenHeader}>Profil Sekolah</Text>
       <View style={styles.profilePanel}>
         <Text style={styles.profilePanelTitle}>Kepala Sekolah</Text>
-        <Text style={styles.profileName}>{schoolData.profile.principal}</Text>
+        <Text style={styles.profileName}>{selectedSchool.principal}</Text>
         <Text style={styles.profileText}>{selectedSchool.name}</Text>
-        <Text style={styles.profileText}>{schoolData.profile.tagline}</Text>
+        <Text style={styles.profileText}>{selectedSchool.tagline}</Text>
       </View>
 
       <View style={styles.profilePanel}>
@@ -436,7 +502,7 @@ function App() {
 
       <View style={styles.profilePanel}>
         <Text style={styles.profilePanelTitle}>Misi</Text>
-        <Text style={styles.profileText}>Menjalankan pendidikan yang inovatif, berintegritas, dan berorientasi pada pengembangan potensi siswa.</Text>
+        <Text style={styles.profileText}>Mengembangkan pendidikan yang inovatif, berintegritas, dan berorientasi pada potensi siswa.</Text>
       </View>
     </View>
   );
@@ -481,7 +547,7 @@ function App() {
   return (
     <SafeAreaView style={styles.container}>
       <Animated.View pointerEvents="none" style={styles.backgroundLayer}>
-        <Animated.View style={[styles.backgroundTrack, { transform: [{ translateX: backgroundShift }] }]}>
+        <Animated.View style={[styles.backgroundTrack, { transform: [{ translateX: driftX }] }]}>
           <View style={styles.backgroundStrip} />
           <View style={[styles.backgroundStrip, { backgroundColor: '#e2f7ff' }]} />
           <View style={[styles.backgroundStrip, { backgroundColor: '#ffe7b2' }]} />
