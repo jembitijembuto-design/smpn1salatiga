@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useMemo, useState, useRef, useEffect } from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -9,6 +9,8 @@ import {
   TextInput,
   TouchableOpacity,
   Platform,
+  Animated,
+  Easing,
 } from 'react-native';
 
 const menuItems = [
@@ -22,8 +24,16 @@ const menuItems = [
   { id: 'siswa', label: 'Siswa', icon: '👥', color: '#46c7a7' },
   { id: 'kelas', label: 'Kelas', icon: '🏫', color: '#f39f1d' },
   { id: 'pelanggaran', label: 'Pelanggaran Siswa', icon: '⚠️', color: '#f77e3b' },
+  { id: 'kompetisi', label: 'Kompetisi', icon: '🏆', color: '#ff9f1c' },
   { id: 'report', label: 'Report', icon: '📋', color: '#2ec4b6' },
   { id: 'materi', label: 'Materi', icon: '☁️', color: '#9b59b6' },
+];
+
+const quickAccessItems = [
+  { id: 'siswa', label: 'Siswa', icon: '👥', color: '#46c7a7' },
+  { id: 'guru', label: 'Guru', icon: '👨‍🏫', color: '#5d79d8' },
+  { id: 'kompetisi', label: 'Kompetisi', icon: '🏆', color: '#ff9f1c' },
+  { id: 'kelas', label: 'Kelas', icon: '🏫', color: '#f39f1d' },
 ];
 
 const secondaryMenu = [
@@ -152,6 +162,31 @@ const moduleData = {
 function App() {
   const [selectedTab, setSelectedTab] = useState('home');
   const [query, setQuery] = useState('');
+  const animatedBackground = useRef(new Animated.Value(0)).current;
+
+  useEffect(() => {
+    Animated.loop(
+      Animated.sequence([
+        Animated.timing(animatedBackground, {
+          toValue: 1,
+          duration: 32000,
+          easing: Easing.linear,
+          useNativeDriver: true,
+        }),
+        Animated.timing(animatedBackground, {
+          toValue: 0,
+          duration: 32000,
+          easing: Easing.linear,
+          useNativeDriver: true,
+        }),
+      ])
+    ).start();
+  }, [animatedBackground]);
+
+  const driftX = animatedBackground.interpolate({
+    inputRange: [0, 1],
+    outputRange: [-80, 120],
+  });
 
   const filteredMenu = useMemo(() => {
     const source = selectedTab === 'home' ? menuItems : secondaryMenu;
@@ -192,16 +227,32 @@ function App() {
   const renderSummary = () => (
     <View style={styles.summaryRow}>
       <View style={styles.summaryCard}>
-        <Text style={styles.summaryLabel}>Jumlah Siswa :</Text>
+        <Text style={styles.summaryLabel}>Jumlah Siswa</Text>
         <Text style={styles.summaryValue}>{totalStudents}</Text>
       </View>
       <View style={styles.summaryCard}>
-        <Text style={styles.summaryLabel}>Jumlah Guru :</Text>
+        <Text style={styles.summaryLabel}>Jumlah Guru</Text>
         <Text style={styles.summaryValue}>{totalTeachers}</Text>
       </View>
       <View style={styles.summaryCard}>
-        <Text style={styles.summaryLabel}>Kepala Sekolah :</Text>
-        <Text style={styles.summaryValue}>{principal2026.length}</Text>
+        <Text style={styles.summaryLabel}>Kelas</Text>
+        <Text style={styles.summaryValue}>{totalClasses}</Text>
+      </View>
+    </View>
+  );
+
+  const renderQuickAccess = () => (
+    <View style={styles.quickAccessWrap}>
+      <Text style={styles.quickAccessTitle}>Akses Cepat</Text>
+      <View style={styles.quickAccessGrid}>
+        {quickAccessItems.map((item) => (
+          <TouchableOpacity key={item.id} style={styles.quickAccessCard} activeOpacity={0.9}>
+            <View style={[styles.quickAccessIcon, { backgroundColor: item.color }]}>
+              <Text style={styles.quickAccessIconText}>{item.icon}</Text>
+            </View>
+            <Text style={styles.quickAccessLabel}>{item.label}</Text>
+          </TouchableOpacity>
+        ))}
       </View>
     </View>
   );
@@ -327,6 +378,18 @@ function App() {
 
   return (
     <SafeAreaView style={styles.container}>
+      <Animated.View pointerEvents="none" style={styles.backgroundLayer}>
+        <Animated.View style={[styles.backgroundTrack, { transform: [{ translateX: driftX }] }]}>
+          <View style={styles.backgroundStrip} />
+          <View style={[styles.backgroundStrip, { backgroundColor: '#e2f7ff' }]} />
+          <View style={[styles.backgroundStrip, { backgroundColor: '#ffe7b2' }]} />
+          <View style={[styles.backgroundStrip, { backgroundColor: '#dff7dc' }]} />
+        </Animated.View>
+        <View style={styles.orbBlue} />
+        <View style={styles.orbYellow} />
+        <View style={styles.orbGreen} />
+      </Animated.View>
+
       <StatusBar barStyle="dark-content" backgroundColor="#dfe7e7" />
       <ScrollView style={styles.scroll} showsVerticalScrollIndicator={false}>
         {renderHeader()}
@@ -341,6 +404,7 @@ function App() {
           />
         </View>
 
+        {renderQuickAccess()}
         {renderProfileCard()}
         {renderSummary()}
         {renderMenuGrid()}
@@ -361,7 +425,58 @@ const styles = StyleSheet.create({
   },
   scroll: {
     flex: 1,
-    backgroundColor: '#e7ecec',
+    backgroundColor: 'transparent',
+  },
+  backgroundLayer: {
+    position: 'absolute',
+    inset: 0,
+    overflow: 'hidden',
+    backgroundColor: 'rgba(255,255,255,0.25)',
+  },
+  backgroundTrack: {
+    position: 'absolute',
+    top: 0,
+    left: -160,
+    right: -160,
+    height: 400,
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    opacity: 0.35,
+  },
+  backgroundStrip: {
+    width: 180,
+    height: 420,
+    borderRadius: 80,
+    marginRight: 26,
+    backgroundColor: '#cfe7ff',
+    transform: [{ rotate: '-18deg' }],
+  },
+  orbBlue: {
+    position: 'absolute',
+    width: 260,
+    height: 260,
+    borderRadius: 130,
+    backgroundColor: 'rgba(94, 147, 255, 0.18)',
+    top: 90,
+    right: -60,
+  },
+  orbYellow: {
+    position: 'absolute',
+    width: 220,
+    height: 220,
+    borderRadius: 110,
+    backgroundColor: 'rgba(255, 196, 70, 0.18)',
+    bottom: 140,
+    left: -30,
+  },
+  orbGreen: {
+    position: 'absolute',
+    width: 180,
+    height: 180,
+    borderRadius: 90,
+    backgroundColor: 'rgba(60, 190, 120, 0.12)',
+    bottom: 70,
+    right: 80,
   },
   statusBarWrap: {
     flexDirection: 'row',
@@ -370,7 +485,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 18,
     paddingTop: Platform.OS === 'android' ? 12 : 10,
     paddingBottom: 8,
-    backgroundColor: '#edf2f2',
+    backgroundColor: 'rgba(237, 242, 242, 0.8)',
   },
   timeText: {
     fontSize: 18,
@@ -387,7 +502,7 @@ const styles = StyleSheet.create({
     marginTop: 8,
   },
   searchInput: {
-    backgroundColor: '#fff',
+    backgroundColor: 'rgba(255,255,255,0.9)',
     borderRadius: 26,
     borderWidth: 1,
     borderColor: '#d7dfe2',
@@ -395,6 +510,57 @@ const styles = StyleSheet.create({
     paddingVertical: 14,
     fontSize: 18,
     color: '#111',
+    shadowColor: '#000',
+    shadowOpacity: 0.06,
+    shadowRadius: 8,
+    shadowOffset: { width: 0, height: 2 },
+  },
+  quickAccessWrap: {
+    marginHorizontal: 18,
+    marginTop: 14,
+    backgroundColor: 'rgba(255,255,255,0.72)',
+    borderRadius: 24,
+    paddingVertical: 14,
+    paddingHorizontal: 12,
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.7)',
+  },
+  quickAccessTitle: {
+    fontSize: 18,
+    fontWeight: '800',
+    color: '#111',
+    marginBottom: 10,
+  },
+  quickAccessGrid: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    gap: 10,
+  },
+  quickAccessCard: {
+    flex: 1,
+    alignItems: 'center',
+  },
+  quickAccessIcon: {
+    width: 52,
+    height: 52,
+    borderRadius: 18,
+    justifyContent: 'center',
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOpacity: 0.1,
+    shadowRadius: 8,
+    shadowOffset: { width: 0, height: 3 },
+    elevation: 2,
+  },
+  quickAccessIconText: {
+    fontSize: 25,
+  },
+  quickAccessLabel: {
+    marginTop: 8,
+    fontSize: 12,
+    fontWeight: '700',
+    color: '#202020',
+    textAlign: 'center',
   },
   profileCard: {
     marginHorizontal: 18,
@@ -458,7 +624,7 @@ const styles = StyleSheet.create({
   summaryCard: {
     flex: 1,
     minWidth: 100,
-    backgroundColor: '#f3f2f2',
+    backgroundColor: 'rgba(255,255,255,0.72)',
     borderRadius: 22,
     paddingVertical: 18,
     paddingHorizontal: 16,
@@ -468,14 +634,14 @@ const styles = StyleSheet.create({
     borderColor: '#dfe2e5',
   },
   summaryLabel: {
-    fontSize: 18,
+    fontSize: 15,
     fontWeight: '700',
     color: '#1c1c1c',
     marginBottom: 10,
     textAlign: 'center',
   },
   summaryValue: {
-    fontSize: 36,
+    fontSize: 30,
     fontWeight: '800',
     color: '#1c1c1c',
   },
@@ -484,7 +650,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 18,
   },
   sectionTitle: {
-    fontSize: 28,
+    fontSize: 26,
     fontWeight: '900',
     color: '#111',
     marginBottom: 16,
@@ -540,7 +706,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   personCard: {
-    backgroundColor: '#fff',
+    backgroundColor: 'rgba(255,255,255,0.8)',
     borderRadius: 18,
     padding: 14,
     marginBottom: 10,
@@ -560,7 +726,7 @@ const styles = StyleSheet.create({
     marginTop: 2,
   },
   studentCard: {
-    backgroundColor: '#fff',
+    backgroundColor: 'rgba(255,255,255,0.8)',
     borderRadius: 16,
     padding: 12,
     marginBottom: 8,
@@ -595,7 +761,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     paddingVertical: 10,
     paddingHorizontal: 16,
-    backgroundColor: '#f3f6f6',
+    backgroundColor: 'rgba(243,246,246,0.94)',
     borderTopWidth: 1,
     borderTopColor: '#d7dfe2',
   },
