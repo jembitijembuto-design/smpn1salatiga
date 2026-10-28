@@ -13,6 +13,110 @@ import {
   Easing,
 } from 'react-native';
 
+const schoolData = {
+  profile: {
+    name: 'SMP Negeri 1 Salatiga',
+    city: 'Salatiga',
+    accreditation: 'Akreditasi A',
+    principal: 'Drs. Suyoto, M.Pd.',
+    tagline: 'Menciptakan generasi unggul, berkarakter, dan siap bersaing.',
+  },
+  stats: {
+    students: 360,
+    teachers: 32,
+    classes: 12,
+    competitions: 8,
+  },
+  schools: [
+    { id: 'smpn1', name: 'SMP Negeri 1 Salatiga', city: 'Salatiga', accreditation: 'A', principal: 'Drs. Suyoto, M.Pd.' },
+    { id: 'smpn2', name: 'SMP Negeri 2 Salatiga', city: 'Salatiga', accreditation: 'A', principal: 'Dra. Susanti, M.Pd.' },
+    { id: 'smpn3', name: 'SMP Negeri 3 Salatiga', city: 'Salatiga', accreditation: 'A', principal: 'H. Budi Santoso, M.Pd.' },
+    { id: 'smpn4', name: 'SMP Negeri 4 Salatiga', city: 'Salatiga', accreditation: 'A', principal: 'Dr. Aprianto, M.Pd.' },
+  ],
+  teachers: [
+    { name: 'Bopo Priyanto, S.Si', role: 'Guru Informatika', kelas: 'VII-A', nip: '19930601 201903 2 019' },
+    { name: 'Dewi Kusumaningtyas, S.Pd.', role: 'Guru Bahasa Indonesia', kelas: 'VII-B', nip: '19880815 201903 2 020' },
+    { name: 'Rinawati, S.Pd.', role: 'Guru Matematika', kelas: 'VII-C', nip: '19891210 202001 2 004' },
+    { name: 'Agus Setyawan, S.Pd.', role: 'Guru IPA', kelas: 'VIII-A', nip: '19870518 201903 1 011' },
+    { name: 'Siti Aisyah, S.Pd.', role: 'Guru IPS', kelas: 'VIII-B', nip: '19900512 202001 2 015' },
+    { name: 'Andi Prihantoro, S.Pd.', role: 'Guru Pendidikan Pancasila', kelas: 'VIII-C', nip: '19890924 201903 1 018' },
+    { name: 'Rina Oktaviana, S.Pd.', role: 'Guru Bahasa Inggris', kelas: 'IX-A', nip: '19910321 202001 2 021' },
+    { name: 'Fajar Nugroho, S.Pd.', role: 'Guru PJOK', kelas: 'IX-B', nip: '19881109 201903 1 014' },
+    { name: 'Hesti Wulandari, S.Pd.', role: 'Guru Seni Budaya', kelas: 'IX-C', nip: '19920405 202001 2 026' },
+    { name: 'Eko Susilo, S.Pd.', role: 'Guru TIK', kelas: 'VII-D', nip: '19870312 201903 1 006' },
+    { name: 'Maya Lestari, S.Pd.', role: 'Guru BK', kelas: 'VIII-D', nip: '19900119 202001 2 032' },
+    { name: 'Yogi Pratama, S.Pd.', role: 'Guru Agama', kelas: 'IX-D', nip: '19851228 201903 1 009' },
+  ],
+  students: [
+    { name: 'ANASTASYA PUTRI', kelas: 'VII-A', nisn: '20260001', status: 'Aktif' },
+    { name: 'AMIRA', kelas: 'VII-A', nisn: '20260002', status: 'Aktif' },
+    { name: 'MUH. AKBAR', kelas: 'VII-A', nisn: '20260003', status: 'Aktif' },
+    { name: 'BESSE HASNIAH', kelas: 'VII-A', nisn: '20260004', status: 'Aktif' },
+    { name: 'ANDI MUSFIRAWATI F', kelas: 'VII-A', nisn: '20260005', status: 'Aktif' },
+    { name: 'ADELIA NURSEPTI', kelas: 'VII-B', nisn: '20260006', status: 'Aktif' },
+    { name: 'AZZAHRA NINDYA', kelas: 'VII-B', nisn: '20260007', status: 'Aktif' },
+    { name: 'DANIEL PRATAMA', kelas: 'VII-B', nisn: '20260008', status: 'Aktif' },
+    { name: 'FADHILA MAHARANI', kelas: 'VII-B', nisn: '20260009', status: 'Aktif' },
+    { name: 'GILANG RAMADHAN', kelas: 'VII-B', nisn: '20260010', status: 'Aktif' },
+    { name: 'HAFIZH NUR', kelas: 'VII-C', nisn: '20260011', status: 'Aktif' },
+    { name: 'INTAN PERMATA', kelas: 'VII-C', nisn: '20260012', status: 'Aktif' },
+    { name: 'JIHAN AULIA', kelas: 'VII-C', nisn: '20260013', status: 'Aktif' },
+    { name: 'KARISMA AYU', kelas: 'VII-C', nisn: '20260014', status: 'Aktif' },
+    { name: 'LUKMAN HAKIM', kelas: 'VII-C', nisn: '20260015', status: 'Aktif' },
+    { name: 'MAYA SARI', kelas: 'VII-D', nisn: '20260016', status: 'Aktif' },
+    { name: 'NADIA AMELIA', kelas: 'VII-D', nisn: '20260017', status: 'Aktif' },
+    { name: 'OKTAVIANI R', kelas: 'VII-D', nisn: '20260018', status: 'Aktif' },
+    { name: 'RAFI KURNIAWAN', kelas: 'VII-D', nisn: '20260019', status: 'Aktif' },
+    { name: 'SALSABILA', kelas: 'VII-D', nisn: '20260020', status: 'Aktif' },
+    { name: 'ALIFIA PUTRI', kelas: 'VIII-A', nisn: '20260021', status: 'Aktif' },
+    { name: 'BINTANG RAHMAN', kelas: 'VIII-A', nisn: '20260022', status: 'Aktif' },
+    { name: 'CINDY LESTARI', kelas: 'VIII-A', nisn: '20260023', status: 'Aktif' },
+    { name: 'DAVA NUR', kelas: 'VIII-A', nisn: '20260024', status: 'Aktif' },
+    { name: 'ELSA KARTIKA', kelas: 'VIII-A', nisn: '20260025', status: 'Aktif' },
+    { name: 'FARHAN AZIZ', kelas: 'VIII-B', nisn: '20260026', status: 'Aktif' },
+    { name: 'GITA AYU', kelas: 'VIII-B', nisn: '20260027', status: 'Aktif' },
+    { name: 'HANA NUR', kelas: 'VIII-B', nisn: '20260028', status: 'Aktif' },
+    { name: 'IMAM FAUZI', kelas: 'VIII-B', nisn: '20260029', status: 'Aktif' },
+    { name: 'JESSICA RIA', kelas: 'VIII-B', nisn: '20260030', status: 'Aktif' },
+    { name: 'KHALISA ANANDA', kelas: 'VIII-C', nisn: '20260031', status: 'Aktif' },
+    { name: 'LAILA SAKINAH', kelas: 'VIII-C', nisn: '20260032', status: 'Aktif' },
+    { name: 'M. FIKRI', kelas: 'VIII-C', nisn: '20260033', status: 'Aktif' },
+    { name: 'NISA RAHMA', kelas: 'VIII-C', nisn: '20260034', status: 'Aktif' },
+    { name: 'ORCHIDIA T', kelas: 'VIII-C', nisn: '20260035', status: 'Aktif' },
+    { name: 'PANDU SETIAWAN', kelas: 'VIII-D', nisn: '20260036', status: 'Aktif' },
+    { name: 'QONITA AZZAHRA', kelas: 'VIII-D', nisn: '20260037', status: 'Aktif' },
+    { name: 'RIZKY RAMADAN', kelas: 'VIII-D', nisn: '20260038', status: 'Aktif' },
+    { name: 'SHEILA NUR', kelas: 'VIII-D', nisn: '20260039', status: 'Aktif' },
+    { name: 'TARISYA M', kelas: 'VIII-D', nisn: '20260040', status: 'Aktif' },
+    { name: 'AULIA RAHMA', kelas: 'IX-A', nisn: '20260041', status: 'Aktif' },
+    { name: 'BAGAS PRATAMA', kelas: 'IX-A', nisn: '20260042', status: 'Aktif' },
+    { name: 'CANTIKA N', kelas: 'IX-A', nisn: '20260043', status: 'Aktif' },
+    { name: 'DION FAJAR', kelas: 'IX-A', nisn: '20260044', status: 'Aktif' },
+    { name: 'ELVIRA NUR', kelas: 'IX-A', nisn: '20260045', status: 'Aktif' },
+    { name: 'FIRDAUS IHSAN', kelas: 'IX-B', nisn: '20260046', status: 'Aktif' },
+    { name: 'GITA NURMALA', kelas: 'IX-B', nisn: '20260047', status: 'Aktif' },
+    { name: 'HAFIDH SYAHPUTRA', kelas: 'IX-B', nisn: '20260048', status: 'Aktif' },
+    { name: 'IKHSAN NUGROHO', kelas: 'IX-B', nisn: '20260049', status: 'Aktif' },
+    { name: 'JELITA MAHARANI', kelas: 'IX-B', nisn: '20260050', status: 'Aktif' },
+    { name: 'KUNIA RAHMA', kelas: 'IX-C', nisn: '20260051', status: 'Aktif' },
+    { name: 'LUTFI RAHMAN', kelas: 'IX-C', nisn: '20260052', status: 'Aktif' },
+    { name: 'MIRANDA PUTRI', kelas: 'IX-C', nisn: '20260053', status: 'Aktif' },
+    { name: 'NADA AYU', kelas: 'IX-C', nisn: '20260054', status: 'Aktif' },
+    { name: 'OZI FARIZ', kelas: 'IX-C', nisn: '20260055', status: 'Aktif' },
+    { name: 'PRASETYO A', kelas: 'IX-D', nisn: '20260056', status: 'Aktif' },
+    { name: 'QISWAH AULIA', kelas: 'IX-D', nisn: '20260057', status: 'Aktif' },
+    { name: 'RATNA DEWI', kelas: 'IX-D', nisn: '20260058', status: 'Aktif' },
+    { name: 'SURYANINGRUM', kelas: 'IX-D', nisn: '20260059', status: 'Aktif' },
+    { name: 'TAMARA KHAIRUNNISA', kelas: 'IX-D', nisn: '20260060', status: 'Aktif' },
+  ],
+  competitions: [
+    { id: 'olimpiade', title: 'Olimpiade Sains', type: 'Nasional', period: '2026', participants: 64, color: '#ff9f1c' },
+    { id: 'futsal', title: 'Festival Olahraga', type: 'Kabupaten', period: '2026', participants: 48, color: '#2f7af6' },
+    { id: 'seni', title: 'Lomba Seni dan Budaya', type: 'Regional', period: '2026', participants: 52, color: '#7e57c2' },
+    { id: 'debat', title: 'English Debate', type: 'Provinsi', period: '2026', participants: 30, color: '#2ec4b6' },
+  ],
+};
+
 const menuItems = [
   { id: 'rdm', label: 'RDM', icon: '📘', color: '#2f7af6' },
   { id: 'absen', label: 'Absen', icon: '📝', color: '#f4b942' },
@@ -29,13 +133,6 @@ const menuItems = [
   { id: 'materi', label: 'Materi', icon: '☁️', color: '#9b59b6' },
 ];
 
-const quickAccessItems = [
-  { id: 'siswa', label: 'Siswa', icon: '👥', color: '#46c7a7' },
-  { id: 'guru', label: 'Guru', icon: '👨‍🏫', color: '#5d79d8' },
-  { id: 'kompetisi', label: 'Kompetisi', icon: '🏆', color: '#ff9f1c' },
-  { id: 'kelas', label: 'Kelas', icon: '🏫', color: '#f39f1d' },
-];
-
 const secondaryMenu = [
   { id: 'jurnal-guru', label: 'Jurnal Guru', icon: '👨‍🏫', color: '#f39f1d' },
   { id: 'modul', label: 'Modul Pembelajaran', icon: '📘', color: '#ff9f1c' },
@@ -49,155 +146,12 @@ const secondaryMenu = [
   { id: 'tugas', label: 'LKS', icon: '📄', color: '#fca311' },
 ];
 
-const schoolProfiles = [
-  {
-    id: 'smpn1-salatiga',
-    name: 'SMP Negeri 1 Salatiga',
-    city: 'Salatiga',
-    accreditation: 'Akreditasi A',
-    principal: 'Drs. Suyoto, M.Pd.',
-    studentCount: 360,
-    teacherCount: 32,
-    classCount: 12,
-  },
-  {
-    id: 'smpn2-salatiga',
-    name: 'SMP Negeri 2 Salatiga',
-    city: 'Salatiga',
-    accreditation: 'Akreditasi A',
-    principal: 'Dra. Susanti, M.Pd.',
-    studentCount: 420,
-    teacherCount: 36,
-    classCount: 14,
-  },
-  {
-    id: 'smpn3-salatiga',
-    name: 'SMP Negeri 3 Salatiga',
-    city: 'Salatiga',
-    accreditation: 'Akreditasi A',
-    principal: 'H. Budi Santoso, M.Pd.',
-    studentCount: 390,
-    teacherCount: 34,
-    classCount: 13,
-  },
+const quickAccessItems = [
+  { id: 'siswa', label: 'Siswa', icon: '👥', color: '#46c7a7' },
+  { id: 'guru', label: 'Guru', icon: '👨‍🏫', color: '#5d79d8' },
+  { id: 'kompetisi', label: 'Kompetisi', icon: '🏆', color: '#ff9f1c' },
+  { id: 'kelas', label: 'Kelas', icon: '🏫', color: '#f39f1d' },
 ];
-
-const competitionPrograms = [
-  { id: 'olimpiade', title: 'Olimpiade Sains', type: 'Nasional', period: '2026', participants: 64, color: '#ff9f1c' },
-  { id: 'futsal', title: 'Festival Olahraga', type: 'Kabupaten', period: '2026', participants: 48, color: '#2f7af6' },
-  { id: 'seni', title: 'Lomba Seni dan Budaya', type: 'Regional', period: '2026', participants: 52, color: '#7e57c2' },
-  { id: 'bahasa', title: 'English Debate', type: 'Provinsi', period: '2026', participants: 30, color: '#2ec4b6' },
-];
-
-const studentHistory = [
-  { name: 'ANASTASYA PUTRI', value: 9, type: 'Siswa', time: '09:11:28', status: 'Masuk' },
-  { name: 'AMIRA', value: 9, type: 'Siswa', time: '09:08:35', status: 'Masuk' },
-  { name: 'MUH.AKBAR', value: 8, type: 'Siswa', time: '09:03:46', status: 'Masuk' },
-  { name: 'BESSE HASNIAH', value: 9, type: 'Siswa', time: '08:55:20', status: 'Masuk' },
-  { name: 'ANDI MUSFIRAWATI F', value: 9, type: 'Siswa', time: '08:48:44', status: 'Masuk' },
-];
-
-const principal2026 = [
-  {
-    name: 'Drs. Suyoto, M.Pd.',
-    position: 'Kepala Sekolah',
-    unit: 'SMP Negeri 1 Salatiga',
-    nip: '19661212 199103 1 011',
-  },
-];
-
-const teachers2026 = [
-  { name: 'Bopo Priyanto, S.Si', role: 'Guru Informatika', kelas: 'Wali Kelas VII-A', nip: '19930601 201903 2 019' },
-  { name: 'Dewi Kusumaningtyas, S.Pd.', role: 'Guru Bahasa Indonesia', kelas: 'Wali Kelas VII-B', nip: '19880815 201903 2 020' },
-  { name: 'Rinawati, S.Pd.', role: 'Guru Matematika', kelas: 'Wali Kelas VII-C', nip: '19891210 202001 2 004' },
-  { name: 'Agus Setyawan, S.Pd.', role: 'Guru IPA', kelas: 'Wali Kelas VIII-A', nip: '19870518 201903 1 011' },
-  { name: 'Siti Aisyah, S.Pd.', role: 'Guru IPS', kelas: 'Wali Kelas VIII-B', nip: '19900512 202001 2 015' },
-  { name: 'Andi Prihantoro, S.Pd.', role: 'Guru Pendidikan Pancasila', kelas: 'Wali Kelas VIII-C', nip: '19890924 201903 1 018' },
-  { name: 'Rina Oktaviana, S.Pd.', role: 'Guru Bahasa Inggris', kelas: 'Wali Kelas IX-A', nip: '19910321 202001 2 021' },
-  { name: 'Fajar Nugroho, S.Pd.', role: 'Guru PJOK', kelas: 'Wali Kelas IX-B', nip: '19881109 201903 1 014' },
-  { name: 'Hesti Wulandari, S.Pd.', role: 'Guru Seni Budaya', kelas: 'Wali Kelas IX-C', nip: '19920405 202001 2 026' },
-  { name: 'Eko Susilo, S.Pd.', role: 'Guru TIK', kelas: 'Wali Kelas VII-D', nip: '19870312 201903 1 006' },
-  { name: 'Maya Lestari, S.Pd.', role: 'Guru BK', kelas: 'Wali Kelas VIII-D', nip: '19900119 202001 2 032' },
-  { name: 'Yogi Pratama, S.Pd.', role: 'Guru Agama', kelas: 'Wali Kelas IX-D', nip: '19851228 201903 1 009' },
-];
-
-const students2026 = [
-  { name: 'ANASTASYA PUTRI', kelas: 'VII-A', nisn: '20260001', status: 'Aktif' },
-  { name: 'AMIRA', kelas: 'VII-A', nisn: '20260002', status: 'Aktif' },
-  { name: 'MUH. AKBAR', kelas: 'VII-A', nisn: '20260003', status: 'Aktif' },
-  { name: 'BESSE HASNIAH', kelas: 'VII-A', nisn: '20260004', status: 'Aktif' },
-  { name: 'ANDI MUSFIRAWATI F', kelas: 'VII-A', nisn: '20260005', status: 'Aktif' },
-  { name: 'ADELIA NURSEPTI', kelas: 'VII-B', nisn: '20260006', status: 'Aktif' },
-  { name: 'AZZAHRA NINDYA', kelas: 'VII-B', nisn: '20260007', status: 'Aktif' },
-  { name: 'DANIEL PRATAMA', kelas: 'VII-B', nisn: '20260008', status: 'Aktif' },
-  { name: 'FADHILA MAHARANI', kelas: 'VII-B', nisn: '20260009', status: 'Aktif' },
-  { name: 'GILANG RAMADHAN', kelas: 'VII-B', nisn: '20260010', status: 'Aktif' },
-  { name: 'HAFIZH NUR', kelas: 'VII-C', nisn: '20260011', status: 'Aktif' },
-  { name: 'INTAN PERMATA', kelas: 'VII-C', nisn: '20260012', status: 'Aktif' },
-  { name: 'JIHAN AULIA', kelas: 'VII-C', nisn: '20260013', status: 'Aktif' },
-  { name: 'KARISMA AYU', kelas: 'VII-C', nisn: '20260014', status: 'Aktif' },
-  { name: 'LUKMAN HAKIM', kelas: 'VII-C', nisn: '20260015', status: 'Aktif' },
-  { name: 'MAYA SARI', kelas: 'VII-D', nisn: '20260016', status: 'Aktif' },
-  { name: 'NADIA AMELIA', kelas: 'VII-D', nisn: '20260017', status: 'Aktif' },
-  { name: 'OKTAVIANI R', kelas: 'VII-D', nisn: '20260018', status: 'Aktif' },
-  { name: 'RAFI KURNIAWAN', kelas: 'VII-D', nisn: '20260019', status: 'Aktif' },
-  { name: 'SALSABILA', kelas: 'VII-D', nisn: '20260020', status: 'Aktif' },
-  { name: 'ALIFIA PUTRI', kelas: 'VIII-A', nisn: '20260021', status: 'Aktif' },
-  { name: 'BINTANG RAHMAN', kelas: 'VIII-A', nisn: '20260022', status: 'Aktif' },
-  { name: 'CINDY LESTARI', kelas: 'VIII-A', nisn: '20260023', status: 'Aktif' },
-  { name: 'DAVA NUR', kelas: 'VIII-A', nisn: '20260024', status: 'Aktif' },
-  { name: 'ELSA KARTIKA', kelas: 'VIII-A', nisn: '20260025', status: 'Aktif' },
-  { name: 'FARHAN AZIZ', kelas: 'VIII-B', nisn: '20260026', status: 'Aktif' },
-  { name: 'GITA AYU', kelas: 'VIII-B', nisn: '20260027', status: 'Aktif' },
-  { name: 'HANA NUR', kelas: 'VIII-B', nisn: '20260028', status: 'Aktif' },
-  { name: 'IMAM FAUZI', kelas: 'VIII-B', nisn: '20260029', status: 'Aktif' },
-  { name: 'JESSICA RIA', kelas: 'VIII-B', nisn: '20260030', status: 'Aktif' },
-  { name: 'KHALISA ANANDA', kelas: 'VIII-C', nisn: '20260031', status: 'Aktif' },
-  { name: 'LAILA SAKINAH', kelas: 'VIII-C', nisn: '20260032', status: 'Aktif' },
-  { name: 'M. FIKRI', kelas: 'VIII-C', nisn: '20260033', status: 'Aktif' },
-  { name: 'NISA RAHMA', kelas: 'VIII-C', nisn: '20260034', status: 'Aktif' },
-  { name: 'ORCHIDIA T', kelas: 'VIII-C', nisn: '20260035', status: 'Aktif' },
-  { name: 'PANDU SETIAWAN', kelas: 'VIII-D', nisn: '20260036', status: 'Aktif' },
-  { name: 'QONITA AZZAHRA', kelas: 'VIII-D', nisn: '20260037', status: 'Aktif' },
-  { name: 'RIZKY RAMADAN', kelas: 'VIII-D', nisn: '20260038', status: 'Aktif' },
-  { name: 'SHEILA NUR', kelas: 'VIII-D', nisn: '20260039', status: 'Aktif' },
-  { name: 'TARISYA M', kelas: 'VIII-D', nisn: '20260040', status: 'Aktif' },
-  { name: 'AULIA RAHMA', kelas: 'IX-A', nisn: '20260041', status: 'Aktif' },
-  { name: 'BAGAS PRATAMA', kelas: 'IX-A', nisn: '20260042', status: 'Aktif' },
-  { name: 'CANTIKA N', kelas: 'IX-A', nisn: '20260043', status: 'Aktif' },
-  { name: 'DION FAJAR', kelas: 'IX-A', nisn: '20260044', status: 'Aktif' },
-  { name: 'ELVIRA NUR', kelas: 'IX-A', nisn: '20260045', status: 'Aktif' },
-  { name: 'FIRDAUS IHSAN', kelas: 'IX-B', nisn: '20260046', status: 'Aktif' },
-  { name: 'GITA NURMALA', kelas: 'IX-B', nisn: '20260047', status: 'Aktif' },
-  { name: 'HAFIDH SYAHPUTRA', kelas: 'IX-B', nisn: '20260048', status: 'Aktif' },
-  { name: 'IKHSAN NUGROHO', kelas: 'IX-B', nisn: '20260049', status: 'Aktif' },
-  { name: 'JELITA MAHARANI', kelas: 'IX-B', nisn: '20260050', status: 'Aktif' },
-  { name: 'KUNIA RAHMA', kelas: 'IX-C', nisn: '20260051', status: 'Aktif' },
-  { name: 'LUTFI RAHMAN', kelas: 'IX-C', nisn: '20260052', status: 'Aktif' },
-  { name: 'MIRANDA PUTRI', kelas: 'IX-C', nisn: '20260053', status: 'Aktif' },
-  { name: 'NADA AYU', kelas: 'IX-C', nisn: '20260054', status: 'Aktif' },
-  { name: 'OZI FARIZ', kelas: 'IX-C', nisn: '20260055', status: 'Aktif' },
-  { name: 'PRASETYO A', kelas: 'IX-D', nisn: '20260056', status: 'Aktif' },
-  { name: 'QISWAH AULIA', kelas: 'IX-D', nisn: '20260057', status: 'Aktif' },
-  { name: 'RATNA DEWI', kelas: 'IX-D', nisn: '20260058', status: 'Aktif' },
-  { name: 'SURYANINGRUM', kelas: 'IX-D', nisn: '20260059', status: 'Aktif' },
-  { name: 'TAMARA KHAIRUNNISA', kelas: 'IX-D', nisn: '20260060', status: 'Aktif' },
-];
-
-const totalStudents = students2026.length;
-const totalTeachers = teachers2026.length;
-const totalClasses = new Set(students2026.map((student) => student.kelas)).size;
-
-const moduleData = {
-  home: {
-    title: 'Menu Utama',
-    items: menuItems,
-  },
-  lain: {
-    title: 'Fitur Lainnya',
-    items: secondaryMenu,
-  },
-};
 
 const navItems = [
   { id: 'home', label: 'Home', icon: '🏠' },
@@ -210,7 +164,7 @@ const navItems = [
 function App() {
   const [screen, setScreen] = useState('home');
   const [query, setQuery] = useState('');
-  const [selectedSchool, setSelectedSchool] = useState('smpn1-salatiga');
+  const [selectedSchoolId, setSelectedSchoolId] = useState('smpn1');
   const animatedBackground = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
@@ -218,13 +172,13 @@ function App() {
       Animated.sequence([
         Animated.timing(animatedBackground, {
           toValue: 1,
-          duration: 30000,
+          duration: 26000,
           easing: Easing.linear,
           useNativeDriver: true,
         }),
         Animated.timing(animatedBackground, {
           toValue: 0,
-          duration: 30000,
+          duration: 26000,
           easing: Easing.linear,
           useNativeDriver: true,
         }),
@@ -232,12 +186,12 @@ function App() {
     ).start();
   }, [animatedBackground]);
 
-  const driftX = animatedBackground.interpolate({
+  const backgroundShift = animatedBackground.interpolate({
     inputRange: [0, 1],
-    outputRange: [-120, 130],
+    outputRange: [-120, 120],
   });
 
-  const activeSchool = schoolProfiles.find((school) => school.id === selectedSchool) || schoolProfiles[0];
+  const selectedSchool = schoolData.schools.find((school) => school.id === selectedSchoolId) || schoolData.schools[0];
 
   const filteredMenu = useMemo(() => {
     const source = screen === 'home' ? menuItems : secondaryMenu;
@@ -246,9 +200,8 @@ function App() {
   }, [query, screen]);
 
   const filteredStudents = useMemo(() => {
-    const source = students2026;
-    if (!query.trim()) return source;
-    return source.filter((student) => {
+    if (!query.trim()) return schoolData.students;
+    return schoolData.students.filter((student) => {
       const search = query.toLowerCase();
       return (
         student.name.toLowerCase().includes(search) ||
@@ -259,9 +212,8 @@ function App() {
   }, [query]);
 
   const filteredTeachers = useMemo(() => {
-    const source = teachers2026;
-    if (!query.trim()) return source;
-    return source.filter((teacher) => {
+    if (!query.trim()) return schoolData.teachers;
+    return schoolData.teachers.filter((teacher) => {
       const search = query.toLowerCase();
       return (
         teacher.name.toLowerCase().includes(search) ||
@@ -272,9 +224,8 @@ function App() {
   }, [query]);
 
   const filteredCompetitions = useMemo(() => {
-    const source = competitionPrograms;
-    if (!query.trim()) return source;
-    return source.filter((item) => item.title.toLowerCase().includes(query.toLowerCase()));
+    if (!query.trim()) return schoolData.competitions;
+    return schoolData.competitions.filter((item) => item.title.toLowerCase().includes(query.toLowerCase()));
   }, [query]);
 
   const renderHeader = () => (
@@ -288,27 +239,26 @@ function App() {
     </View>
   );
 
-  const renderHeroSchool = () => (
-    <View style={styles.heroWindow}>
-      <View style={styles.heroHeaderRow}>
-        <Text style={styles.heroBadge}>Sekolah Digital</Text>
-        <Text style={styles.heroDate}>2026</Text>
+  const renderHero = () => (
+    <View style={styles.heroCard}>
+      <View style={styles.heroTopRow}>
+        <Text style={styles.heroTag}>School Hub</Text>
+        <Text style={styles.heroYear}>2026</Text>
       </View>
-
-      <Text style={styles.heroSchoolName}>{activeSchool.name}</Text>
-      <Text style={styles.heroMeta}>{activeSchool.city} · {activeSchool.accreditation}</Text>
+      <Text style={styles.heroName}>{selectedSchool.name}</Text>
+      <Text style={styles.heroMeta}>{schoolData.profile.city} • {schoolData.profile.accreditation}</Text>
 
       <View style={styles.heroStatRow}>
         <View style={styles.heroStatBox}>
-          <Text style={styles.heroStatValue}>{activeSchool.studentCount}</Text>
+          <Text style={styles.heroStatValue}>{schoolData.stats.students}</Text>
           <Text style={styles.heroStatLabel}>Siswa</Text>
         </View>
         <View style={styles.heroStatBox}>
-          <Text style={styles.heroStatValue}>{activeSchool.teacherCount}</Text>
+          <Text style={styles.heroStatValue}>{schoolData.stats.teachers}</Text>
           <Text style={styles.heroStatLabel}>Guru</Text>
         </View>
         <View style={styles.heroStatBox}>
-          <Text style={styles.heroStatValue}>{activeSchool.classCount}</Text>
+          <Text style={styles.heroStatValue}>{schoolData.stats.classes}</Text>
           <Text style={styles.heroStatLabel}>Kelas</Text>
         </View>
       </View>
@@ -325,7 +275,7 @@ function App() {
 
       <View style={styles.profileTextWrap}>
         <Text style={styles.nameText}>Bopo Priyanto, S.Si</Text>
-        <Text style={styles.metaText}>Jabatan : Guru / Wali Kelas 1</Text>
+        <Text style={styles.metaText}>Jabatan : Guru / Wali Kelas</Text>
         <Text style={styles.metaText}>Guru : Informatika</Text>
         <Text style={styles.metaText}>NIP : 19930601 2019032019</Text>
       </View>
@@ -335,16 +285,16 @@ function App() {
   const renderSummary = () => (
     <View style={styles.summaryRow}>
       <View style={styles.summaryCard}>
-        <Text style={styles.summaryLabel}>Jumlah Siswa</Text>
-        <Text style={styles.summaryValue}>{totalStudents}</Text>
+        <Text style={styles.summaryLabel}>Total Siswa</Text>
+        <Text style={styles.summaryValue}>{schoolData.students.length}</Text>
       </View>
       <View style={styles.summaryCard}>
-        <Text style={styles.summaryLabel}>Jumlah Guru</Text>
-        <Text style={styles.summaryValue}>{totalTeachers}</Text>
+        <Text style={styles.summaryLabel}>Total Guru</Text>
+        <Text style={styles.summaryValue}>{schoolData.teachers.length}</Text>
       </View>
       <View style={styles.summaryCard}>
-        <Text style={styles.summaryLabel}>Kelas</Text>
-        <Text style={styles.summaryValue}>{totalClasses}</Text>
+        <Text style={styles.summaryLabel}>Kompetisi</Text>
+        <Text style={styles.summaryValue}>{schoolData.competitions.length}</Text>
       </View>
     </View>
   );
@@ -354,7 +304,17 @@ function App() {
       <Text style={styles.quickAccessTitle}>Akses Cepat</Text>
       <View style={styles.quickAccessGrid}>
         {quickAccessItems.map((item) => (
-          <TouchableOpacity key={item.id} style={styles.quickAccessCard} activeOpacity={0.9} onPress={() => setScreen(item.id === 'guru' ? 'teachers' : item.id === 'kompetisi' ? 'competitions' : item.id === 'siswa' ? 'students' : 'home')}>
+          <TouchableOpacity
+            key={item.id}
+            style={styles.quickAccessCard}
+            activeOpacity={0.8}
+            onPress={() => {
+              if (item.id === 'siswa') setScreen('students');
+              else if (item.id === 'guru') setScreen('teachers');
+              else if (item.id === 'kompetisi') setScreen('competitions');
+              else setScreen('home');
+            }}
+          >
             <View style={[styles.quickAccessIcon, { backgroundColor: item.color }]}>
               <Text style={styles.quickAccessIconText}>{item.icon}</Text>
             </View>
@@ -367,14 +327,19 @@ function App() {
 
   const renderMenuGrid = () => (
     <View style={styles.sectionWrap}>
-      <Text style={styles.sectionTitle}>{moduleData[screen]?.title || 'Menu Utama'}</Text>
+      <Text style={styles.sectionTitle}>{screen === 'home' ? 'Menu Utama' : 'Fitur Lainnya'}</Text>
       <View style={styles.gridWrap}>
         {filteredMenu.map((item) => (
-          <TouchableOpacity key={item.id} style={styles.menuItemCard} activeOpacity={0.9} onPress={() => {
-            if (item.id === 'kompetisi') setScreen('competitions');
-            else if (item.id === 'siswa') setScreen('students');
-            else if (item.id === 'jurnal-guru' || item.id === 'modul' || item.id === 'english' || item.id === 'tugas') setScreen('home');
-          }}>
+          <TouchableOpacity
+            key={item.id}
+            style={styles.menuItemCard}
+            activeOpacity={0.85}
+            onPress={() => {
+              if (item.id === 'siswa') setScreen('students');
+              else if (item.id === 'kompetisi') setScreen('competitions');
+              else if (item.id === 'kelas') setScreen('home');
+            }}
+          >
             <View style={[styles.iconBox, { backgroundColor: item.color }]}>
               <Text style={styles.iconText}>{item.icon}</Text>
             </View>
@@ -389,15 +354,15 @@ function App() {
     <View style={styles.selectorWrap}>
       <Text style={styles.selectorTitle}>Pilih Sekolah Model</Text>
       <View style={styles.selectorList}>
-        {schoolProfiles.map((school) => (
+        {schoolData.schools.map((school) => (
           <TouchableOpacity
             key={school.id}
-            style={[styles.selectorCard, selectedSchool === school.id && styles.selectorCardActive]}
-            activeOpacity={0.9}
-            onPress={() => setSelectedSchool(school.id)}
+            style={[styles.selectorCard, selectedSchoolId === school.id && styles.selectorCardActive]}
+            activeOpacity={0.85}
+            onPress={() => setSelectedSchoolId(school.id)}
           >
-            <Text style={[styles.selectorName, selectedSchool === school.id && styles.selectorNameActive]}>{school.name}</Text>
-            <Text style={styles.selectorMeta}>{school.city} · {school.accreditation}</Text>
+            <Text style={[styles.selectorName, selectedSchoolId === school.id && styles.selectorNameActive]}>{school.name}</Text>
+            <Text style={styles.selectorMeta}>{school.city} • Akreditasi {school.accreditation}</Text>
           </TouchableOpacity>
         ))}
       </View>
@@ -406,7 +371,7 @@ function App() {
 
   const renderStudentScreen = () => (
     <View style={styles.screenWrap}>
-      <Text style={styles.screenHeader}>Data Siswa 2026</Text>
+      <Text style={styles.screenHeader}>Data Siswa</Text>
       {filteredStudents.map((student, index) => (
         <View key={`${student.nisn}-${index}`} style={styles.listCard}>
           <View style={styles.listBadge}><Text style={styles.listBadgeText}>{student.kelas}</Text></View>
@@ -422,7 +387,7 @@ function App() {
 
   const renderTeacherScreen = () => (
     <View style={styles.screenWrap}>
-      <Text style={styles.screenHeader}>Data Guru & Wali Kelas</Text>
+      <Text style={styles.screenHeader}>Data Guru</Text>
       {filteredTeachers.map((teacher, index) => (
         <View key={`${teacher.nip}-${index}`} style={styles.listCard}>
           <View style={styles.listBadgeDark}><Text style={styles.listBadgeText}>{teacher.kelas}</Text></View>
@@ -438,11 +403,11 @@ function App() {
 
   const renderCompetitionScreen = () => (
     <View style={styles.screenWrap}>
-      <Text style={styles.screenHeader}>Kompetisi Sekolah</Text>
+      <Text style={styles.screenHeader}>Kompetisi</Text>
       {filteredCompetitions.map((item) => (
         <View key={item.id} style={[styles.competitionCard, { borderLeftColor: item.color }]}>
           <Text style={styles.competitionTitle}>{item.title}</Text>
-          <Text style={styles.listMeta}>{item.type} · {item.period}</Text>
+          <Text style={styles.listMeta}>{item.type} • {item.period}</Text>
           <View style={styles.competitionFooter}>
             <Text style={styles.competitionMeta}>{item.participants} Peserta</Text>
             <View style={[styles.competitionPill, { backgroundColor: item.color }]}>
@@ -457,33 +422,28 @@ function App() {
   const renderProfileScreen = () => (
     <View style={styles.screenWrap}>
       <Text style={styles.screenHeader}>Profil Sekolah</Text>
-      {principal2026.map((person, index) => (
-        <View key={`${person.nip}-${index}`} style={styles.listCard}>
-          <View style={styles.listBadgeDark}><Text style={styles.listBadgeText}>Kepala</Text></View>
-          <View style={styles.listBody}>
-            <Text style={styles.listTitle}>{person.name}</Text>
-            <Text style={styles.listMeta}>{person.position}</Text>
-            <Text style={styles.listMeta}>{person.unit}</Text>
-            <Text style={styles.listMeta}>{person.nip}</Text>
-          </View>
-        </View>
-      ))}
-
-      <View style={styles.schoolInfoBox}>
-        <Text style={styles.schoolInfoLabel}>Visi Sekolah</Text>
-        <Text style={styles.schoolInfoText}>Menciptakan generasi unggul, berkarakter, dan siap bersaing di era digital.</Text>
+      <View style={styles.profilePanel}>
+        <Text style={styles.profilePanelTitle}>Kepala Sekolah</Text>
+        <Text style={styles.profileName}>{schoolData.profile.principal}</Text>
+        <Text style={styles.profileText}>{selectedSchool.name}</Text>
+        <Text style={styles.profileText}>{schoolData.profile.tagline}</Text>
       </View>
 
-      <View style={styles.schoolInfoBox}>
-        <Text style={styles.schoolInfoLabel}>Misi Sekolah</Text>
-        <Text style={styles.schoolInfoText}>Menyelenggarakan pendidikan berintegritas, inovatif, dan berorientasi masa depan.</Text>
+      <View style={styles.profilePanel}>
+        <Text style={styles.profilePanelTitle}>Visi</Text>
+        <Text style={styles.profileText}>Menciptakan generasi unggul, berkarakter, dan siap bersaing di era digital.</Text>
+      </View>
+
+      <View style={styles.profilePanel}>
+        <Text style={styles.profilePanelTitle}>Misi</Text>
+        <Text style={styles.profileText}>Menjalankan pendidikan yang inovatif, berintegritas, dan berorientasi pada pengembangan potensi siswa.</Text>
       </View>
     </View>
   );
 
-  const renderHome = () => (
+  const renderHomeScreen = () => (
     <View>
-      {renderHeroSchool()}
+      {renderHero()}
       {renderProfileCard()}
       {renderSummary()}
       {renderQuickAccess()}
@@ -503,14 +463,14 @@ function App() {
       case 'profile':
         return renderProfileScreen();
       default:
-        return renderHome();
+        return renderHomeScreen();
     }
   };
 
   const renderBottomNav = () => (
     <View style={styles.bottomNav}>
       {navItems.map((item) => (
-        <TouchableOpacity key={item.id} style={styles.navItem} onPress={() => setScreen(item.id)}>
+        <TouchableOpacity key={item.id} style={styles.navItem} activeOpacity={0.85} onPress={() => setScreen(item.id)}>
           <Text style={screen === item.id ? styles.navIconActive : styles.navIcon}>{item.icon}</Text>
           <Text style={screen === item.id ? styles.navLabelActive : styles.navLabel}>{item.label}</Text>
         </TouchableOpacity>
@@ -518,52 +478,10 @@ function App() {
     </View>
   );
 
-  const renderDetailScreen = () => (
-    <View style={styles.detailScreen}>
-      <View style={styles.topBanner}>
-        <Text style={styles.bannerText}>📷 Scan Pakai Kamera</Text>
-      </View>
-
-      <View style={styles.scanStatsRow}>
-        <View style={styles.scanStatBox}>
-          <Text style={styles.scanStatText}>Siswa</Text>
-          <Text style={styles.scanStatValue}>{totalStudents} / {totalStudents}</Text>
-        </View>
-        <View style={styles.scanStatBox}>
-          <Text style={styles.scanStatText}>Pegawai</Text>
-          <Text style={styles.scanStatValue}>{totalTeachers + principal2026.length} / {totalTeachers + principal2026.length}</Text>
-        </View>
-      </View>
-
-      <View style={styles.backButtonWrap}>
-        <Text style={styles.backButtonText}>Kembali ke Beranda</Text>
-      </View>
-
-      <View style={styles.historyContainer}>
-        <Text style={styles.historyTitle}>Riwayat Hari Ini</Text>
-        {studentHistory.map((item, index) => (
-          <View key={index} style={styles.historyCard}>
-            <View style={styles.historyAvatar}>◉</View>
-            <View style={styles.historyBody}>
-              <Text style={styles.historyName}>{item.name}</Text>
-              <Text style={styles.historyValue}>{item.value}</Text>
-              <Text style={styles.historyMeta}>Masuk: {item.time} | Pulang: --</Text>
-            </View>
-            <View style={styles.roleBadge}><Text style={styles.roleText}>{item.type}</Text></View>
-          </View>
-        ))}
-      </View>
-
-      <View style={styles.mobileFooter}>
-        <Text style={styles.footerLine} />
-      </View>
-    </View>
-  );
-
   return (
     <SafeAreaView style={styles.container}>
       <Animated.View pointerEvents="none" style={styles.backgroundLayer}>
-        <Animated.View style={[styles.backgroundTrack, { transform: [{ translateX: driftX }] }]}>
+        <Animated.View style={[styles.backgroundTrack, { transform: [{ translateX: backgroundShift }] }]}>
           <View style={styles.backgroundStrip} />
           <View style={[styles.backgroundStrip, { backgroundColor: '#e2f7ff' }]} />
           <View style={[styles.backgroundStrip, { backgroundColor: '#ffe7b2' }]} />
@@ -575,6 +493,7 @@ function App() {
       </Animated.View>
 
       <StatusBar barStyle="dark-content" backgroundColor="#dfe7e7" />
+
       <ScrollView style={styles.scroll} showsVerticalScrollIndicator={false}>
         {renderHeader()}
 
@@ -589,7 +508,6 @@ function App() {
         </View>
 
         {renderCurrentScreen()}
-
         <View style={styles.marginBottom} />
       </ScrollView>
 
@@ -601,32 +519,31 @@ function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#e7ecec',
+    backgroundColor: '#edf2f6',
   },
   scroll: {
     flex: 1,
     backgroundColor: 'transparent',
-    paddingBottom: 12,
   },
   backgroundLayer: {
     position: 'absolute',
     inset: 0,
     overflow: 'hidden',
-    backgroundColor: 'rgba(255,255,255,0.25)',
+    backgroundColor: 'rgba(255,255,255,0.18)',
   },
   backgroundTrack: {
     position: 'absolute',
     top: 0,
     left: -160,
     right: -160,
-    height: 400,
+    height: 420,
     flexDirection: 'row',
     alignItems: 'flex-start',
-    opacity: 0.35,
+    opacity: 0.38,
   },
   backgroundStrip: {
     width: 180,
-    height: 420,
+    height: 430,
     borderRadius: 80,
     marginRight: 26,
     backgroundColor: '#cfe7ff',
@@ -637,8 +554,8 @@ const styles = StyleSheet.create({
     width: 260,
     height: 260,
     borderRadius: 130,
-    backgroundColor: 'rgba(94, 147, 255, 0.18)',
-    top: 90,
+    backgroundColor: 'rgba(94, 147, 255, 0.20)',
+    top: 100,
     right: -60,
   },
   orbYellow: {
@@ -655,9 +572,9 @@ const styles = StyleSheet.create({
     width: 180,
     height: 180,
     borderRadius: 90,
-    backgroundColor: 'rgba(60, 190, 120, 0.12)',
+    backgroundColor: 'rgba(60, 190, 120, 0.16)',
     bottom: 70,
-    right: 80,
+    right: 90,
   },
   statusBarWrap: {
     flexDirection: 'row',
@@ -666,7 +583,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 18,
     paddingTop: Platform.OS === 'android' ? 12 : 10,
     paddingBottom: 8,
-    backgroundColor: 'rgba(237, 242, 242, 0.8)',
+    backgroundColor: 'rgba(237, 242, 242, 0.85)',
   },
   timeText: {
     fontSize: 18,
@@ -696,40 +613,40 @@ const styles = StyleSheet.create({
     shadowRadius: 8,
     shadowOffset: { width: 0, height: 2 },
   },
-  heroWindow: {
+  heroCard: {
     marginHorizontal: 18,
     marginTop: 18,
-    backgroundColor: 'rgba(30, 76, 183, 0.96)',
+    backgroundColor: 'rgba(30, 76, 183, 0.97)',
     borderRadius: 28,
     padding: 18,
     borderWidth: 1,
-    borderColor: 'rgba(255,255,255,0.2)',
+    borderColor: 'rgba(255,255,255,0.18)',
     shadowColor: '#0f172a',
-    shadowOpacity: 0.22,
-    shadowRadius: 15,
+    shadowOpacity: 0.18,
+    shadowRadius: 12,
     shadowOffset: { width: 0, height: 8 },
     elevation: 5,
   },
-  heroHeaderRow: {
+  heroTopRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     marginBottom: 12,
   },
-  heroBadge: {
+  heroTag: {
     fontSize: 12,
     fontWeight: '800',
-    letterSpacing: 1,
     color: '#dbeafe',
+    letterSpacing: 1,
     textTransform: 'uppercase',
   },
-  heroDate: {
+  heroYear: {
     fontSize: 12,
     fontWeight: '800',
     color: '#dbeafe',
   },
-  heroSchoolName: {
-    fontSize: 28,
+  heroName: {
+    fontSize: 27,
     fontWeight: '900',
     color: '#fff',
     marginBottom: 4,
@@ -741,9 +658,9 @@ const styles = StyleSheet.create({
   },
   heroStatRow: {
     flexDirection: 'row',
-    marginTop: 18,
     justifyContent: 'space-between',
     gap: 10,
+    marginTop: 18,
   },
   heroStatBox: {
     flex: 1,
@@ -762,53 +679,6 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     color: '#dbeafe',
     marginTop: 2,
-  },
-  quickAccessWrap: {
-    marginHorizontal: 18,
-    marginTop: 14,
-    backgroundColor: 'rgba(255,255,255,0.72)',
-    borderRadius: 24,
-    paddingVertical: 14,
-    paddingHorizontal: 12,
-    borderWidth: 1,
-    borderColor: 'rgba(255,255,255,0.7)',
-  },
-  quickAccessTitle: {
-    fontSize: 18,
-    fontWeight: '800',
-    color: '#111',
-    marginBottom: 10,
-  },
-  quickAccessGrid: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    gap: 10,
-  },
-  quickAccessCard: {
-    flex: 1,
-    alignItems: 'center',
-  },
-  quickAccessIcon: {
-    width: 52,
-    height: 52,
-    borderRadius: 18,
-    justifyContent: 'center',
-    alignItems: 'center',
-    shadowColor: '#000',
-    shadowOpacity: 0.1,
-    shadowRadius: 8,
-    shadowOffset: { width: 0, height: 3 },
-    elevation: 2,
-  },
-  quickAccessIconText: {
-    fontSize: 25,
-  },
-  quickAccessLabel: {
-    marginTop: 8,
-    fontSize: 12,
-    fontWeight: '700',
-    color: '#202020',
-    textAlign: 'center',
   },
   profileCard: {
     marginHorizontal: 18,
@@ -893,6 +763,53 @@ const styles = StyleSheet.create({
     fontWeight: '800',
     color: '#1c1c1c',
   },
+  quickAccessWrap: {
+    marginHorizontal: 18,
+    marginTop: 14,
+    backgroundColor: 'rgba(255,255,255,0.72)',
+    borderRadius: 24,
+    paddingVertical: 14,
+    paddingHorizontal: 12,
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.7)',
+  },
+  quickAccessTitle: {
+    fontSize: 18,
+    fontWeight: '800',
+    color: '#111',
+    marginBottom: 10,
+  },
+  quickAccessGrid: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    gap: 10,
+  },
+  quickAccessCard: {
+    flex: 1,
+    alignItems: 'center',
+  },
+  quickAccessIcon: {
+    width: 52,
+    height: 52,
+    borderRadius: 18,
+    justifyContent: 'center',
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOpacity: 0.1,
+    shadowRadius: 8,
+    shadowOffset: { width: 0, height: 3 },
+    elevation: 2,
+  },
+  quickAccessIconText: {
+    fontSize: 25,
+  },
+  quickAccessLabel: {
+    marginTop: 8,
+    fontSize: 12,
+    fontWeight: '700',
+    color: '#202020',
+    textAlign: 'center',
+  },
   sectionWrap: {
     marginTop: 20,
     marginHorizontal: 18,
@@ -961,8 +878,8 @@ const styles = StyleSheet.create({
     borderColor: '#dfe2e5',
   },
   selectorCardActive: {
+    backgroundColor: '#e9f0ff',
     borderColor: '#1d4ed8',
-    backgroundColor: '#e0ebff',
   },
   selectorName: {
     fontSize: 16,
@@ -973,9 +890,9 @@ const styles = StyleSheet.create({
     color: '#1d4ed8',
   },
   selectorMeta: {
+    color: '#555',
     fontSize: 12,
     fontWeight: '600',
-    color: '#555',
     marginTop: 4,
   },
   screenWrap: {
@@ -993,9 +910,9 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(255,255,255,0.8)',
     borderRadius: 18,
     padding: 14,
+    marginBottom: 10,
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 10,
     borderWidth: 1,
     borderColor: '#dfe2e5',
   },
@@ -1069,21 +986,27 @@ const styles = StyleSheet.create({
     fontSize: 11,
     fontWeight: '800',
   },
-  schoolInfoBox: {
-    backgroundColor: 'rgba(255,255,255,0.8)',
+  profilePanel: {
+    backgroundColor: 'rgba(255,255,255,0.82)',
     borderRadius: 18,
     padding: 16,
-    marginTop: 12,
+    marginBottom: 12,
     borderWidth: 1,
     borderColor: '#dfe2e5',
   },
-  schoolInfoLabel: {
+  profilePanelTitle: {
     fontSize: 15,
     fontWeight: '800',
     color: '#111',
     marginBottom: 6,
   },
-  schoolInfoText: {
+  profileName: {
+    fontSize: 18,
+    fontWeight: '800',
+    color: '#1d4ed8',
+    marginBottom: 4,
+  },
+  profileText: {
     fontSize: 14,
     fontWeight: '600',
     color: '#555',
@@ -1123,132 +1046,6 @@ const styles = StyleSheet.create({
   },
   marginBottom: {
     height: 40,
-  },
-  detailScreen: {
-    paddingHorizontal: 18,
-    paddingTop: 10,
-    backgroundColor: '#e5e6e7',
-  },
-  topBanner: {
-    backgroundColor: '#5a52cc',
-    borderRadius: 18,
-    paddingVertical: 18,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginBottom: 18,
-  },
-  bannerText: {
-    color: '#fff',
-    fontSize: 22,
-    fontWeight: '800',
-  },
-  scanStatsRow: {
-    flexDirection: 'row',
-    gap: 14,
-    marginBottom: 18,
-  },
-  scanStatBox: {
-    flex: 1,
-    backgroundColor: '#5a52cc',
-    borderRadius: 18,
-    paddingVertical: 20,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  scanStatText: {
-    color: '#fff',
-    fontSize: 20,
-    fontWeight: '700',
-  },
-  scanStatValue: {
-    color: '#fff',
-    fontSize: 30,
-    fontWeight: '800',
-    marginTop: 6,
-  },
-  backButtonWrap: {
-    backgroundColor: '#343a40',
-    borderRadius: 16,
-    paddingVertical: 18,
-    alignItems: 'center',
-    marginBottom: 18,
-  },
-  backButtonText: {
-    color: '#fff',
-    fontSize: 28,
-    fontWeight: '800',
-  },
-  historyContainer: {
-    backgroundColor: '#f0f0f0',
-    borderRadius: 18,
-    padding: 12,
-  },
-  historyTitle: {
-    fontSize: 26,
-    fontWeight: '800',
-    textAlign: 'center',
-    marginBottom: 12,
-  },
-  historyCard: {
-    backgroundColor: '#fff',
-    borderRadius: 18,
-    padding: 14,
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 10,
-  },
-  historyAvatar: {
-    width: 52,
-    height: 52,
-    borderRadius: 26,
-    backgroundColor: '#8ad0ff',
-    color: '#fff',
-    textAlign: 'center',
-    textAlignVertical: 'center',
-    fontSize: 26,
-    marginRight: 12,
-  },
-  historyBody: {
-    flex: 1,
-  },
-  historyName: {
-    fontSize: 26,
-    fontWeight: '800',
-    textTransform: 'uppercase',
-    marginBottom: 4,
-  },
-  historyValue: {
-    fontSize: 26,
-    fontWeight: '700',
-    marginBottom: 4,
-  },
-  historyMeta: {
-    fontSize: 16,
-    fontWeight: '600',
-    color: '#444',
-  },
-  roleBadge: {
-    backgroundColor: '#5a52cc',
-    paddingHorizontal: 12,
-    paddingVertical: 8,
-    borderRadius: 12,
-    marginLeft: 10,
-  },
-  roleText: {
-    color: '#fff',
-    fontWeight: '700',
-    fontSize: 14,
-  },
-  mobileFooter: {
-    alignItems: 'center',
-    marginTop: 18,
-    paddingBottom: 18,
-  },
-  footerLine: {
-    width: 90,
-    height: 5,
-    borderRadius: 99,
-    backgroundColor: '#1d1d1d',
   },
 });
 
