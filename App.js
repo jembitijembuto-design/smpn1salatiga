@@ -49,6 +49,46 @@ const secondaryMenu = [
   { id: 'tugas', label: 'LKS', icon: '📄', color: '#fca311' },
 ];
 
+const schoolProfiles = [
+  {
+    id: 'smpn1-salatiga',
+    name: 'SMP Negeri 1 Salatiga',
+    city: 'Salatiga',
+    accreditation: 'Akreditasi A',
+    principal: 'Drs. Suyoto, M.Pd.',
+    studentCount: 360,
+    teacherCount: 32,
+    classCount: 12,
+  },
+  {
+    id: 'smpn2-salatiga',
+    name: 'SMP Negeri 2 Salatiga',
+    city: 'Salatiga',
+    accreditation: 'Akreditasi A',
+    principal: 'Dra. Susanti, M.Pd.',
+    studentCount: 420,
+    teacherCount: 36,
+    classCount: 14,
+  },
+  {
+    id: 'smpn3-salatiga',
+    name: 'SMP Negeri 3 Salatiga',
+    city: 'Salatiga',
+    accreditation: 'Akreditasi A',
+    principal: 'H. Budi Santoso, M.Pd.',
+    studentCount: 390,
+    teacherCount: 34,
+    classCount: 13,
+  },
+];
+
+const competitionPrograms = [
+  { id: 'olimpiade', title: 'Olimpiade Sains', type: 'Nasional', period: '2026', participants: 64, color: '#ff9f1c' },
+  { id: 'futsal', title: 'Festival Olahraga', type: 'Kabupaten', period: '2026', participants: 48, color: '#2f7af6' },
+  { id: 'seni', title: 'Lomba Seni dan Budaya', type: 'Regional', period: '2026', participants: 52, color: '#7e57c2' },
+  { id: 'bahasa', title: 'English Debate', type: 'Provinsi', period: '2026', participants: 30, color: '#2ec4b6' },
+];
+
 const studentHistory = [
   { name: 'ANASTASYA PUTRI', value: 9, type: 'Siswa', time: '09:11:28', status: 'Masuk' },
   { name: 'AMIRA', value: 9, type: 'Siswa', time: '09:08:35', status: 'Masuk' },
@@ -159,9 +199,18 @@ const moduleData = {
   },
 };
 
+const navItems = [
+  { id: 'home', label: 'Home', icon: '🏠' },
+  { id: 'students', label: 'Siswa', icon: '👥' },
+  { id: 'teachers', label: 'Guru', icon: '👨‍🏫' },
+  { id: 'competitions', label: 'Kompetisi', icon: '🏆' },
+  { id: 'profile', label: 'Profil', icon: '👤' },
+];
+
 function App() {
-  const [selectedTab, setSelectedTab] = useState('home');
+  const [screen, setScreen] = useState('home');
   const [query, setQuery] = useState('');
+  const [selectedSchool, setSelectedSchool] = useState('smpn1-salatiga');
   const animatedBackground = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
@@ -169,13 +218,13 @@ function App() {
       Animated.sequence([
         Animated.timing(animatedBackground, {
           toValue: 1,
-          duration: 32000,
+          duration: 30000,
           easing: Easing.linear,
           useNativeDriver: true,
         }),
         Animated.timing(animatedBackground, {
           toValue: 0,
-          duration: 32000,
+          duration: 30000,
           easing: Easing.linear,
           useNativeDriver: true,
         }),
@@ -185,16 +234,48 @@ function App() {
 
   const driftX = animatedBackground.interpolate({
     inputRange: [0, 1],
-    outputRange: [-80, 120],
+    outputRange: [-120, 130],
   });
 
+  const activeSchool = schoolProfiles.find((school) => school.id === selectedSchool) || schoolProfiles[0];
+
   const filteredMenu = useMemo(() => {
-    const source = selectedTab === 'home' ? menuItems : secondaryMenu;
+    const source = screen === 'home' ? menuItems : secondaryMenu;
     if (!query.trim()) return source;
-    return source.filter((item) =>
-      item.label.toLowerCase().includes(query.toLowerCase())
-    );
-  }, [query, selectedTab]);
+    return source.filter((item) => item.label.toLowerCase().includes(query.toLowerCase()));
+  }, [query, screen]);
+
+  const filteredStudents = useMemo(() => {
+    const source = students2026;
+    if (!query.trim()) return source;
+    return source.filter((student) => {
+      const search = query.toLowerCase();
+      return (
+        student.name.toLowerCase().includes(search) ||
+        student.kelas.toLowerCase().includes(search) ||
+        student.nisn.toLowerCase().includes(search)
+      );
+    });
+  }, [query]);
+
+  const filteredTeachers = useMemo(() => {
+    const source = teachers2026;
+    if (!query.trim()) return source;
+    return source.filter((teacher) => {
+      const search = query.toLowerCase();
+      return (
+        teacher.name.toLowerCase().includes(search) ||
+        teacher.role.toLowerCase().includes(search) ||
+        teacher.kelas.toLowerCase().includes(search)
+      );
+    });
+  }, [query]);
+
+  const filteredCompetitions = useMemo(() => {
+    const source = competitionPrograms;
+    if (!query.trim()) return source;
+    return source.filter((item) => item.title.toLowerCase().includes(query.toLowerCase()));
+  }, [query]);
 
   const renderHeader = () => (
     <View style={styles.statusBarWrap}>
@@ -203,6 +284,33 @@ function App() {
         <Text>📶</Text>
         <Text>📡</Text>
         <Text>🔋</Text>
+      </View>
+    </View>
+  );
+
+  const renderHeroSchool = () => (
+    <View style={styles.heroWindow}>
+      <View style={styles.heroHeaderRow}>
+        <Text style={styles.heroBadge}>Sekolah Digital</Text>
+        <Text style={styles.heroDate}>2026</Text>
+      </View>
+
+      <Text style={styles.heroSchoolName}>{activeSchool.name}</Text>
+      <Text style={styles.heroMeta}>{activeSchool.city} · {activeSchool.accreditation}</Text>
+
+      <View style={styles.heroStatRow}>
+        <View style={styles.heroStatBox}>
+          <Text style={styles.heroStatValue}>{activeSchool.studentCount}</Text>
+          <Text style={styles.heroStatLabel}>Siswa</Text>
+        </View>
+        <View style={styles.heroStatBox}>
+          <Text style={styles.heroStatValue}>{activeSchool.teacherCount}</Text>
+          <Text style={styles.heroStatLabel}>Guru</Text>
+        </View>
+        <View style={styles.heroStatBox}>
+          <Text style={styles.heroStatValue}>{activeSchool.classCount}</Text>
+          <Text style={styles.heroStatLabel}>Kelas</Text>
+        </View>
       </View>
     </View>
   );
@@ -246,7 +354,7 @@ function App() {
       <Text style={styles.quickAccessTitle}>Akses Cepat</Text>
       <View style={styles.quickAccessGrid}>
         {quickAccessItems.map((item) => (
-          <TouchableOpacity key={item.id} style={styles.quickAccessCard} activeOpacity={0.9}>
+          <TouchableOpacity key={item.id} style={styles.quickAccessCard} activeOpacity={0.9} onPress={() => setScreen(item.id === 'guru' ? 'teachers' : item.id === 'kompetisi' ? 'competitions' : item.id === 'siswa' ? 'students' : 'home')}>
             <View style={[styles.quickAccessIcon, { backgroundColor: item.color }]}>
               <Text style={styles.quickAccessIconText}>{item.icon}</Text>
             </View>
@@ -259,10 +367,14 @@ function App() {
 
   const renderMenuGrid = () => (
     <View style={styles.sectionWrap}>
-      <Text style={styles.sectionTitle}>{moduleData[selectedTab].title}</Text>
+      <Text style={styles.sectionTitle}>{moduleData[screen]?.title || 'Menu Utama'}</Text>
       <View style={styles.gridWrap}>
         {filteredMenu.map((item) => (
-          <TouchableOpacity key={item.id} style={styles.menuItemCard} activeOpacity={0.9}>
+          <TouchableOpacity key={item.id} style={styles.menuItemCard} activeOpacity={0.9} onPress={() => {
+            if (item.id === 'kompetisi') setScreen('competitions');
+            else if (item.id === 'siswa') setScreen('students');
+            else if (item.id === 'jurnal-guru' || item.id === 'modul' || item.id === 'english' || item.id === 'tugas') setScreen('home');
+          }}>
             <View style={[styles.iconBox, { backgroundColor: item.color }]}>
               <Text style={styles.iconText}>{item.icon}</Text>
             </View>
@@ -273,64 +385,136 @@ function App() {
     </View>
   );
 
-  const renderSchoolData = () => (
-    <View style={styles.schoolDataWrap}>
-      <Text style={styles.sectionTitle}>Data Sekolah 2026</Text>
-
-      <View style={styles.dataGroup}>
-        <Text style={styles.groupTitle}>Kepala Sekolah</Text>
-        {principal2026.map((person) => (
-          <View key={person.name} style={styles.personCard}>
-            <Text style={styles.personName}>{person.name}</Text>
-            <Text style={styles.personMeta}>{person.position}</Text>
-            <Text style={styles.personMeta}>{person.unit}</Text>
-            <Text style={styles.personMeta}>{person.nip}</Text>
-          </View>
-        ))}
-      </View>
-
-      <View style={styles.dataGroup}>
-        <Text style={styles.groupTitle}>Data Guru</Text>
-        {teachers2026.map((teacher) => (
-          <View key={teacher.nip} style={styles.personCard}>
-            <Text style={styles.personName}>{teacher.name}</Text>
-            <Text style={styles.personMeta}>{teacher.role}</Text>
-            <Text style={styles.personMeta}>{teacher.kelas}</Text>
-            <Text style={styles.personMeta}>{teacher.nip}</Text>
-          </View>
-        ))}
-      </View>
-
-      <View style={styles.dataGroup}>
-        <Text style={styles.groupTitle}>Data Siswa</Text>
-        {students2026.map((student, index) => (
-          <View key={`${student.nisn}-${index}`} style={styles.studentCard}>
-            <View style={styles.studentBadge}><Text style={styles.studentBadgeText}>{student.kelas}</Text></View>
-            <View style={styles.studentBody}>
-              <Text style={styles.studentName}>{student.name}</Text>
-              <Text style={styles.personMeta}>NISN: {student.nisn}</Text>
-              <Text style={styles.personMeta}>Status: {student.status}</Text>
-            </View>
-          </View>
+  const renderSchoolSelector = () => (
+    <View style={styles.selectorWrap}>
+      <Text style={styles.selectorTitle}>Pilih Sekolah Model</Text>
+      <View style={styles.selectorList}>
+        {schoolProfiles.map((school) => (
+          <TouchableOpacity
+            key={school.id}
+            style={[styles.selectorCard, selectedSchool === school.id && styles.selectorCardActive]}
+            activeOpacity={0.9}
+            onPress={() => setSelectedSchool(school.id)}
+          >
+            <Text style={[styles.selectorName, selectedSchool === school.id && styles.selectorNameActive]}>{school.name}</Text>
+            <Text style={styles.selectorMeta}>{school.city} · {school.accreditation}</Text>
+          </TouchableOpacity>
         ))}
       </View>
     </View>
   );
 
+  const renderStudentScreen = () => (
+    <View style={styles.screenWrap}>
+      <Text style={styles.screenHeader}>Data Siswa 2026</Text>
+      {filteredStudents.map((student, index) => (
+        <View key={`${student.nisn}-${index}`} style={styles.listCard}>
+          <View style={styles.listBadge}><Text style={styles.listBadgeText}>{student.kelas}</Text></View>
+          <View style={styles.listBody}>
+            <Text style={styles.listTitle}>{student.name}</Text>
+            <Text style={styles.listMeta}>NISN: {student.nisn}</Text>
+            <Text style={styles.listMeta}>Status: {student.status}</Text>
+          </View>
+        </View>
+      ))}
+    </View>
+  );
+
+  const renderTeacherScreen = () => (
+    <View style={styles.screenWrap}>
+      <Text style={styles.screenHeader}>Data Guru & Wali Kelas</Text>
+      {filteredTeachers.map((teacher, index) => (
+        <View key={`${teacher.nip}-${index}`} style={styles.listCard}>
+          <View style={styles.listBadgeDark}><Text style={styles.listBadgeText}>{teacher.kelas}</Text></View>
+          <View style={styles.listBody}>
+            <Text style={styles.listTitle}>{teacher.name}</Text>
+            <Text style={styles.listMeta}>{teacher.role}</Text>
+            <Text style={styles.listMeta}>{teacher.nip}</Text>
+          </View>
+        </View>
+      ))}
+    </View>
+  );
+
+  const renderCompetitionScreen = () => (
+    <View style={styles.screenWrap}>
+      <Text style={styles.screenHeader}>Kompetisi Sekolah</Text>
+      {filteredCompetitions.map((item) => (
+        <View key={item.id} style={[styles.competitionCard, { borderLeftColor: item.color }]}>
+          <Text style={styles.competitionTitle}>{item.title}</Text>
+          <Text style={styles.listMeta}>{item.type} · {item.period}</Text>
+          <View style={styles.competitionFooter}>
+            <Text style={styles.competitionMeta}>{item.participants} Peserta</Text>
+            <View style={[styles.competitionPill, { backgroundColor: item.color }]}>
+              <Text style={styles.competitionPillText}>Aktif</Text>
+            </View>
+          </View>
+        </View>
+      ))}
+    </View>
+  );
+
+  const renderProfileScreen = () => (
+    <View style={styles.screenWrap}>
+      <Text style={styles.screenHeader}>Profil Sekolah</Text>
+      {principal2026.map((person, index) => (
+        <View key={`${person.nip}-${index}`} style={styles.listCard}>
+          <View style={styles.listBadgeDark}><Text style={styles.listBadgeText}>Kepala</Text></View>
+          <View style={styles.listBody}>
+            <Text style={styles.listTitle}>{person.name}</Text>
+            <Text style={styles.listMeta}>{person.position}</Text>
+            <Text style={styles.listMeta}>{person.unit}</Text>
+            <Text style={styles.listMeta}>{person.nip}</Text>
+          </View>
+        </View>
+      ))}
+
+      <View style={styles.schoolInfoBox}>
+        <Text style={styles.schoolInfoLabel}>Visi Sekolah</Text>
+        <Text style={styles.schoolInfoText}>Menciptakan generasi unggul, berkarakter, dan siap bersaing di era digital.</Text>
+      </View>
+
+      <View style={styles.schoolInfoBox}>
+        <Text style={styles.schoolInfoLabel}>Misi Sekolah</Text>
+        <Text style={styles.schoolInfoText}>Menyelenggarakan pendidikan berintegritas, inovatif, dan berorientasi masa depan.</Text>
+      </View>
+    </View>
+  );
+
+  const renderHome = () => (
+    <View>
+      {renderHeroSchool()}
+      {renderProfileCard()}
+      {renderSummary()}
+      {renderQuickAccess()}
+      {renderMenuGrid()}
+      {renderSchoolSelector()}
+    </View>
+  );
+
+  const renderCurrentScreen = () => {
+    switch (screen) {
+      case 'students':
+        return renderStudentScreen();
+      case 'teachers':
+        return renderTeacherScreen();
+      case 'competitions':
+        return renderCompetitionScreen();
+      case 'profile':
+        return renderProfileScreen();
+      default:
+        return renderHome();
+    }
+  };
+
   const renderBottomNav = () => (
     <View style={styles.bottomNav}>
-      <TouchableOpacity style={styles.navItem} onPress={() => setSelectedTab('home')}>
-        <Text style={selectedTab === 'home' ? styles.navIconActive : styles.navIcon}>🏠</Text>
-        <Text style={selectedTab === 'home' ? styles.navLabelActive : styles.navLabel}>Home</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.navItem} onPress={() => setSelectedTab('lain')}>
-        <Text style={selectedTab === 'lain' ? styles.navIconActive : styles.navIcon}>👤</Text>
-        <Text style={selectedTab === 'lain' ? styles.navLabelActive : styles.navLabel}>Profile</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.navItem} onPress={() => {}}>
-        <Text style={styles.navIcon}>↩️</Text>
-        <Text style={styles.navLabel}>Logout</Text>
-      </TouchableOpacity>
+      {navItems.map((item) => (
+        <TouchableOpacity key={item.id} style={styles.navItem} onPress={() => setScreen(item.id)}>
+          <Text style={screen === item.id ? styles.navIconActive : styles.navIcon}>{item.icon}</Text>
+          <Text style={screen === item.id ? styles.navLabelActive : styles.navLabel}>{item.label}</Text>
+        </TouchableOpacity>
+      ))}
     </View>
   );
 
@@ -398,17 +582,13 @@ function App() {
           <TextInput
             value={query}
             onChangeText={setQuery}
-            placeholder="Cari menu..."
+            placeholder="Cari data sekolah..."
             placeholderTextColor="#777"
             style={styles.searchInput}
           />
         </View>
 
-        {renderQuickAccess()}
-        {renderProfileCard()}
-        {renderSummary()}
-        {renderMenuGrid()}
-        {renderSchoolData()}
+        {renderCurrentScreen()}
 
         <View style={styles.marginBottom} />
       </ScrollView>
@@ -426,6 +606,7 @@ const styles = StyleSheet.create({
   scroll: {
     flex: 1,
     backgroundColor: 'transparent',
+    paddingBottom: 12,
   },
   backgroundLayer: {
     position: 'absolute',
@@ -514,6 +695,73 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.06,
     shadowRadius: 8,
     shadowOffset: { width: 0, height: 2 },
+  },
+  heroWindow: {
+    marginHorizontal: 18,
+    marginTop: 18,
+    backgroundColor: 'rgba(30, 76, 183, 0.96)',
+    borderRadius: 28,
+    padding: 18,
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.2)',
+    shadowColor: '#0f172a',
+    shadowOpacity: 0.22,
+    shadowRadius: 15,
+    shadowOffset: { width: 0, height: 8 },
+    elevation: 5,
+  },
+  heroHeaderRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 12,
+  },
+  heroBadge: {
+    fontSize: 12,
+    fontWeight: '800',
+    letterSpacing: 1,
+    color: '#dbeafe',
+    textTransform: 'uppercase',
+  },
+  heroDate: {
+    fontSize: 12,
+    fontWeight: '800',
+    color: '#dbeafe',
+  },
+  heroSchoolName: {
+    fontSize: 28,
+    fontWeight: '900',
+    color: '#fff',
+    marginBottom: 4,
+  },
+  heroMeta: {
+    fontSize: 14,
+    color: '#dbeafe',
+    fontWeight: '600',
+  },
+  heroStatRow: {
+    flexDirection: 'row',
+    marginTop: 18,
+    justifyContent: 'space-between',
+    gap: 10,
+  },
+  heroStatBox: {
+    flex: 1,
+    backgroundColor: 'rgba(255,255,255,0.12)',
+    borderRadius: 18,
+    paddingVertical: 10,
+    alignItems: 'center',
+  },
+  heroStatValue: {
+    fontSize: 24,
+    fontWeight: '900',
+    color: '#fff',
+  },
+  heroStatLabel: {
+    fontSize: 12,
+    fontWeight: '700',
+    color: '#dbeafe',
+    marginTop: 2,
   },
   quickAccessWrap: {
     marginHorizontal: 18,
@@ -691,70 +939,155 @@ const styles = StyleSheet.create({
     marginTop: 8,
     lineHeight: 20,
   },
-  schoolDataWrap: {
-    marginTop: 20,
+  selectorWrap: {
     marginHorizontal: 18,
-    paddingBottom: 12,
+    marginTop: 20,
   },
-  dataGroup: {
-    marginBottom: 22,
-  },
-  groupTitle: {
-    fontSize: 20,
+  selectorTitle: {
+    fontSize: 18,
     fontWeight: '800',
     color: '#111',
     marginBottom: 10,
   },
-  personCard: {
+  selectorList: {
+    gap: 10,
+  },
+  selectorCard: {
+    backgroundColor: 'rgba(255,255,255,0.8)',
+    borderRadius: 18,
+    paddingHorizontal: 16,
+    paddingVertical: 12,
+    borderWidth: 1,
+    borderColor: '#dfe2e5',
+  },
+  selectorCardActive: {
+    borderColor: '#1d4ed8',
+    backgroundColor: '#e0ebff',
+  },
+  selectorName: {
+    fontSize: 16,
+    fontWeight: '800',
+    color: '#111',
+  },
+  selectorNameActive: {
+    color: '#1d4ed8',
+  },
+  selectorMeta: {
+    fontSize: 12,
+    fontWeight: '600',
+    color: '#555',
+    marginTop: 4,
+  },
+  screenWrap: {
+    marginHorizontal: 18,
+    marginTop: 16,
+  },
+  screenHeader: {
+    fontSize: 26,
+    fontWeight: '900',
+    color: '#111',
+    marginBottom: 16,
+    textTransform: 'uppercase',
+  },
+  listCard: {
     backgroundColor: 'rgba(255,255,255,0.8)',
     borderRadius: 18,
     padding: 14,
+    flexDirection: 'row',
+    alignItems: 'center',
     marginBottom: 10,
     borderWidth: 1,
     borderColor: '#dfe2e5',
   },
-  personName: {
-    fontSize: 18,
-    fontWeight: '800',
-    color: '#1b1b1b',
-    marginBottom: 4,
+  listBadge: {
+    backgroundColor: '#46c7a7',
+    borderRadius: 12,
+    paddingHorizontal: 10,
+    paddingVertical: 8,
+    marginRight: 12,
   },
-  personMeta: {
-    fontSize: 14,
-    fontWeight: '600',
-    color: '#555',
-    marginTop: 2,
-  },
-  studentCard: {
-    backgroundColor: 'rgba(255,255,255,0.8)',
-    borderRadius: 16,
-    padding: 12,
-    marginBottom: 8,
-    flexDirection: 'row',
-    alignItems: 'center',
-    borderWidth: 1,
-    borderColor: '#dfe2e5',
-  },
-  studentBadge: {
+  listBadgeDark: {
     backgroundColor: '#5d79d8',
     borderRadius: 12,
     paddingHorizontal: 10,
     paddingVertical: 8,
     marginRight: 12,
   },
-  studentBadgeText: {
+  listBadgeText: {
     color: '#fff',
     fontWeight: '800',
     fontSize: 12,
   },
-  studentBody: {
+  listBody: {
     flex: 1,
   },
-  studentName: {
-    fontSize: 16,
+  listTitle: {
+    fontSize: 18,
     fontWeight: '800',
     color: '#111',
     marginBottom: 2,
+  },
+  listMeta: {
+    fontSize: 13,
+    fontWeight: '600',
+    color: '#555',
+    marginTop: 2,
+  },
+  competitionCard: {
+    backgroundColor: 'rgba(255,255,255,0.8)',
+    borderRadius: 18,
+    padding: 16,
+    marginBottom: 12,
+    borderLeftWidth: 6,
+    borderWidth: 1,
+    borderColor: '#dfe2e5',
+  },
+  competitionTitle: {
+    fontSize: 18,
+    fontWeight: '800',
+    color: '#111',
+    marginBottom: 4,
+  },
+  competitionFooter: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginTop: 12,
+  },
+  competitionMeta: {
+    fontSize: 13,
+    color: '#555',
+    fontWeight: '700',
+  },
+  competitionPill: {
+    borderRadius: 12,
+    paddingHorizontal: 10,
+    paddingVertical: 6,
+  },
+  competitionPillText: {
+    color: '#fff',
+    fontSize: 11,
+    fontWeight: '800',
+  },
+  schoolInfoBox: {
+    backgroundColor: 'rgba(255,255,255,0.8)',
+    borderRadius: 18,
+    padding: 16,
+    marginTop: 12,
+    borderWidth: 1,
+    borderColor: '#dfe2e5',
+  },
+  schoolInfoLabel: {
+    fontSize: 15,
+    fontWeight: '800',
+    color: '#111',
+    marginBottom: 6,
+  },
+  schoolInfoText: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: '#555',
+    lineHeight: 20,
   },
   bottomNav: {
     flexDirection: 'row',
