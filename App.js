@@ -47,6 +47,97 @@ const studentHistory = [
   { name: 'ANDI MUSFIRAWATI F', value: 9, type: 'Siswa', time: '08:48:44', status: 'Masuk' },
 ];
 
+const principal2026 = [
+  {
+    name: 'Drs. Suyoto, M.Pd.',
+    position: 'Kepala Sekolah',
+    unit: 'SMP Negeri 1 Salatiga',
+    nip: '19661212 199103 1 011',
+  },
+];
+
+const teachers2026 = [
+  { name: 'Bopo Priyanto, S.Si', role: 'Guru Informatika', kelas: 'Wali Kelas VII-A', nip: '19930601 201903 2 019' },
+  { name: 'Dewi Kusumaningtyas, S.Pd.', role: 'Guru Bahasa Indonesia', kelas: 'Wali Kelas VII-B', nip: '19880815 201903 2 020' },
+  { name: 'Rinawati, S.Pd.', role: 'Guru Matematika', kelas: 'Wali Kelas VII-C', nip: '19891210 202001 2 004' },
+  { name: 'Agus Setyawan, S.Pd.', role: 'Guru IPA', kelas: 'Wali Kelas VIII-A', nip: '19870518 201903 1 011' },
+  { name: 'Siti Aisyah, S.Pd.', role: 'Guru IPS', kelas: 'Wali Kelas VIII-B', nip: '19900512 202001 2 015' },
+  { name: 'Andi Prihantoro, S.Pd.', role: 'Guru Pendidikan Pancasila', kelas: 'Wali Kelas VIII-C', nip: '19890924 201903 1 018' },
+  { name: 'Rina Oktaviana, S.Pd.', role: 'Guru Bahasa Inggris', kelas: 'Wali Kelas IX-A', nip: '19910321 202001 2 021' },
+  { name: 'Fajar Nugroho, S.Pd.', role: 'Guru PJOK', kelas: 'Wali Kelas IX-B', nip: '19881109 201903 1 014' },
+  { name: 'Hesti Wulandari, S.Pd.', role: 'Guru Seni Budaya', kelas: 'Wali Kelas IX-C', nip: '19920405 202001 2 026' },
+  { name: 'Eko Susilo, S.Pd.', role: 'Guru TIK', kelas: 'Wali Kelas VII-D', nip: '19870312 201903 1 006' },
+  { name: 'Maya Lestari, S.Pd.', role: 'Guru BK', kelas: 'Wali Kelas VIII-D', nip: '19900119 202001 2 032' },
+  { name: 'Yogi Pratama, S.Pd.', role: 'Guru Agama', kelas: 'Wali Kelas IX-D', nip: '19851228 201903 1 009' },
+];
+
+const students2026 = [
+  { name: 'ANASTASYA PUTRI', kelas: 'VII-A', nisn: '20260001', status: 'Aktif' },
+  { name: 'AMIRA', kelas: 'VII-A', nisn: '20260002', status: 'Aktif' },
+  { name: 'MUH. AKBAR', kelas: 'VII-A', nisn: '20260003', status: 'Aktif' },
+  { name: 'BESSE HASNIAH', kelas: 'VII-A', nisn: '20260004', status: 'Aktif' },
+  { name: 'ANDI MUSFIRAWATI F', kelas: 'VII-A', nisn: '20260005', status: 'Aktif' },
+  { name: 'ADELIA NURSEPTI', kelas: 'VII-B', nisn: '20260006', status: 'Aktif' },
+  { name: 'AZZAHRA NINDYA', kelas: 'VII-B', nisn: '20260007', status: 'Aktif' },
+  { name: 'DANIEL PRATAMA', kelas: 'VII-B', nisn: '20260008', status: 'Aktif' },
+  { name: 'FADHILA MAHARANI', kelas: 'VII-B', nisn: '20260009', status: 'Aktif' },
+  { name: 'GILANG RAMADHAN', kelas: 'VII-B', nisn: '20260010', status: 'Aktif' },
+  { name: 'HAFIZH NUR', kelas: 'VII-C', nisn: '20260011', status: 'Aktif' },
+  { name: 'INTAN PERMATA', kelas: 'VII-C', nisn: '20260012', status: 'Aktif' },
+  { name: 'JIHAN AULIA', kelas: 'VII-C', nisn: '20260013', status: 'Aktif' },
+  { name: 'KARISMA AYU', kelas: 'VII-C', nisn: '20260014', status: 'Aktif' },
+  { name: 'LUKMAN HAKIM', kelas: 'VII-C', nisn: '20260015', status: 'Aktif' },
+  { name: 'MAYA SARI', kelas: 'VII-D', nisn: '20260016', status: 'Aktif' },
+  { name: 'NADIA AMELIA', kelas: 'VII-D', nisn: '20260017', status: 'Aktif' },
+  { name: 'OKTAVIANI R', kelas: 'VII-D', nisn: '20260018', status: 'Aktif' },
+  { name: 'RAFI KURNIAWAN', kelas: 'VII-D', nisn: '20260019', status: 'Aktif' },
+  { name: 'SALSABILA', kelas: 'VII-D', nisn: '20260020', status: 'Aktif' },
+  { name: 'ALIFIA PUTRI', kelas: 'VIII-A', nisn: '20260021', status: 'Aktif' },
+  { name: 'BINTANG RAHMAN', kelas: 'VIII-A', nisn: '20260022', status: 'Aktif' },
+  { name: 'CINDY LESTARI', kelas: 'VIII-A', nisn: '20260023', status: 'Aktif' },
+  { name: 'DAVA NUR', kelas: 'VIII-A', nisn: '20260024', status: 'Aktif' },
+  { name: 'ELSA KARTIKA', kelas: 'VIII-A', nisn: '20260025', status: 'Aktif' },
+  { name: 'FARHAN AZIZ', kelas: 'VIII-B', nisn: '20260026', status: 'Aktif' },
+  { name: 'GITA AYU', kelas: 'VIII-B', nisn: '20260027', status: 'Aktif' },
+  { name: 'HANA NUR', kelas: 'VIII-B', nisn: '20260028', status: 'Aktif' },
+  { name: 'IMAM FAUZI', kelas: 'VIII-B', nisn: '20260029', status: 'Aktif' },
+  { name: 'JESSICA RIA', kelas: 'VIII-B', nisn: '20260030', status: 'Aktif' },
+  { name: 'KHALISA ANANDA', kelas: 'VIII-C', nisn: '20260031', status: 'Aktif' },
+  { name: 'LAILA SAKINAH', kelas: 'VIII-C', nisn: '20260032', status: 'Aktif' },
+  { name: 'M. FIKRI', kelas: 'VIII-C', nisn: '20260033', status: 'Aktif' },
+  { name: 'NISA RAHMA', kelas: 'VIII-C', nisn: '20260034', status: 'Aktif' },
+  { name: 'ORCHIDIA T', kelas: 'VIII-C', nisn: '20260035', status: 'Aktif' },
+  { name: 'PANDU SETIAWAN', kelas: 'VIII-D', nisn: '20260036', status: 'Aktif' },
+  { name: 'QONITA AZZAHRA', kelas: 'VIII-D', nisn: '20260037', status: 'Aktif' },
+  { name: 'RIZKY RAMADAN', kelas: 'VIII-D', nisn: '20260038', status: 'Aktif' },
+  { name: 'SHEILA NUR', kelas: 'VIII-D', nisn: '20260039', status: 'Aktif' },
+  { name: 'TARISYA M', kelas: 'VIII-D', nisn: '20260040', status: 'Aktif' },
+  { name: 'AULIA RAHMA', kelas: 'IX-A', nisn: '20260041', status: 'Aktif' },
+  { name: 'BAGAS PRATAMA', kelas: 'IX-A', nisn: '20260042', status: 'Aktif' },
+  { name: 'CANTIKA N', kelas: 'IX-A', nisn: '20260043', status: 'Aktif' },
+  { name: 'DION FAJAR', kelas: 'IX-A', nisn: '20260044', status: 'Aktif' },
+  { name: 'ELVIRA NUR', kelas: 'IX-A', nisn: '20260045', status: 'Aktif' },
+  { name: 'FIRDAUS IHSAN', kelas: 'IX-B', nisn: '20260046', status: 'Aktif' },
+  { name: 'GITA NURMALA', kelas: 'IX-B', nisn: '20260047', status: 'Aktif' },
+  { name: 'HAFIDH SYAHPUTRA', kelas: 'IX-B', nisn: '20260048', status: 'Aktif' },
+  { name: 'IKHSAN NUGROHO', kelas: 'IX-B', nisn: '20260049', status: 'Aktif' },
+  { name: 'JELITA MAHARANI', kelas: 'IX-B', nisn: '20260050', status: 'Aktif' },
+  { name: 'KUNIA RAHMA', kelas: 'IX-C', nisn: '20260051', status: 'Aktif' },
+  { name: 'LUTFI RAHMAN', kelas: 'IX-C', nisn: '20260052', status: 'Aktif' },
+  { name: 'MIRANDA PUTRI', kelas: 'IX-C', nisn: '20260053', status: 'Aktif' },
+  { name: 'NADA AYU', kelas: 'IX-C', nisn: '20260054', status: 'Aktif' },
+  { name: 'OZI FARIZ', kelas: 'IX-C', nisn: '20260055', status: 'Aktif' },
+  { name: 'PRASETYO A', kelas: 'IX-D', nisn: '20260056', status: 'Aktif' },
+  { name: 'QISWAH AULIA', kelas: 'IX-D', nisn: '20260057', status: 'Aktif' },
+  { name: 'RATNA DEWI', kelas: 'IX-D', nisn: '20260058', status: 'Aktif' },
+  { name: 'SURYANINGRUM', kelas: 'IX-D', nisn: '20260059', status: 'Aktif' },
+  { name: 'TAMARA KHAIRUNNISA', kelas: 'IX-D', nisn: '20260060', status: 'Aktif' },
+];
+
+const totalStudents = students2026.length;
+const totalTeachers = teachers2026.length;
+const totalClasses = new Set(students2026.map((student) => student.kelas)).size;
+
 const moduleData = {
   home: {
     title: 'Menu Utama',
@@ -102,11 +193,15 @@ function App() {
     <View style={styles.summaryRow}>
       <View style={styles.summaryCard}>
         <Text style={styles.summaryLabel}>Jumlah Siswa :</Text>
-        <Text style={styles.summaryValue}>1</Text>
+        <Text style={styles.summaryValue}>{totalStudents}</Text>
       </View>
       <View style={styles.summaryCard}>
-        <Text style={styles.summaryLabel}>Jumlah Kelas :</Text>
-        <Text style={styles.summaryValue}>1</Text>
+        <Text style={styles.summaryLabel}>Jumlah Guru :</Text>
+        <Text style={styles.summaryValue}>{totalTeachers}</Text>
+      </View>
+      <View style={styles.summaryCard}>
+        <Text style={styles.summaryLabel}>Kepala Sekolah :</Text>
+        <Text style={styles.summaryValue}>{principal2026.length}</Text>
       </View>
     </View>
   );
@@ -122,6 +217,50 @@ function App() {
             </View>
             <Text style={styles.menuItemLabel}>{item.label}</Text>
           </TouchableOpacity>
+        ))}
+      </View>
+    </View>
+  );
+
+  const renderSchoolData = () => (
+    <View style={styles.schoolDataWrap}>
+      <Text style={styles.sectionTitle}>Data Sekolah 2026</Text>
+
+      <View style={styles.dataGroup}>
+        <Text style={styles.groupTitle}>Kepala Sekolah</Text>
+        {principal2026.map((person) => (
+          <View key={person.name} style={styles.personCard}>
+            <Text style={styles.personName}>{person.name}</Text>
+            <Text style={styles.personMeta}>{person.position}</Text>
+            <Text style={styles.personMeta}>{person.unit}</Text>
+            <Text style={styles.personMeta}>{person.nip}</Text>
+          </View>
+        ))}
+      </View>
+
+      <View style={styles.dataGroup}>
+        <Text style={styles.groupTitle}>Data Guru</Text>
+        {teachers2026.map((teacher) => (
+          <View key={teacher.nip} style={styles.personCard}>
+            <Text style={styles.personName}>{teacher.name}</Text>
+            <Text style={styles.personMeta}>{teacher.role}</Text>
+            <Text style={styles.personMeta}>{teacher.kelas}</Text>
+            <Text style={styles.personMeta}>{teacher.nip}</Text>
+          </View>
+        ))}
+      </View>
+
+      <View style={styles.dataGroup}>
+        <Text style={styles.groupTitle}>Data Siswa</Text>
+        {students2026.map((student, index) => (
+          <View key={`${student.nisn}-${index}`} style={styles.studentCard}>
+            <View style={styles.studentBadge}><Text style={styles.studentBadgeText}>{student.kelas}</Text></View>
+            <View style={styles.studentBody}>
+              <Text style={styles.studentName}>{student.name}</Text>
+              <Text style={styles.personMeta}>NISN: {student.nisn}</Text>
+              <Text style={styles.personMeta}>Status: {student.status}</Text>
+            </View>
+          </View>
         ))}
       </View>
     </View>
@@ -153,11 +292,11 @@ function App() {
       <View style={styles.scanStatsRow}>
         <View style={styles.scanStatBox}>
           <Text style={styles.scanStatText}>Siswa</Text>
-          <Text style={styles.scanStatValue}>5 / 69</Text>
+          <Text style={styles.scanStatValue}>{totalStudents} / {totalStudents}</Text>
         </View>
         <View style={styles.scanStatBox}>
           <Text style={styles.scanStatText}>Pegawai</Text>
-          <Text style={styles.scanStatValue}>0 / 11</Text>
+          <Text style={styles.scanStatValue}>{totalTeachers + principal2026.length} / {totalTeachers + principal2026.length}</Text>
         </View>
       </View>
 
@@ -205,6 +344,7 @@ function App() {
         {renderProfileCard()}
         {renderSummary()}
         {renderMenuGrid()}
+        {renderSchoolData()}
 
         <View style={styles.marginBottom} />
       </ScrollView>
@@ -313,9 +453,11 @@ const styles = StyleSheet.create({
     marginHorizontal: 18,
     marginTop: 18,
     gap: 12,
+    flexWrap: 'wrap',
   },
   summaryCard: {
     flex: 1,
+    minWidth: 100,
     backgroundColor: '#f3f2f2',
     borderRadius: 22,
     paddingVertical: 18,
@@ -330,6 +472,7 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     color: '#1c1c1c',
     marginBottom: 10,
+    textAlign: 'center',
   },
   summaryValue: {
     fontSize: 36,
@@ -381,6 +524,71 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginTop: 8,
     lineHeight: 20,
+  },
+  schoolDataWrap: {
+    marginTop: 20,
+    marginHorizontal: 18,
+    paddingBottom: 12,
+  },
+  dataGroup: {
+    marginBottom: 22,
+  },
+  groupTitle: {
+    fontSize: 20,
+    fontWeight: '800',
+    color: '#111',
+    marginBottom: 10,
+  },
+  personCard: {
+    backgroundColor: '#fff',
+    borderRadius: 18,
+    padding: 14,
+    marginBottom: 10,
+    borderWidth: 1,
+    borderColor: '#dfe2e5',
+  },
+  personName: {
+    fontSize: 18,
+    fontWeight: '800',
+    color: '#1b1b1b',
+    marginBottom: 4,
+  },
+  personMeta: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: '#555',
+    marginTop: 2,
+  },
+  studentCard: {
+    backgroundColor: '#fff',
+    borderRadius: 16,
+    padding: 12,
+    marginBottom: 8,
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderWidth: 1,
+    borderColor: '#dfe2e5',
+  },
+  studentBadge: {
+    backgroundColor: '#5d79d8',
+    borderRadius: 12,
+    paddingHorizontal: 10,
+    paddingVertical: 8,
+    marginRight: 12,
+  },
+  studentBadgeText: {
+    color: '#fff',
+    fontWeight: '800',
+    fontSize: 12,
+  },
+  studentBody: {
+    flex: 1,
+  },
+  studentName: {
+    fontSize: 16,
+    fontWeight: '800',
+    color: '#111',
+    marginBottom: 2,
   },
   bottomNav: {
     flexDirection: 'row',
